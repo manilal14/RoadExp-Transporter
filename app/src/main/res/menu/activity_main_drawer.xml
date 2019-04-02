@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+
+        <item android:id="@+id/nav_home"
+              android:title="Home"/>
+
+        <item android:id="@+id/nav_reports"
+              android:title="Reports"/>
+
+        <item android:id="@+id/nav_driver"
+              android:title="Driver"/>
+
+        <item android:id="@+id/nav_pay_records"
+              android:title="Payment Records"/>
+
+    <item android:id="@+id/nav_review_us"
+          android:title="Review us"/>
+
+    <item android:id="@+id/nav_logout"
+          android:title="Logout"/>
+
+
+
+
+</menu>
