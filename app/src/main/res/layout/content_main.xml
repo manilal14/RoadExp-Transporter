@@ -11,18 +11,41 @@
         tools:context=".MainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
         android:id="@+id/recycler_view_homepage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
 
+
     <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:id="@+id/add_vehicle"
+        android:layout_gravity="bottom|right"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="24dp"
+        android:elevation="8dp"
+        android:background="@drawable/rec_left_rounded"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginRight="16dp"
+            android:cropToPadding="true"
+            android:src="@drawable/truck"/>
+
+
+    </FrameLayout>
+
+
+
+
+
+
+
+
+
 
 
 

@@ -14,22 +14,20 @@ import com.example.roadexp_transporter.R;
 import java.util.Objects;
 
 
-public class FragVehicleInfo extends Fragment {
+public class FragTravelDetails extends Fragment {
 
-    private String TAG = "FragVehicleInfo";
+    private String TAG = "FragTravelDetails";
     private View mRoot;
 
-    public FragVehicleInfo() {}
+    public FragTravelDetails() {}
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         Log.e(TAG,"onCreateView");
-        mRoot =  inflater.inflate(R.layout.frag_vehicle_info, container, false);
+        mRoot = inflater.inflate(R.layout.frag_travel_details, container, false);
         clickListener();
-
         return mRoot;
     }
 

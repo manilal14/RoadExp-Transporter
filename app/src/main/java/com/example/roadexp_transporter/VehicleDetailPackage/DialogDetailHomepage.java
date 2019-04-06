@@ -87,14 +87,14 @@ public class DialogDetailHomepage extends DialogFragment {
         mRoot.findViewById(R.id.travel_details).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Travel Detail", Toast.LENGTH_SHORT).show();
+                replaceFragment(new FragTravelDetails());
             }
         });
 
         mRoot.findViewById(R.id.map_driver).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Map Driver", Toast.LENGTH_SHORT).show();
+                replaceFragment(new FragMapDriver());
             }
         });
 
@@ -135,7 +135,7 @@ public class DialogDetailHomepage extends DialogFragment {
 //    private void openVehicleInfoDialog() {
 //
 //        AlertDialog.Builder vehicleInfoDialog =  new AlertDialog.Builder(getActivity());
-//        vehicleInfoDialog.setView(getLayoutInflater().inflate(R.layout.dialog_vehicle_info,null));
+//        vehicleInfoDialog.setView(getLayoutInflater().inflate(R.layout.fragVehicleInfo,null));
 //
 //        Window window = vehicleInfoDialog.show().getWindow();
 //
