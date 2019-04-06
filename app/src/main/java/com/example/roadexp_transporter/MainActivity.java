@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -140,19 +139,18 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_reports) {
-
-        } else if (id == R.id.nav_driver) {
-
-        } else if (id == R.id.nav_pay_records) {
-
-        } else if (id == R.id.nav_reports) {
-
-        } else if (id == R.id.nav_logout) {
-
-        }
+//        if (id == R.id.nav_home) {
+//        } else if (id == R.id.nav_reports) {
+//
+//        } else if (id == R.id.nav_driver) {
+//
+//        } else if (id == R.id.nav_pay_records) {
+//
+//        } else if (id == R.id.nav_reports) {
+//
+//        } else if (id == R.id.nav_logout) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

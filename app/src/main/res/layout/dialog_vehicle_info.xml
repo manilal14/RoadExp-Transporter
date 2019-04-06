@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/whole_page"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="24dp"
+            android:layout_gravity="center|start"
+            android:background="@drawable/cross_circle"
+            android:padding="12dp"
+            android:src="@drawable/arrow_back" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            app:cardCornerRadius="12dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:paddingTop="24dp"
+                android:paddingBottom="48dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tata Ace"
+                    android:fontFamily="@font/lato_black"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"/>
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JHBR41253"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/yellow_gradient"/>
+
+                <LinearLayout
+                    android:layout_marginTop="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Distance Travelled  :"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/light_red_gradient"/>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2475156 km"
+                        android:textSize="12sp"
+                        android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@color/black"/>
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Documents  :"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/lato_bold"
+                    android:textColor="@color/light_red_gradient"/>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="16dp"
+                        app:cardUseCompatPadding="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"
+                            android:text="@string/insurance_paper"
+                            android:textColor="@color/black" />
+
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="16dp"
+                        app:cardUseCompatPadding="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"
+                            android:text="Vehicle Invoice"
+                            android:textColor="@color/black" />
+
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="16dp"
+                        app:cardUseCompatPadding="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"
+                            android:text="Number Plate"
+                            android:textColor="@color/black" />
+
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mapped Driver  :"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/light_red_gradient"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pramod Kumar"
+                        android:textSize="12sp"
+                        android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@color/black"/>
+
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</FrameLayout>
