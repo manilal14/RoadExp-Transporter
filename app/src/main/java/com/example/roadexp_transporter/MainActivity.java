@@ -3,8 +3,9 @@ package com.example.roadexp_transporter;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,10 +19,11 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.example.roadexp_transporter.groupingVehicles.GeneralItems;
-import com.example.roadexp_transporter.groupingVehicles.GroupedVehicleAdapter;
-import com.example.roadexp_transporter.groupingVehicles.MyListItem;
-import com.example.roadexp_transporter.groupingVehicles.StatusItem;
+import com.example.roadexp_transporter.HomeFragments.FragMoving;
+import com.example.roadexp_transporter.HomeFragments.FragOnWait;
+import com.example.roadexp_transporter.HomeFragments.FragTurnedOff;
+import com.example.roadexp_transporter.HomeFragments.Vehicle;
+import com.example.roadexp_transporter.HomeFragments.VehicleFragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity
 
     private String TAG = this.getClass().getSimpleName();
     private ArrayList<Vehicle> mVehicleList;
+
+    private List<Fragment> mFragmentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +59,24 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         mVehicleList = new ArrayList<>();
+        //fetchVehicleList();
 
-        fetchVehicleList();
+        mFragmentList = new ArrayList<>();
+        mFragmentList.add(new FragMoving());
+        mFragmentList.add(new FragOnWait());
+        mFragmentList.add(new FragTurnedOff());
+
+        ViewPager viewPager = findViewById(R.id.viewpager);
+
+        VehicleFragmentPagerAdapter adapter = new VehicleFragmentPagerAdapter(
+                getSupportFragmentManager(),mFragmentList);
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+
+
         clickListerner();
 
     }
@@ -78,115 +98,6 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
-
-    private void fetchVehicleList() {
-
-        mVehicleList.add(new Vehicle(1,1,"Tata Ace","BRGE1234",45624,
-                "pic-inc_paper","vechicleInvoice","numberPlate",
-                1,"Kedar Yadav"));
-
-        mVehicleList.add(new Vehicle(2,2,"Tata Ace","BRGE1234",45624,
-                "pic-inc_paper","vechicleInvoice","numberPlate",
-                1,"Isant Sharma"));
-
-        mVehicleList.add(new Vehicle(3,3,"Tata Ace","BRGE1234",45624,
-                "pic-inc_paper","vechicleInvoice","numberPlate",
-                1,"Virat Kohli"));
-
-        mVehicleList.add(new Vehicle(4,1,"Tata Ace","BRGE1234",45624,
-                "pic-inc_paper","vechicleInvoice","numberPlate",
-                1,"Viru Paji"));
-
-        mVehicleList.add(new Vehicle(5,1,"Tata Ace","BRGE1234",45624,
-                "pic-inc_paper","vechicleInvoice","numberPlate",
-                1,"Yuvraj Singh"));
-
-        mVehicleList.add(new Vehicle(6,1,"Tata Ace","BRGE1234",45624,
-                "pic-inc_paper","vechicleInvoice","numberPlate",
-                1,"Mahi Bhai"));
-
-        mVehicleList.add(new Vehicle(7,2,"Tata Ace","BRGE1234",45624,
-                "pic-inc_paper","vechicleInvoice","numberPlate",
-                1,"Rahul Dravid"));
-
-        mVehicleList.add(new Vehicle(8,1,"Tata Ace","BRGE1234",45624,
-                "pic-inc_paper","vechicleInvoice","numberPlate",
-                1,"Saurav Dada"));
-
-        HashMap<Integer, List<Vehicle>> vehicleHashMap = groupDataIntoHashMap(mVehicleList);
-
-        List<MyListItem> consolidatedList = new ArrayList<>();
-
-        for (Integer status : vehicleHashMap.keySet()) {
-            StatusItem statusItem = new StatusItem();
-            statusItem.setStatus(status);
-            consolidatedList.add(statusItem);
-
-
-            for (Vehicle transactionHistory : vehicleHashMap.get(status)) {
-                GeneralItems generalItem = new GeneralItems();
-                generalItem.setVehicle(transactionHistory);//setBookingDataTabs(bookingDataTabs);
-                consolidatedList.add(generalItem);
-            }
-        }
-
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_homepage);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-        //recyclerView.setAdapter(new VehicleAdapter(MainActivity.this,mVehicleList));
-
-        recyclerView.setAdapter(new GroupedVehicleAdapter(MainActivity.this,consolidatedList));
-    }
-
-
-    private HashMap<Integer, List<Vehicle>> groupDataIntoHashMap (List<Vehicle> vehicleList) {
-
-        HashMap<Integer, List<Vehicle>> groupedHashMap = new HashMap<>();
-
-        for (Vehicle vehicle : vehicleList) {
-
-            Integer hashMapKey = vehicle.getStatus();
-
-            if (groupedHashMap.containsKey(hashMapKey))
-                groupedHashMap.get(hashMapKey).add(vehicle);
-            else {
-                List<Vehicle> list = new ArrayList<>();
-                list.add(vehicle);
-                groupedHashMap.put(hashMapKey, list);
-            }
-        }
-        return groupedHashMap;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @Override

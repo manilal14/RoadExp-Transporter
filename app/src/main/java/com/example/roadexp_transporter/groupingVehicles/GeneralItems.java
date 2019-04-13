@@ -1,8 +1,6 @@
 package com.example.roadexp_transporter.groupingVehicles;
 
-import com.example.roadexp_transporter.Vehicle;
-
-import java.util.List;
+import com.example.roadexp_transporter.HomeFragments.Vehicle;
 
 public class GeneralItems extends MyListItem {
 
