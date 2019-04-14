@@ -1,6 +1,6 @@
 package com.example.roadexp_transporter.groupingVehicles;
 
-import com.example.roadexp_transporter.HomeFragments.Vehicle;
+import com.example.roadexp_transporter.VehiclePackage.Vehicle;
 
 public class GeneralItems extends MyListItem {
 

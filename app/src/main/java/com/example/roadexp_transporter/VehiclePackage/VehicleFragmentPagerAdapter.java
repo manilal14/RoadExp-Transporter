@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.HomeFragments;
+package com.example.roadexp_transporter.VehiclePackage;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

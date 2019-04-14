@@ -85,8 +85,46 @@
                     android:layout_height="wrap_content"
                     android:text="Select Driver"
                     android:layout_marginTop="16dp"
+                    android:layout_marginLeft="12dp"
                     android:fontFamily="@font/lato_regular"
                     android:textSize="16dp"/>
+
+                <RelativeLayout
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:layout_weight=".28"
+                    android:background="@drawable/spinner_background"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner_select_driver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:spinnerMode="dropdown" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@drawable/line_gradient"
+                        android:layout_below="@id/spinner_select_driver"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/drop_down" />
+
+
+
+                </RelativeLayout>
+
 
 
 

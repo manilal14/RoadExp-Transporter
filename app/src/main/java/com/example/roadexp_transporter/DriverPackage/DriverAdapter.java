@@ -1,9 +1,8 @@
-package com.example.roadexp_transporter.HomeFragments;
+package com.example.roadexp_transporter.DriverPackage;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,39 +12,36 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.example.roadexp_transporter.MapsActivity;
 import com.example.roadexp_transporter.R;
-import com.example.roadexp_transporter.VehicleDetailPackage.DialogDetailHomepage;
+
 
 import java.util.List;
 
-public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleViewHolder> {
+public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.VehicleViewHolder> {
 
     private Context mCtx;
-    private List<Vehicle> mVehicleList;
+    private List<Driver> mDriverList;
 
-    public VehicleAdapter(Context mCtx, List<Vehicle> mVehicleList) {
+    public DriverAdapter(Context mCtx, List<Driver> mDriverList) {
         this.mCtx = mCtx;
-        this.mVehicleList = mVehicleList;
+        this.mDriverList = mDriverList;
     }
 
     @NonNull
     @Override
     public VehicleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new VehicleViewHolder(LayoutInflater.from(mCtx).inflate(R.layout.recycler_view_vehicle,viewGroup,false));
+        return new VehicleViewHolder(LayoutInflater.from(mCtx).inflate(R.layout.recycler_view_driver,viewGroup,false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull VehicleViewHolder h, int i) {
 
-        Vehicle vehicle = mVehicleList.get(i);
+        Driver driver = mDriverList.get(i);
 
-        h.tv_vehicle_type.setText(vehicle.getVehicleType());
-        h.tv_plate_no.setText(vehicle.getPlateNunmber());
-        h.tv_driver.setText(vehicle.getMapedDriverName());
+        h.tv_name.setText(driver.getName());
 
-        int status = vehicle.getStatus();
+        int status = driver.getStatus();
 
         switch (status){
             case 1: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.green)); break;
@@ -71,7 +67,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
         h.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DialogDetailHomepage().show( ( (FragmentActivity)mCtx).getSupportFragmentManager(), null);
+                mCtx.startActivity(new Intent(mCtx, DriverDetail.class));
             }
         });
 
@@ -80,23 +76,23 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
 
     @Override
     public int getItemCount() {
-        return mVehicleList.size();
+        return mDriverList.size();
     }
 
     public class VehicleViewHolder extends RecyclerView.ViewHolder {
 
         CardView card;
-        ImageView ic_icon,to_map;
-        TextView tv_vehicle_type, tv_plate_no, tv_driver;
+        ImageView iv_drivePic,to_map;
+        TextView tv_name;
+
 
         public VehicleViewHolder(@NonNull View v) {
             super(v);
             card            = v.findViewById(R.id.card);
-            ic_icon         = v.findViewById(R.id.image_truck);
+            iv_drivePic     = v.findViewById(R.id.driver_pic);
+            tv_name         = v.findViewById(R.id.driver_name);
             to_map          = v.findViewById(R.id.to_map);
-            tv_vehicle_type = v.findViewById(R.id.vehicle_type);
-            tv_plate_no     = v.findViewById(R.id.plate_number);
-            tv_driver       = v.findViewById(R.id.driver);
+
         }
     }
 }

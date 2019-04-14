@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.roadexp_transporter.MapsActivity;
 import com.example.roadexp_transporter.R;
-import com.example.roadexp_transporter.HomeFragments.Vehicle;
+import com.example.roadexp_transporter.VehiclePackage.Vehicle;
 import com.example.roadexp_transporter.VehicleDetailPackage.DialogDetailHomepage;
 
 import java.util.List;
