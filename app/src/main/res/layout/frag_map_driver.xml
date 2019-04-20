@@ -127,11 +127,6 @@
 
 
 
-
-
-
-
-
                 <ImageView
                     android:id="@+id/ok"
                     android:layout_marginTop="56dp"

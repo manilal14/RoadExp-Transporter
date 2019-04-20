@@ -11,16 +11,12 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -29,11 +25,11 @@ import com.example.roadexp_transporter.R;
 import java.util.Objects;
 
 
-public class DialogDetailHomepage extends DialogFragment {
+public class DialogDetailHomepage2 extends DialogFragment {
 
     private final String TAG = "DialogDetailHomePage";
     private View mRoot;
-    public DialogDetailHomepage() {}
+    public DialogDetailHomepage2() {}
 
     @NonNull
     @Override
@@ -59,7 +55,7 @@ public class DialogDetailHomepage extends DialogFragment {
 
         Log.e(TAG,"onCreateView");
 
-        mRoot = inflater.inflate(R.layout.dialog_detail_home_page, container, false);
+        mRoot = inflater.inflate(R.layout.dialog_detail_home_page2, container, false);
 
         clickListener();
 
@@ -91,30 +87,12 @@ public class DialogDetailHomepage extends DialogFragment {
             }
         });
 
-        mRoot.findViewById(R.id.map_driver).setOnClickListener(new View.OnClickListener() {
+        mRoot.findViewById(R.id.turn_on).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new FragMapDriver());
+                Toast.makeText(getActivity(),"Turning on", Toast.LENGTH_SHORT).show();
             }
         });
-
-        mRoot.findViewById(R.id.release_driver).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),"Realese Driver", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        mRoot.findViewById(R.id.turn_off).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),"Turning off", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
-
 
 
     }

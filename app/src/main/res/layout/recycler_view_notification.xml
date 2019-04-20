@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <android.support.v7.widget.CardView
+        app:cardCornerRadius="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/rl1"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/background1"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/from"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kallamessary"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_bold"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:id="@+id/from2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kochi, Kerala"
+                        android:layout_marginTop="4dp"
+                        android:layout_below="@id/from"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_regular"
+                        android:textSize="12sp"/>
+
+                    <ImageView
+                        android:id="@+id/truck"
+                        android:layout_width="44dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/truck"
+                        android:layout_below="@id/from"
+                        android:layout_centerHorizontal="true"/>
+
+
+                    <TextView
+                        android:id="@+id/to"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Palarivattom"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_bold"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:id="@+id/to2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kochi, Kerala"
+                        android:layout_below="@id/to"
+                        android:layout_marginTop="4dp"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_regular"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/half_body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Half body"
+                    android:layout_centerHorizontal="true"
+                    style="@style/button_style_1"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="32 ft. 27 T"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/rl1"
+                    android:background="@drawable/semi_circle"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="8dp"
+                    android:textSize="10dp"
+                    android:fontFamily="@font/lato_bold"
+                    android:textColor="@color/black" />
+
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pawan Singh"
+                        android:textSize="16sp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_bold"/>
+
+                    <View
+                        android:layout_marginTop="4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@color/yellow_gradient"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/light_red_gradient"/>
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Ton"
+                        android:layout_marginLeft="4dp"
+                        android:textSize="16sp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HouseHold"
+                        android:layout_gravity="end"
+                        android:gravity="end"
+                        style="@style/button_style_1"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expires On"
+                        android:textSize="16sp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thu, 2 April"
+                        android:layout_marginLeft="8dp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/light_red_gradient"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="44dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="\u20B9 2000"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/light_red_gradient"/>
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="/ Ton"
+                        android:layout_marginLeft="4dp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_bold"/>
+
+                    <TextView
+                        android:id="@+id/accept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Accept"
+                        android:background="@drawable/rectangular_border2"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/black"
+                        android:paddingLeft="24dp"
+                        android:paddingRight="24dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>

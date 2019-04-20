@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.roadexp_transporter.MapsActivity;
 import com.example.roadexp_transporter.R;
 import com.example.roadexp_transporter.VehicleDetailPackage.DialogDetailHomepage;
+import com.example.roadexp_transporter.VehicleDetailPackage.DialogDetailHomepage2;
 
 import java.util.List;
 
@@ -45,12 +46,18 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
         h.tv_plate_no.setText(vehicle.getPlateNunmber());
         h.tv_driver.setText(vehicle.getMapedDriverName());
 
-        int status = vehicle.getStatus();
+        final int status = vehicle.getStatus();
 
         switch (status){
-            case 1: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.green)); break;
-            case 2: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.yellow)); break;
-            case 3: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.light_red_gradient)); break;
+            case 1: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.green));
+                    h.ic_icon.setImageDrawable(ContextCompat.getDrawable(mCtx,R.drawable.moving));
+                    break;
+            case 2: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.yellow));
+                    h.ic_icon.setImageDrawable(ContextCompat.getDrawable(mCtx,R.drawable.on_wait));
+                    break;
+            case 3: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.light_red_gradient));
+                    h.ic_icon.setImageDrawable(ContextCompat.getDrawable(mCtx,R.drawable.turned_off));
+                    break;
 
         }
 
@@ -71,8 +78,16 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
         h.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogDetailHomepage detailHomepage = new DialogDetailHomepage();
-                detailHomepage.show( ( (FragmentActivity)mCtx).getSupportFragmentManager(), null);
+
+                if(status==1 || status==2){
+                    DialogDetailHomepage detailHomepage = new DialogDetailHomepage();
+                    detailHomepage.show( ( (FragmentActivity)mCtx).getSupportFragmentManager(), null);
+                }
+                else{
+                    DialogDetailHomepage2 detailHomepage = new DialogDetailHomepage2();
+                    detailHomepage.show( ( (FragmentActivity)mCtx).getSupportFragmentManager(), null);
+                }
+
             }
         });
 

@@ -22,6 +22,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.roadexp_transporter.AddNewVehicle.AddVehicleHomePage;
+import com.example.roadexp_transporter.NotificationPackage.NotificationSheet;
+import com.example.roadexp_transporter.NotificationPackage.NotificationsHomePage;
+import com.example.roadexp_transporter.Review.ReviewBottomSheet;
 import com.example.roadexp_transporter.VehiclePackage.FragMoving;
 import com.example.roadexp_transporter.VehiclePackage.FragOnWait;
 import com.example.roadexp_transporter.VehiclePackage.FragTurnedOff;
@@ -117,9 +121,14 @@ public class HomePage extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+
+        switch (id)
+        {
+            case R.id.action_settings : break;
+            case R.id.action_noti : startActivity(new Intent(HomePage.this, NotificationsHomePage.class)); break;
         }
+
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -261,7 +270,10 @@ public class HomePage extends AppCompatActivity {
                         switch (id_int){
                             case 0: break;
                             case 3: break;
-                            case 4: break;
+                            case 4:
+                                ReviewBottomSheet reviewBottomSheet = new ReviewBottomSheet();
+                                reviewBottomSheet.show(getSupportFragmentManager(), reviewBottomSheet.getTag());
+                                break;
                             case 5: break;
                         }
                         onBackPressed();

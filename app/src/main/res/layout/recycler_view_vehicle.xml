@@ -17,7 +17,7 @@
 
         <android.support.v7.widget.CardView
             app:cardCornerRadius="10dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -32,8 +32,8 @@
 
                 <ImageView
                     android:id="@+id/image_truck"
-                    android:src="@drawable/truck"
-                    android:layout_width="76dp"
+                    android:src="@drawable/moving"
+                    android:layout_width="66dp"
                     android:layout_gravity="center"
                     android:layout_height="66dp"/>
 
