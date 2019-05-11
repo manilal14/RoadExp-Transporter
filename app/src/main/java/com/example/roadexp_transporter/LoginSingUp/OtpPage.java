@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.roadexp_transporter.HomePage;
+import com.example.roadexp_transporter.NotificationPackage.AppHomePage;
 import com.example.roadexp_transporter.R;
 
 public class OtpPage extends AppCompatActivity {
@@ -229,7 +229,7 @@ public class OtpPage extends AppCompatActivity {
 
         Log.e(TAG, name+" "+email+" "+phone + " "+pass);
 
-        startActivity(new Intent(OtpPage.this, HomePage.class));
+        startActivity(new Intent(OtpPage.this, AppHomePage.class));
         finish();
 
     }

@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.roadexp_transporter.HomePage;
+import com.example.roadexp_transporter.NotificationPackage.AppHomePage;
 import com.example.roadexp_transporter.R;
 
 public class LoginScreen extends AppCompatActivity {
@@ -28,7 +28,7 @@ public class LoginScreen extends AppCompatActivity {
         findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginScreen.this, HomePage.class));
+                startActivity(new Intent(LoginScreen.this, AppHomePage.class));
                 finish();
             }
         });

@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.AddNewDriver;
+package com.example.roadexp_transporter.VehicleStatus;
 
 import android.os.Build;
 import android.support.v4.app.Fragment;
@@ -14,10 +14,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.example.roadexp_transporter.AddNewVehicle.AVFrag1;
 import com.example.roadexp_transporter.R;
 
-public class AddDriverHomePage extends AppCompatActivity {
+public class AddDriverPage extends AppCompatActivity {
 
     private String TAG = this.getClass().getSimpleName();
 

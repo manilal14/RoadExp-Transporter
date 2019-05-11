@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddNewDriver.AddDriverHomePage"></activity>
+        <activity android:name=".VehicleStatus.AddDriverPage"></activity>
         <activity android:name=".LoginSingUp.OtpPage" />
         <activity android:name=".LoginSingUp.SignUpPage" />
         <activity
@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NotificationPackage.NotificationsHomePage" />
+        <activity android:name=".VehicleStatus.VehicleStatusHomePage" />
         <activity android:name=".DriverPackage.DriverDetail" />
         <activity android:name=".DriverPackage.DriverHomepage" />
         <activity
@@ -47,9 +47,9 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".VehicleStatus.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".HomePage" />
+        <activity android:name=".NotificationPackage.AppHomePage" />
     </application>
 
 </manifest>

@@ -1,11 +1,10 @@
-package com.example.roadexp_transporter;
+package com.example.roadexp_transporter.NotificationPackage;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,16 +21,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.roadexp_transporter.AddNewDriver.AddDriverHomePage;
-import com.example.roadexp_transporter.AddNewVehicle.AddVehicleHomePage;
-import com.example.roadexp_transporter.NotificationPackage.NotificationSheet;
-import com.example.roadexp_transporter.NotificationPackage.NotificationsHomePage;
+import com.example.roadexp_transporter.VehicleStatus.AddDriverPage;
+import com.example.roadexp_transporter.VehicleStatus.VehicleStatusHomePage;
+import com.example.roadexp_transporter.R;
 import com.example.roadexp_transporter.Review.ReviewBottomSheet;
-import com.example.roadexp_transporter.VehiclePackage.FragMoving;
-import com.example.roadexp_transporter.VehiclePackage.FragOnWait;
-import com.example.roadexp_transporter.VehiclePackage.FragTurnedOff;
-import com.example.roadexp_transporter.VehiclePackage.Vehicle;
-import com.example.roadexp_transporter.VehiclePackage.VehicleFragmentPagerAdapter;
 import com.example.roadexp_transporter.NavigationDrawer.ExpandableListAdapter;
 import com.example.roadexp_transporter.NavigationDrawer.MenuModel;
 import com.example.roadexp_transporter.DriverPackage.DriverHomepage;
@@ -40,11 +33,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class HomePage extends AppCompatActivity {
+public class AppHomePage extends AppCompatActivity {
 
     private String TAG = this.getClass().getSimpleName();
-    private ArrayList<Vehicle> mVehicleList;
-    private List<Fragment> mFragmentList;
+
+    private List<Notification> mNotificationList;
 
 
     //Navigation Menu
@@ -69,37 +62,24 @@ public class HomePage extends AppCompatActivity {
 
         settingNavigation();
 
-        mVehicleList = new ArrayList<>();
-        //fetchVehicleList();
-
-        mFragmentList = new ArrayList<>();
-        mFragmentList.add(new FragMoving());
-        mFragmentList.add(new FragOnWait());
-        mFragmentList.add(new FragTurnedOff());
-
-        ViewPager viewPager = findViewById(R.id.viewpager);
-
-        VehicleFragmentPagerAdapter adapter = new VehicleFragmentPagerAdapter(
-                getSupportFragmentManager(),mFragmentList);
-        viewPager.setAdapter(adapter);
-
-        TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-
-        clickListerner();
+        mNotificationList = new ArrayList<>();
+        fetchNotification();
 
     }
 
 
+    private void fetchNotification() {
 
-    private void clickListerner() {
+        mNotificationList.add(new Notification(1,"Harmanpreet Kaur"));
+        mNotificationList.add(new Notification(2,"Smiriti Mandhava"));
+        mNotificationList.add(new Notification(3,"Mandira Bedi"));
 
-        findViewById(R.id.add_vehicle).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePage.this, AddVehicleHomePage.class));
-            }
-        });
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_notification);
+
+        NotificationAdapter adapter = new NotificationAdapter(AppHomePage.this,mNotificationList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(AppHomePage.this));
+        recyclerView.setAdapter(adapter);
+
 
     }
 
@@ -126,7 +106,7 @@ public class HomePage extends AppCompatActivity {
         switch (id)
         {
             case R.id.action_settings : break;
-            case R.id.action_noti : startActivity(new Intent(HomePage.this, NotificationsHomePage.class)); break;
+
         }
 
 
@@ -177,7 +157,7 @@ public class HomePage extends AppCompatActivity {
         headerView.findViewById(R.id.header_edit_profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomePage.this,"Edit Profile", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AppHomePage.this,"Edit Profile", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
@@ -200,7 +180,7 @@ public class HomePage extends AppCompatActivity {
 
     private void prepareMenuData() {
 
-        MenuModel menuModel = new MenuModel(0,"Home",false,true,0);
+        MenuModel menuModel = new MenuModel(0,"Vehicle Status",false,true,0);
         headerList.add(menuModel);
         if (!menuModel.isHasChildren()) {
             childList.put(menuModel, null);
@@ -268,7 +248,7 @@ public class HomePage extends AppCompatActivity {
 
                     if (!menuModel.isHasChildren()) {
                         switch (id_int){
-                            case 0: break;
+                            case 0: startActivity(new Intent(AppHomePage.this, VehicleStatusHomePage.class)); break;
                             case 3: break;
                             case 4:
                                 ReviewBottomSheet reviewBottomSheet = new ReviewBottomSheet();
@@ -296,15 +276,15 @@ public class HomePage extends AppCompatActivity {
                     switch (groupPosition){
                         case 1:
                             switch (childPosition){
-                                case 0:Toast.makeText(HomePage.this,"c1",Toast.LENGTH_SHORT).show();break;
+                                case 0:Toast.makeText(AppHomePage.this,"c1",Toast.LENGTH_SHORT).show();break;
 
                             }
                             break;
 
                         case 2:
                             switch (childPosition){
-                                case 0: startActivity(new Intent(HomePage.this, AddDriverHomePage.class));break;
-                                case 1: startActivity(new Intent(HomePage.this, DriverHomepage.class));break;
+                                case 0: startActivity(new Intent(AppHomePage.this, AddDriverPage.class));break;
+                                case 1: startActivity(new Intent(AppHomePage.this, DriverHomepage.class));break;
 
                             }
 
