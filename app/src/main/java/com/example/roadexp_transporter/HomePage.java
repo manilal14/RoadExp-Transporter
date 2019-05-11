@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.roadexp_transporter.AddNewDriver.AddDriverHomePage;
 import com.example.roadexp_transporter.AddNewVehicle.AddVehicleHomePage;
 import com.example.roadexp_transporter.NotificationPackage.NotificationSheet;
 import com.example.roadexp_transporter.NotificationPackage.NotificationsHomePage;
@@ -254,7 +255,6 @@ public class HomePage extends AppCompatActivity {
     private void populateExpandableList() {
 
         expandableListAdapter = new ExpandableListAdapter(this, headerList, childList);
-
         mExpandableListView.setAdapter(expandableListAdapter);
 
         mExpandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -303,8 +303,8 @@ public class HomePage extends AppCompatActivity {
 
                         case 2:
                             switch (childPosition){
-                                case 0: Toast.makeText(HomePage.this,"c2",Toast.LENGTH_SHORT).show();break;
-                                case 1: startActivity(new Intent(HomePage.this, DriverHomepage.class));
+                                case 0: startActivity(new Intent(HomePage.this, AddDriverHomePage.class));break;
+                                case 1: startActivity(new Intent(HomePage.this, DriverHomepage.class));break;
 
                             }
 

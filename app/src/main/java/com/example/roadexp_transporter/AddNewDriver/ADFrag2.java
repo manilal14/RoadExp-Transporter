@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.AddNewVehicle;
+package com.example.roadexp_transporter.AddNewDriver;
 
 
 import android.os.Bundle;
@@ -10,29 +10,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.roadexp_transporter.AddNewVehicle.AVFrag3;
+import com.example.roadexp_transporter.AddNewVehicle.AddVehicleHomePage;
 import com.example.roadexp_transporter.R;
 
-public class AVFrag2 extends Fragment {
+public class ADFrag2 extends Fragment {
 
-    private String TAG = "AVFrag2";
+    private String TAG = "ADFrag2";
     private View mRoot;
 
-    private AddVehicleHomePage mActivity;
+    private AddDriverHomePage mActivity;
 
-    public AVFrag2() {}
+    public ADFrag2() {}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mActivity = (AddVehicleHomePage) getActivity();
+        mActivity = (AddDriverHomePage) getActivity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mRoot =  inflater.inflate(R.layout.avfrag2, container, false);
-        mActivity.translateTruck(1);
+        mRoot =  inflater.inflate(R.layout.adfrag2, container, false);
+        mActivity.translateBoy(1);
         clickListener();
 
         return mRoot;
@@ -43,7 +45,8 @@ public class AVFrag2 extends Fragment {
         mRoot.findViewById(R.id.fard_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new AVFrag3(), "av_frag_3");
+                replaceFragment(new ADFrag3(), "ad_frag_3");
+
             }
         });
 

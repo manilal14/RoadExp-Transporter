@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,8 @@ public class AVFrag1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mRoot = inflater.inflate(R.layout.avpage, container, false);
+        mRoot = inflater.inflate(R.layout.avfrag1, container, false);
+        mActivity.translateTruck(0);
         fetchVehicleType();
         clickListener();
         return mRoot;
@@ -49,7 +49,6 @@ public class AVFrag1 extends Fragment {
             @Override
             public void onClick(View v) {
                 replaceFragment(new AVFrag2(),"av_frag_2");
-                mActivity.translateTruck(1);
             }
         });
 

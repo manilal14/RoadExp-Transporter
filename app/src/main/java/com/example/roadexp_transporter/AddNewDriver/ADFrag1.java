@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.AddNewVehicle;
+package com.example.roadexp_transporter.AddNewDriver;
 
 
 import android.os.Bundle;
@@ -9,32 +9,40 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
+import com.example.roadexp_transporter.AddNewVehicle.AVFrag2;
+import com.example.roadexp_transporter.AddNewVehicle.AddVehicleHomePage;
 import com.example.roadexp_transporter.R;
 
-public class AVFrag2 extends Fragment {
+import java.util.ArrayList;
 
-    private String TAG = "AVFrag2";
+public class ADFrag1 extends Fragment {
+
+    private String TAG = "ADFrag1";
     private View mRoot;
 
-    private AddVehicleHomePage mActivity;
+    private AddDriverHomePage mActivity;
 
-    public AVFrag2() {}
+    public ADFrag1() {}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mActivity = (AddVehicleHomePage) getActivity();
+        mActivity = (AddDriverHomePage) getActivity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mRoot =  inflater.inflate(R.layout.avfrag2, container, false);
-        mActivity.translateTruck(1);
-        clickListener();
 
+        mRoot = inflater.inflate(R.layout.adfrag1, container, false);
+
+        mActivity.translateBoy(0);
+
+        clickListener();
         return mRoot;
     }
 
@@ -43,28 +51,19 @@ public class AVFrag2 extends Fragment {
         mRoot.findViewById(R.id.fard_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new AVFrag3(), "av_frag_3");
+                replaceFragment(new ADFrag2(),"ad_frag_2");
             }
         });
-
-        mRoot.findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
-
 
     }
+
     private void replaceFragment(Fragment fragment, String tag) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.fragment_container, fragment,tag);
+        ft.replace(R.id.fragment_container, fragment, tag);
         //ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
         ft.addToBackStack(null);
         ft.commit();
     }
-
-
 
 }

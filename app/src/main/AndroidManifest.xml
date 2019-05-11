@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginSingUp.OtpPage"></activity>
+        <activity android:name=".AddNewDriver.AddDriverHomePage"></activity>
+        <activity android:name=".LoginSingUp.OtpPage" />
         <activity android:name=".LoginSingUp.SignUpPage" />
         <activity
             android:name=".LoginSingUp.LoginScreen"
@@ -32,7 +33,7 @@
         <activity android:name=".DriverPackage.DriverHomepage" />
         <activity
             android:name=".AddNewVehicle.AddVehicleHomePage"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

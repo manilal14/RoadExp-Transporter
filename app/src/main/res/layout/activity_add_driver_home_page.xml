@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:isScrollContainer="true"
-    tools:context=".AddNewVehicle.AddVehicleHomePage">
+    tools:context=".AddNewDriver.AddDriverHomePage">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,8 +61,6 @@
 
                         </LinearLayout>
 
-
-
                         <LinearLayout
                             android:id="@+id/traffic_layout"
                             android:layout_width="match_parent"
@@ -77,22 +73,22 @@
                                 android:layout_width="0dp"
                                 android:layout_height="60dp"
                                 android:layout_weight="1"
-                                android:src="@drawable/t1" />
+                                android:src="@drawable/building" />
 
                             <ImageView
                                 android:layout_marginLeft="16dp"
                                 android:layout_width="0dp"
-                                android:layout_height="60dp"
+                                android:layout_height="44dp"
                                 android:layout_weight="1"
-                                android:src="@drawable/t1" />
+                                android:src="@drawable/camera_colored" />
 
 
                             <ImageView
                                 android:layout_marginLeft="16dp"
                                 android:layout_width="0dp"
-                                android:layout_height="60dp"
+                                android:layout_height="40dp"
                                 android:layout_weight="1"
-                                android:src="@drawable/t1" />
+                                android:src="@drawable/id_card" />
 
                         </LinearLayout>
 
@@ -113,15 +109,15 @@
                 android:adjustViewBounds="true"
                 android:src="@drawable/road" />
 
-            <!--truck-->
+            <!--man-->
             <ImageView
-                android:id="@+id/truck"
+                android:id="@+id/walker"
                 android:layout_width="56dp"
                 android:layout_marginLeft="4dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="136dp"
                 android:elevation="16dp"
-                android:src="@drawable/moving" />
+                android:src="@drawable/walker" />
 
 
         </RelativeLayout>
@@ -138,17 +134,4 @@
 
     </LinearLayout>
 
-
-
-
-
-</ScrollView>
-
-
-
-
-
-
-
-
-
+</FrameLayout>
