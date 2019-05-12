@@ -21,8 +21,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.roadexp_transporter.VehicleStatus.AddDriverPage;
-import com.example.roadexp_transporter.VehicleStatus.VehicleStatusHomePage;
+import com.example.roadexp_transporter.AddDriverPackage.AddDriverPage;
+import com.example.roadexp_transporter.Reports.MissedLoad.MissedLoadsPage;
+import com.example.roadexp_transporter.Reports.PaymentReport.PaymentReportPage;
+import com.example.roadexp_transporter.Reports.TravelReport.TravelReportPage;
+import com.example.roadexp_transporter.VehicleStatusHomePage;
 import com.example.roadexp_transporter.R;
 import com.example.roadexp_transporter.Review.ReviewBottomSheet;
 import com.example.roadexp_transporter.NavigationDrawer.ExpandableListAdapter;
@@ -177,8 +180,7 @@ public class AppHomePage extends AppCompatActivity {
 
 
     }
-
-    private void prepareMenuData() {
+    private void prepareMenuData(){
 
         MenuModel menuModel = new MenuModel(0,"Vehicle Status",false,true,0);
         headerList.add(menuModel);
@@ -193,7 +195,14 @@ public class AppHomePage extends AppCompatActivity {
         headerList.add(menuModel);
 
         childModelsList = new ArrayList<>();
-        MenuModel childModel = new MenuModel(11,"Report child", false, false, 0);
+
+        MenuModel childModel = new MenuModel(11,"Missed Loads", false, false, 0);
+        childModelsList.add(childModel);
+
+        childModel = new MenuModel(21,"Travel Reports", false, false, 0);
+        childModelsList.add(childModel);
+
+        childModel = new MenuModel(31,"Payment Reports", false, false, 0);
         childModelsList.add(childModel);
 
         if (menuModel.isHasChildren()) {
@@ -276,7 +285,10 @@ public class AppHomePage extends AppCompatActivity {
                     switch (groupPosition){
                         case 1:
                             switch (childPosition){
-                                case 0:Toast.makeText(AppHomePage.this,"c1",Toast.LENGTH_SHORT).show();break;
+                                case 0:startActivity(new Intent(AppHomePage.this, MissedLoadsPage.class));break;
+                                case 1:startActivity(new Intent(AppHomePage.this, TravelReportPage.class));break;
+                                case 2:startActivity(new Intent(AppHomePage.this, PaymentReportPage.class));break;
+
 
                             }
                             break;

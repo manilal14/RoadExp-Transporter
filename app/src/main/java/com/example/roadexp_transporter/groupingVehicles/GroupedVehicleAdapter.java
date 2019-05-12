@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.roadexp_transporter.VehicleStatus.MapsActivity;
+import com.example.roadexp_transporter.MapsActivity;
 import com.example.roadexp_transporter.R;
 import com.example.roadexp_transporter.VehiclePackage.Vehicle;
 import com.example.roadexp_transporter.VehicleDetailPackage.DialogDetailHomepage;

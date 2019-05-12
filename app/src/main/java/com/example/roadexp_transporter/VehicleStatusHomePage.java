@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.VehicleStatus;
+package com.example.roadexp_transporter;
 
 import android.content.Intent;
 import android.os.Build;
@@ -13,7 +13,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.roadexp_transporter.AddNewVehicle.AddVehicleHomePage;
-import com.example.roadexp_transporter.R;
 import com.example.roadexp_transporter.VehiclePackage.FragMoving;
 import com.example.roadexp_transporter.VehiclePackage.FragOnWait;
 import com.example.roadexp_transporter.VehiclePackage.FragTurnedOff;

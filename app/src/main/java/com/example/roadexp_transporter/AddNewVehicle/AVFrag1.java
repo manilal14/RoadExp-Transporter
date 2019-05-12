@@ -38,7 +38,10 @@ public class AVFrag1 extends Fragment {
 
         mRoot = inflater.inflate(R.layout.avfrag1, container, false);
         mActivity.translateTruck(0);
+
         fetchVehicleType();
+        fetchPermitType();
+
         clickListener();
         return mRoot;
     }
@@ -74,6 +77,23 @@ public class AVFrag1 extends Fragment {
         adapter.setDropDownViewResource(R.layout.spinner_layout_custom);
 
         spiSelectDriver.setAdapter(adapter);
+
+    }
+
+    private void fetchPermitType() {
+
+        Spinner spiPermitType = mRoot.findViewById(R.id.spinner_permit_type);
+
+        ArrayList<String> permitList = new ArrayList<>();
+
+        permitList.add("ALL INDIA");
+        permitList.add("STATE");
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(getActivity(), R.layout.spinner_layout_custom, permitList);
+
+        adapter.setDropDownViewResource(R.layout.spinner_layout_custom);
+        spiPermitType.setAdapter(adapter);
 
     }
 

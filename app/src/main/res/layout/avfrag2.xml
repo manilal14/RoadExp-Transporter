@@ -36,7 +36,7 @@
                     style="@style/edit_text_style_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Description"/>
+                    android:hint="Vehicle Pic"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                     style="@style/edit_text_style_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Description"/>
+                    android:hint="R.C Pic Front"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -136,7 +136,7 @@
                     style="@style/edit_text_style_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Description"/>
+                    android:hint="R.C Pic Back"/>
 
                 <View
                     android:layout_width="match_parent"

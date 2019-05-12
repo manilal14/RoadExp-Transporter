@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/lato_bold"
-            android:text="Upload Image"
+            android:text="Upload Profile Pic"
             android:textColor="@color/light_red_gradient"
             android:textSize="20dp"/>
 

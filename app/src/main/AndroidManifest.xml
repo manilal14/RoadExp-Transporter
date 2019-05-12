@@ -15,7 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VehicleStatus.AddDriverPage"></activity>
+        <activity android:name=".Reports.PaymentReport.PaymentHistoryPage"></activity>
+        <activity android:name=".Reports.TravelReport.TravelHistoryPage" />
+        <activity android:name=".Reports.PaymentReport.PaymentReportPage" />
+        <activity android:name=".Reports.TravelReport.TravelReportPage" />
+        <activity android:name=".Reports.MissedLoad.MissedLoadsPage" />
+        <activity android:name=".AddDriverPackage.AddDriverPage" />
         <activity android:name=".LoginSingUp.OtpPage" />
         <activity android:name=".LoginSingUp.SignUpPage" />
         <activity
@@ -28,7 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VehicleStatus.VehicleStatusHomePage" />
+        <activity android:name=".VehicleStatusHomePage" />
         <activity android:name=".DriverPackage.DriverDetail" />
         <activity android:name=".DriverPackage.DriverHomepage" />
         <activity
@@ -47,7 +52,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".VehicleStatus.MapsActivity"
+            android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".NotificationPackage.AppHomePage" />
     </application>

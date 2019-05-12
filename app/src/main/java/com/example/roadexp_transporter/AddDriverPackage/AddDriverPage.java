@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.VehicleStatus;
+package com.example.roadexp_transporter.AddDriverPackage;
 
 import android.os.Build;
 import android.support.v4.app.Fragment;
@@ -20,6 +20,8 @@ public class AddDriverPage extends AppCompatActivity {
 
     private String TAG = this.getClass().getSimpleName();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,7 @@ public class AddDriverPage extends AppCompatActivity {
             w.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
             w.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
+
         setContentView(R.layout.activity_add_driver_home_page);
 
         Toolbar toolbar =  findViewById(R.id.toolbar);
@@ -74,5 +77,7 @@ public class AddDriverPage extends AppCompatActivity {
             }
         });
     }
+
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.VehicleStatus;
+package com.example.roadexp_transporter;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
