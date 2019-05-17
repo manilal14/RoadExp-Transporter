@@ -37,7 +37,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.VehicleVie
     @Override
     public void onBindViewHolder(@NonNull VehicleViewHolder h, int i) {
 
-        Driver driver = mDriverList.get(i);
+        final Driver driver = mDriverList.get(i);
 
         h.tv_name.setText(driver.getName());
 
@@ -47,6 +47,8 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.VehicleVie
             case 1: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.green)); break;
             case 2: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.yellow)); break;
             case 3: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.light_red_gradient)); break;
+
+            default:h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.colorAccent));;
 
         }
 
@@ -67,7 +69,10 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.VehicleVie
         h.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCtx.startActivity(new Intent(mCtx, DriverDetail.class));
+
+                Intent i = new Intent(mCtx, DriverDetail.class);
+                i.putExtra("driver_detail", driver);
+                mCtx.startActivity(i);
             }
         });
 

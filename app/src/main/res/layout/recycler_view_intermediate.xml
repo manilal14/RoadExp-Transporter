@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/location"
+            android:text="Location"
+            android:layout_weight="1"
+            android:fontFamily="@font/lato_bold"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/mobile"
+            android:src="@drawable/mobile"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
+
+
+    </LinearLayout>
+
+</FrameLayout>

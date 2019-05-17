@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.roadexp_transporter.MapsActivity;
 import com.example.roadexp_transporter.R;
-import com.example.roadexp_transporter.VehiclePackage.Vehicle;
+import com.example.roadexp_transporter.Review.Vehicle;
 import com.example.roadexp_transporter.VehicleDetailPackage.DialogDetailHomepage;
 
 import java.util.List;
@@ -65,9 +65,9 @@ public class GroupedVehicleAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
                 Vehicle vehicle = generalItem.getVehicle();
 
-                generalViewHolder.tv_vehicle_type.setText(vehicle.getVehicleType());
-                generalViewHolder.tv_plate_no.setText(vehicle.getPlateNunmber());
-                generalViewHolder.tv_driver.setText(vehicle.getMapedDriverName());
+//                generalViewHolder.tv_vehicle_type.setText(vehicle.getVehicleType());
+//                generalViewHolder.tv_plate_no.setText(vehicle.getPlateNunmber());
+//                generalViewHolder.tv_driver.setText(vehicle.getMapedDriverName());
 
                 int status = vehicle.getStatus();
                 switch (status){

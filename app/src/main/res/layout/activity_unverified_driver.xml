@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DriverPackage.Unverified.UnverifiedDriver">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:background="@drawable/toolbar_gradient"
+            android:paddingTop="24dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/arrow_back" />
+
+            <TextView
+                style="@style/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DriverList2" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="82dp"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs_driver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabIndicatorColor="@color/red"
+            app:tabIndicatorHeight="2.5dp"
+            app:tabSelectedTextColor="@color/red"
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearance" />
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_driver"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>

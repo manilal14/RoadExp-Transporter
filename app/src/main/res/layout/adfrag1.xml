@@ -31,128 +31,97 @@
                 android:fontFamily="@font/lato_bold"
                 android:text="Name"
                 android:textSize="16dp" />
+
             <EditText
+                android:id="@+id/name"
                 style="@style/edit_text_style_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:layout_below="@id/spinner_select_driver"
                 android:background="@drawable/line_gradient" />
 
-            <LinearLayout
-                android:layout_marginTop="16dp"
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="State"
+                android:textSize="16dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_weight=".28"
+                android:background="@drawable/spinner_background">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato_bold"
-                        android:text="State"
-                        android:textSize="16dp" />
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_weight=".28"
-                        android:background="@drawable/spinner_background">
-
-                        <Spinner
-                            android:id="@+id/spinner_state"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:spinnerMode="dropdown" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_below="@id/spinner_state"
-                            android:background="@drawable/line_gradient" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="8dp"
-                            android:src="@drawable/drop_down" />
-
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="16dp"
+                <Spinner
+                    android:id="@+id/spinner_state"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:background="@android:color/transparent"
+                    android:spinnerMode="dropdown" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato_bold"
-                        android:text="City"
-                        android:textSize="16dp" />
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_weight=".28"
-                        android:background="@drawable/spinner_background">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_below="@id/spinner_state"
+                    android:background="@drawable/line_gradient" />
 
-                        <Spinner
-                            android:id="@+id/spinner_city"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:spinnerMode="dropdown" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_below="@id/spinner_city"
-                            android:background="@drawable/line_gradient" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="8dp"
-                            android:src="@drawable/drop_down" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/drop_down" />
 
 
-                    </RelativeLayout>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="City"
+                android:textSize="16dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_weight=".28"
+                android:background="@drawable/spinner_background">
+
+                <Spinner
+                    android:id="@+id/spinner_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:spinnerMode="dropdown" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_below="@id/spinner_city"
+                    android:background="@drawable/line_gradient" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/drop_down" />
 
 
-
-                </LinearLayout>
-
-
-
-
-
-            </LinearLayout>
-
-
-
-
-
+            </RelativeLayout>
 
 
             <TextView
@@ -162,16 +131,18 @@
                 android:fontFamily="@font/lato_bold"
                 android:text="Birthday"
                 android:textSize="16dp" />
+
             <EditText
                 android:id="@+id/birthday"
                 style="@style/edit_text_style_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:focusable="false"
                 android:inputType="date"
-                android:longClickable="false"
-                android:layout_marginTop="8dp" />
+                android:longClickable="false" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
@@ -185,19 +156,45 @@
                 android:fontFamily="@font/lato_bold"
                 android:text="Mobile"
                 android:textSize="16dp" />
+
             <EditText
+                android:id="@+id/mobile"
                 style="@style/edit_text_style_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:inputType="number"
-                android:maxLength="10"
-                android:layout_marginTop="8dp" />
+                android:maxLength="10" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:layout_below="@id/spinner_select_driver"
                 android:background="@drawable/line_gradient" />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="Bank Account"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/bank_account"
+                style="@style/edit_text_style_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:inputType="number"
+                android:maxLength="18" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_below="@id/spinner_select_driver"
+                android:background="@drawable/line_gradient" />
 
 
             <TextView
@@ -207,19 +204,20 @@
                 android:fontFamily="@font/lato_bold"
                 android:text="Password"
                 android:textSize="16dp" />
+
             <EditText
+                android:id="@+id/password"
                 style="@style/edit_text_style_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:inputType="textPassword" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:layout_below="@id/spinner_select_driver"
                 android:background="@drawable/line_gradient" />
-
-
 
 
             <ImageView
@@ -241,7 +239,12 @@
     </ScrollView>
 
 
-
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 
 </FrameLayout>

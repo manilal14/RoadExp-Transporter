@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.AddDriverPackage;
+package com.example.roadexp_transporter.AddNewDriver;
 
 import android.os.Build;
 import android.support.v4.app.Fragment;

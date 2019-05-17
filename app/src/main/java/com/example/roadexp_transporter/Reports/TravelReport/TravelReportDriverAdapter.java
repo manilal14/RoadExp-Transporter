@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.example.roadexp_transporter.DriverPackage.Driver;
 import com.example.roadexp_transporter.R;
-import com.example.roadexp_transporter.VehiclePackage.Vehicle;
 
 import java.util.List;
 

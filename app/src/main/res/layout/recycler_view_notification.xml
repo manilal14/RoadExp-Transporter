@@ -64,7 +64,6 @@
                         android:layout_below="@id/from"
                         android:layout_centerHorizontal="true"/>
 
-
                     <TextView
                         android:id="@+id/to"
                         android:layout_width="wrap_content"
@@ -74,7 +73,6 @@
                         android:textColor="@color/black"
                         android:fontFamily="@font/lato_bold"
                         android:textSize="14sp"/>
-
                     <TextView
                         android:id="@+id/to2"
                         android:layout_width="wrap_content"
@@ -86,30 +84,76 @@
                         android:textColor="@color/black"
                         android:fontFamily="@font/lato_regular"
                         android:textSize="12sp"/>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view_intermediate_point"
+                        android:visibility="gone"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_below="@id/truck"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/half_body"
+                    android:id="@+id/vehicle_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Half body"
                     android:layout_centerHorizontal="true"
                     style="@style/button_style_1"/>
 
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/btn_intermediate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="32 ft. 27 T"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/rl1"
                     android:background="@drawable/semi_circle"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="10dp"
-                    android:fontFamily="@font/lato_bold"
-                    android:textColor="@color/black" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+3"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/dimention"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32 ft. 27 T"
+                        android:paddingLeft="16dp"
+                        android:layout_marginTop="4dp"
+                        android:paddingRight="16dp"
+                        android:textSize="10dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/capacity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1000"
+                        android:paddingBottom="8dp"
+                        android:layout_gravity="center"
+                        android:textSize="10dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/black" />
+
+
+
+
+                </LinearLayout>
+
+
 
 
 
@@ -130,6 +174,7 @@
 
 
                     <TextView
+                        android:id="@+id/ordered_by"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pawan Singh"
@@ -155,6 +200,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/load_weight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
@@ -176,6 +222,7 @@
                         android:fontFamily="@font/lato_bold"/>
 
                     <TextView
+                        android:id="@+id/load_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="HouseHold"
@@ -203,6 +250,7 @@
                         android:fontFamily="@font/lato_bold"/>
 
                     <TextView
+                        android:id="@+id/expire_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Thu, 2 April"
@@ -210,6 +258,8 @@
                         android:textSize="16sp"
                         android:fontFamily="@font/lato_bold"
                         android:textColor="@color/light_red_gradient"/>
+
+
 
                 </LinearLayout>
 
@@ -220,6 +270,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="\u20B9 2000"

@@ -1,39 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.roadexp_transporter">
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:remove="android:maxSdkVersion" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
+        android:name=".Initializer"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Reports.PaymentReport.PaymentHistoryPage"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".VehiclePackage.UnverifiedVehicle.UnverifiedVehiclePage"></activity>
+        <activity android:name=".DriverPackage.Unverified.UnverifiedDriver" />
+        <activity android:name=".Reports.PaymentReport.PaymentHistoryPage" />
         <activity android:name=".Reports.TravelReport.TravelHistoryPage" />
         <activity android:name=".Reports.PaymentReport.PaymentReportPage" />
         <activity android:name=".Reports.TravelReport.TravelReportPage" />
         <activity android:name=".Reports.MissedLoad.MissedLoadsPage" />
-        <activity android:name=".AddDriverPackage.AddDriverPage" />
-        <activity android:name=".LoginSingUp.OtpPage" />
+        <activity android:name=".AddNewDriver.AddDriverPage" />
+        <activity android:name=".LoginSingUp.SingnUpNext" />
         <activity android:name=".LoginSingUp.SignUpPage" />
         <activity
-            android:name=".LoginSingUp.LoginScreen"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".VehicleStatusHomePage" />
+            android:name=".LoginSingUp.LoginPage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".VehiclePackage.VehicleStatusHomePage" />
         <activity android:name=".DriverPackage.DriverDetail" />
         <activity android:name=".DriverPackage.DriverHomepage" />
         <activity
@@ -54,7 +70,25 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".NotificationPackage.AppHomePage" />
+        <activity android:name=".NotificationPackage.AppHomePage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.roadexp_transporter.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <!-- ressource file to create -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

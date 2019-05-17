@@ -113,7 +113,6 @@
                 <EditText
                     android:id="@+id/phone"
                     android:layout_marginTop="8dp"
-                    android:layout_marginRight="64dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -122,7 +121,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
-                    android:layout_marginRight="64dp"
                     android:background="@drawable/line_gradient"
                     android:layout_below="@id/spinner_select_driver"/>
 
@@ -148,5 +146,13 @@
         android:textColor="@color/white"
         android:textSize="16dp"
         android:background="@drawable/line_gradient"/>
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
 </FrameLayout>

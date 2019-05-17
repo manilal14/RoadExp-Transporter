@@ -12,8 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.roadexp_transporter.R;
-import com.example.roadexp_transporter.Reports.TravelReport.TravelHistoryPage;
-import com.example.roadexp_transporter.VehiclePackage.Vehicle;
+import com.example.roadexp_transporter.Review.Vehicle;
 
 import java.util.List;
 
@@ -38,8 +37,8 @@ public class PaymentReportVehicleAdapter extends RecyclerView.Adapter<PaymentRep
 
         Vehicle vehicle = mVehicleList.get(i);
 
-        h.tv_name.setText(vehicle.getVehicleType());
-        h.tv_number.setText(vehicle.getPlateNunmber());
+//        h.tv_name.setText(vehicle.getVehicleType());
+//        h.tv_number.setText(vehicle.getPlateNunmber());
 
         h.card.setOnClickListener(new View.OnClickListener() {
             @Override

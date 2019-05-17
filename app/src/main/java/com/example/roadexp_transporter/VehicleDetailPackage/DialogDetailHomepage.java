@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.roadexp_transporter.R;
+import com.example.roadexp_transporter.Review.Vehicle;
 
 import java.util.Objects;
 
@@ -34,6 +35,8 @@ public class DialogDetailHomepage extends DialogFragment {
     private final String TAG = "DialogDetailHomePage";
     private View mRoot;
     public DialogDetailHomepage() {}
+
+    private Vehicle mVehicleDetail;
 
     @NonNull
     @Override
@@ -50,19 +53,21 @@ public class DialogDetailHomepage extends DialogFragment {
         dialog.getWindow().getAttributes().windowAnimations = R.style.animationSlideRightToRight;
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
+
+
         return dialog;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         Log.e(TAG,"onCreateView");
 
+        mVehicleDetail = (Vehicle) getArguments().getSerializable("vehicle_detail");
         mRoot = inflater.inflate(R.layout.dialog_detail_home_page, container, false);
 
+        Log.e(TAG, "vehicleType="+mVehicleDetail.getVehicleType());
         clickListener();
-
         return mRoot;
     }
 
@@ -87,7 +92,13 @@ public class DialogDetailHomepage extends DialogFragment {
         mRoot.findViewById(R.id.travel_details).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new FragTravelDetails());
+               FragTravelDetails fragTravelDetails =  new FragTravelDetails();
+
+               Bundle bundle = new Bundle();
+               bundle.putInt("vehicleId", mVehicleDetail.getVehicleId());
+               fragTravelDetails.setArguments(bundle);
+
+               replaceFragment(fragTravelDetails);
             }
         });
 

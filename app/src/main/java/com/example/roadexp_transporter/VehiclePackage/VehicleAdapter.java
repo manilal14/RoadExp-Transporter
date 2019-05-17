@@ -2,6 +2,7 @@ package com.example.roadexp_transporter.VehiclePackage;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.roadexp_transporter.MapsActivity;
 import com.example.roadexp_transporter.R;
+import com.example.roadexp_transporter.Review.Vehicle;
 import com.example.roadexp_transporter.VehicleDetailPackage.DialogDetailHomepage;
 import com.example.roadexp_transporter.VehicleDetailPackage.DialogDetailHomepage2;
 
@@ -40,10 +42,10 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
     @Override
     public void onBindViewHolder(@NonNull VehicleViewHolder h, int i) {
 
-        Vehicle vehicle = mVehicleList.get(i);
+        final Vehicle vehicle = mVehicleList.get(i);
 
         h.tv_vehicle_type.setText(vehicle.getVehicleType());
-        h.tv_plate_no.setText(vehicle.getPlateNunmber());
+        h.tv_plate_no.setText(vehicle.getPlateNumber());
         h.tv_driver.setText(vehicle.getMapedDriverName());
 
         final int status = vehicle.getStatus();
@@ -81,6 +83,11 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
 
                 if(status==1 || status==2){
                     DialogDetailHomepage detailHomepage = new DialogDetailHomepage();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("vehicle_detail", vehicle);
+                    detailHomepage.setArguments(bundle);
+
                     detailHomepage.show( ( (FragmentActivity)mCtx).getSupportFragmentManager(), null);
                 }
                 else{

@@ -41,11 +41,11 @@ public class PRFragDriver extends Fragment {
 
     private void fetchDriverList(){
 
-        mDriverList.add(new Driver(1,"Anirudh Sai",1));
-        mDriverList.add(new Driver(2,"Krishn Rajak",1));
-        mDriverList.add(new Driver(3,"Archit",1));
-        mDriverList.add(new Driver(4,"Vishal Singh",1));
-        mDriverList.add(new Driver(5,"Ranjeet Kumar",1));
+//        mDriverList.add(new Driver(1,"Anirudh Sai",1));
+//        mDriverList.add(new Driver(2,"Krishn Rajak",1));
+//        mDriverList.add(new Driver(3,"Archit",1));
+//        mDriverList.add(new Driver(4,"Vishal Singh",1));
+//        mDriverList.add(new Driver(5,"Ranjeet Kumar",1));
 
 
 
