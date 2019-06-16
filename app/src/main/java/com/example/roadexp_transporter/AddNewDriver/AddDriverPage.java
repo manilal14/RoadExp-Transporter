@@ -45,7 +45,6 @@ public class AddDriverPage extends AppCompatActivity {
 
     public void translateBoy(float position){
 
-
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 

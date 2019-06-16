@@ -43,7 +43,7 @@
         <activity android:name=".Reports.PaymentReport.PaymentReportPage" />
         <activity android:name=".Reports.TravelReport.TravelReportPage" />
         <activity android:name=".Reports.MissedLoad.MissedLoadsPage" />
-        <activity android:name=".AddNewDriver.AddDriverPage" />
+        <activity android:name=".AddNewDriver.AddDriverPage"/>
         <activity android:name=".LoginSingUp.SingnUpNext" />
         <activity android:name=".LoginSingUp.SignUpPage" />
         <activity

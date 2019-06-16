@@ -107,9 +107,6 @@ public class SignUpPage extends AppCompatActivity {
 
     }
 
-
-
-
     private void sendOtp(final String name, final String email, final String phone) {
 
         Log.e(TAG,"called : sendOtp");
@@ -169,8 +166,6 @@ public class SignUpPage extends AppCompatActivity {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignUpPage.this);
         alertDialogBuilder.setView(otpView);
 
-
-
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
@@ -213,7 +208,7 @@ public class SignUpPage extends AppCompatActivity {
             public void onResponse(String response) {
 
                 Log.e(TAG, response);
-
+                mProgressBar.setVisibility(View.GONE);
                 try {
                     String result = new JSONObject(response).getString("type");
 
