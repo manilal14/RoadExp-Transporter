@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_margin="16dp"
+        android:textStyle="italic"
+        android:fontFamily="@font/lato_regular"
+        android:text="Upload From : "/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingBottom="16dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/gallery"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Gallery"
+            android:background="@drawable/rectangular_border"
+            android:fontFamily="@font/lato_black"
+            android:textColor="@color/green"
+            android:padding="16dp"/>
+
+
+        <TextView
+            android:id="@+id/camera"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Camera"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/rectangular_border"
+            android:fontFamily="@font/lato_black"
+            android:textColor="@color/green"
+            android:padding="16dp"/>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

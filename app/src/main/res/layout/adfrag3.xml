@@ -36,7 +36,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <EditText
+                    <TextView
                         style="@style/edit_text_style_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -51,19 +51,19 @@
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/folder1"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="end"
-                    android:layout_marginLeft="16dp"
-                    android:background="@drawable/circle"
-                    android:padding="12dp"
-                    android:src="@drawable/folder"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/folder1"-->
+                    <!--android:layout_width="48dp"-->
+                    <!--android:layout_height="48dp"-->
+                    <!--android:layout_gravity="end"-->
+                    <!--android:layout_marginLeft="16dp"-->
+                    <!--android:background="@drawable/circle"-->
+                    <!--android:padding="12dp"-->
+                    <!--android:src="@drawable/folder"/>-->
 
 
                 <ImageView
-                    android:id="@+id/camera1"
+                    android:id="@+id/upload1"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="end"
@@ -86,7 +86,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <EditText
+                    <TextView
                         style="@style/edit_text_style_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -100,19 +100,19 @@
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/folder2"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="end"
-                    android:layout_marginLeft="16dp"
-                    android:background="@drawable/circle"
-                    android:padding="12dp"
-                    android:src="@drawable/folder"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/folder2"-->
+                    <!--android:layout_width="48dp"-->
+                    <!--android:layout_height="48dp"-->
+                    <!--android:layout_gravity="end"-->
+                    <!--android:layout_marginLeft="16dp"-->
+                    <!--android:background="@drawable/circle"-->
+                    <!--android:padding="12dp"-->
+                    <!--android:src="@drawable/folder"/>-->
 
 
                 <ImageView
-                    android:id="@+id/camera2"
+                    android:id="@+id/upload2"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="end"
@@ -135,7 +135,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <EditText
+                    <TextView
                         style="@style/edit_text_style_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -150,19 +150,19 @@
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/folder3"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="end"
-                    android:layout_marginLeft="16dp"
-                    android:background="@drawable/circle"
-                    android:padding="12dp"
-                    android:src="@drawable/folder"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/folder3"-->
+                    <!--android:layout_width="48dp"-->
+                    <!--android:layout_height="48dp"-->
+                    <!--android:layout_gravity="end"-->
+                    <!--android:layout_marginLeft="16dp"-->
+                    <!--android:background="@drawable/circle"-->
+                    <!--android:padding="12dp"-->
+                    <!--android:src="@drawable/folder"/>-->
 
 
                 <ImageView
-                    android:id="@+id/camera3"
+                    android:id="@+id/upload3"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="end"

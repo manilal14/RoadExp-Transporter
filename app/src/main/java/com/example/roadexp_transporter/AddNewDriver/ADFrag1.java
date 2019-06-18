@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,9 @@ public class ADFrag1 extends Fragment {
     private ProgressBar mProgressBar;
 
     private List<String> mStateList;
-    private List<String> mCityList;
+    private List<Pair<Integer,String>> mCityList;
+
+    //private List<String> mCityList;
 
 
     public ADFrag1() {}
@@ -81,8 +84,7 @@ public class ADFrag1 extends Fragment {
         mCityList = new ArrayList<>();
 
         mStateList.add("Choose State");
-        mCityList.add("Choose City");
-
+        mCityList.add(new Pair(0,"Choose City"));
 
         fetchState();
 
@@ -116,26 +118,30 @@ public class ADFrag1 extends Fragment {
 
                 int spinStateId = spinState.getSelectedItemPosition();
                 int spinCityId  = spinCity.getSelectedItemPosition();
-               
-                
-    //                if(spinCityId == 0 || spinStateId == 0){
-    //                    Toast.makeText(getActivity(), "Choose State and City",Toast.LENGTH_SHORT).show();
-    //                    return;
-    //                }
-//
-//                if(!verifyInput(name, birthday, mobile, account, password))
-//                    return;
+
+
+                    if(spinCityId == 0 || spinStateId == 0){
+                        Toast.makeText(getActivity(), "Choose State and City",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                if(!verifyInput(name, birthday, mobile, account, password))
+                    return;
 
                 Bundle bundle = new Bundle();
 
-//                bundle.putString("name",name);
-//                bundle.putString("state",spinState.getSelectedItem().toString().trim());
-//                bundle.putString("city",spinCity.getSelectedItem().toString().trim());
-//                bundle.putString("birthday",birthday);
-//                bundle.putString("mobile",mobile);
-//                bundle.putString("account",account);
-//                bundle.putString("password",password);
+                Log.e(TAG,"city="+spinCity.getSelectedItem().toString().trim());
+                Log.e(TAG,"cityId="+mCityList.get(spinCityId).first);
 
+                int cityId = mCityList.get(spinCityId).first;
+
+                bundle.putString("name",name);
+                bundle.putString("state",spinState.getSelectedItem().toString().trim());
+                bundle.putString("city", String.valueOf(cityId));
+                bundle.putString("birthday",birthday);
+                bundle.putString("mobile",mobile);
+                bundle.putString("account",account);
+                bundle.putString("password",password);
                 ADFrag2 frag = new ADFrag2();
                 frag.setArguments(bundle);
 
@@ -291,7 +297,7 @@ public class ADFrag1 extends Fragment {
                 Log.e(TAG, response);
 
                 mCityList.clear();
-                mCityList.add("Choose City");
+                mCityList.add(new Pair(0,"Choose City"));
 
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
@@ -305,14 +311,22 @@ public class ADFrag1 extends Fragment {
                     JSONArray jsonResult = jsonResponse.getJSONArray("result");
 
                     for(int i=0;i<jsonResult.length();i++){
+                        int id = jsonResult.getJSONObject(i).getInt("id");
                         String city = jsonResult.getJSONObject(i).getString("city");
-                        mCityList.add(city);
+                        mCityList.add(new Pair(id, city));
                     }
 
 
                     Spinner spiCity = mRoot.findViewById(R.id.spinner_city);
+
+                    List<String> cityString = new ArrayList<>();
+                    for (int i=0;i<mCityList.size();i++){
+                        cityString.add(mCityList.get(i).second);
+                    }
+
                     ArrayAdapter<String> adapter =
-                            new ArrayAdapter<>(getActivity(), R.layout.spinner_layout_custom, mCityList);
+                            new ArrayAdapter<>(getActivity(), R.layout.spinner_layout_custom,cityString);
+
                     adapter.setDropDownViewResource(R.layout.spinner_layout_custom);
                     spiCity.setAdapter(adapter);
 

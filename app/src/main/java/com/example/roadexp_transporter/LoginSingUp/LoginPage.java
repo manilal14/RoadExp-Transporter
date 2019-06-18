@@ -126,7 +126,7 @@ public class LoginPage extends AppCompatActivity {
                     int code = jsonResponse.getInt("code");
 
                     if(code!=1){
-                        Toast.makeText(LoginPage.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginPage.this,"Wrong Credentials",Toast.LENGTH_SHORT).show();
                         return;
                     }
 

@@ -1,6 +1,7 @@
 package com.example.roadexp_transporter.NotificationPackage;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -14,18 +15,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.roadexp_transporter.CommonForAll.MySingleton;
 import com.example.roadexp_transporter.DriverPackage.IntermediateLocation;
 import com.example.roadexp_transporter.DriverPackage.IntermediateLocationAdapter;
 import com.example.roadexp_transporter.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_URL;
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.NO_OF_RETRY;
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.RETRY_SECONDS;
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.getFormattedDate;
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.getUnixInSec;
 
@@ -36,11 +49,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     private Context mCtx;
     private List<Notification> mNotificationList;
 
-
+    private ProgressBar mProgressBar;
 
     public NotificationAdapter(Context mCtx, List<Notification> mNotificationList) {
         this.mCtx = mCtx;
         this.mNotificationList = mNotificationList;
+        mProgressBar = ((Activity)(mCtx)).findViewById(R.id.progress_bar);
     }
 
     @NonNull
@@ -52,7 +66,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull final NotiViewHolder h, int i) {
 
-        Notification noti = mNotificationList.get(i);
+        final Notification noti = mNotificationList.get(i);
 
         h.from.setText(noti.getPickupPoint());
 
@@ -85,6 +99,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         if(size == 0)
             h.count.setVisibility(View.GONE);
+        else if(size==1){
+            if(interPoints[0].equals("")) {
+                h.count.setVisibility(View.GONE);
+                size--;
+            }
+        }
         else
             h.count.setVisibility(View.VISIBLE);
 
@@ -113,18 +133,65 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
 
 
-
-
         h.tv_accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e(TAG,noti.getExpireOn());
 
-                NotificationSheet notificationBSDF = new NotificationSheet();
-                notificationBSDF.show(((AppCompatActivity)mCtx).getSupportFragmentManager(), notificationBSDF.getTag());
+                long expireTime = getUnixInSec(TAG,noti.getExpireOn());
+                getCurrentTimeFromDb(expireTime);
+
+
+
+
 
             }
         });
 
+    }
+
+    private void getCurrentTimeFromDb(final long expireTime) {
+
+        Log.e(TAG, "called :getCurrentTimeFromDb");
+        String STATE_URL = BASE_URL + "time_send";
+
+        mProgressBar.setVisibility(View.VISIBLE);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, STATE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                mProgressBar.setVisibility(View.GONE);
+                Log.e(TAG,response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    long currentTime = jsonObject.getLong("msg");
+
+                    if(currentTime>expireTime){
+                        Toast.makeText(mCtx,"Load acceptance time expires.",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    NotificationSheet notificationBSDF = new NotificationSheet();
+                    notificationBSDF.show(((AppCompatActivity)mCtx).getSupportFragmentManager(), notificationBSDF.getTag());
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e(TAG,e.toString());
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                mProgressBar.setVisibility(View.GONE);
+                Toast.makeText(mCtx, error.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(RETRY_SECONDS, NO_OF_RETRY, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MySingleton.getInstance(mCtx).addToRequestQueue(stringRequest);
     }
 
     @Override

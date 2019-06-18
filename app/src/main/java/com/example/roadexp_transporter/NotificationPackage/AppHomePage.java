@@ -3,6 +3,7 @@ package com.example.roadexp_transporter.NotificationPackage;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -31,6 +33,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.roadexp_transporter.AddNewDriver.AddDriverPage;
 import com.example.roadexp_transporter.CommonForAll.MySingleton;
 import com.example.roadexp_transporter.DriverPackage.Unverified.UnverifiedDriver;
+import com.example.roadexp_transporter.FCM.SharedPrefFcm;
 import com.example.roadexp_transporter.LoginSingUp.LoginPage;
 import com.example.roadexp_transporter.LoginSingUp.LoginSessionManager;
 import com.example.roadexp_transporter.Reports.MissedLoad.MissedLoadsPage;
@@ -51,6 +54,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_URL;
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.NO_OF_RETRY;
@@ -70,14 +74,11 @@ public class AppHomePage extends AppCompatActivity {
     List<MenuModel> headerList = new ArrayList<>();
     HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
 
-   private ExpandableListAdapter expandableListAdapter;
-   private int lastExpandedPosition = -1;
+    private ExpandableListAdapter expandableListAdapter;
+    private int lastExpandedPosition = -1;
 
-   private LoginSessionManager mSession;
-
-   private ProgressBar mProgressBar;
-
-
+    private LoginSessionManager mSession;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class AppHomePage extends AppCompatActivity {
         Log.e(TAG, "called : onCreate");
 
         mSession = new LoginSessionManager(AppHomePage.this);
-        mProgressBar = findViewById(R.id.progress_bar);
+        mSwipeRefreshLayout = findViewById(R.id.swipe_to_refresh);
 
         if(!mSession.isLoggedIn()){
             startActivity(new Intent(AppHomePage.this, LoginPage.class));
@@ -103,8 +104,55 @@ public class AppHomePage extends AppCompatActivity {
         settingNavigation();
         mNotificationList = new ArrayList<>();
 
+        String token = SharedPrefFcm.getmInstance(AppHomePage.this).getToken();
+        if(token!=null){
+            Log.e(TAG,"Fcm token from sharedPref: "+token);
+            storeTokenToDb(token);
+        }
+
         fetchNotification();
 
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchNotification();
+            }
+        });
+
+    }
+
+    private void storeTokenToDb(final String refreshedToken) {
+
+        Log.e(TAG,"called : storeTokenToDb");
+        String URL_TOKEN = BASE_URL + "fcm_trans";
+
+        final String phone = mSession.getTransporterDetailsFromPref().get(TRANS_PHONE);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_TOKEN, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG,response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG,error.toString());
+
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("mob",phone);
+                params.put("fcm",refreshedToken);
+                return params;
+            }
+        };
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(RETRY_SECONDS*1000,NO_OF_RETRY,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
 
@@ -112,16 +160,18 @@ public class AppHomePage extends AppCompatActivity {
 
         Log.e(TAG, "called :fetchNotification ");
         String STATE_URL = BASE_URL + "sosnotification";
-
-        mProgressBar.setVisibility(View.VISIBLE);
+        mSwipeRefreshLayout.setRefreshing(true);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, STATE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                mProgressBar.setVisibility(View.GONE);
-                Log.e(TAG, response);
+                mSwipeRefreshLayout.setRefreshing(false);
 
+                if(mNotificationList.size()!=0)
+                    mNotificationList.clear();
+
+                Log.e(TAG, response);
 
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
@@ -138,9 +188,11 @@ public class AppHomePage extends AppCompatActivity {
 
                         JSONObject res = jsonResult.getJSONObject(i);
 
-                        //Status 1 means load is completed, so no need to show in app
-                        int status = res.getInt("status");
-                        if(status == 1)
+                        //show only if status and flag is 0
+                        int status  = res.getInt("status");
+                        int flag    = res.getInt("flag");
+
+                        if(status != 0 || flag !=0)
                             continue;
 
                         int loadId = res.getInt("load_id");
@@ -174,13 +226,16 @@ public class AppHomePage extends AppCompatActivity {
                         String dimention        = res.getString("dimension");
                         String capacity         = res.getString("capacity");
                         String state            = res.getString("state");
-                        String d_sent           = res.getString("d_sent");
+                        // String d_sent           = res.getString("d_sent");
 
 
                         mNotificationList.add(new Notification(loadId, vehicleType, pickupLocation, startMob, lastPoint, endMob, city,
                                 state, dimention, intermediate_loc , inter_mob,
                                 orderedBy, loadWeight, loadType, startOn, expireOn, amount,capacity));
                     }
+
+                    Log.e(TAG,mNotificationList.size()+"size");
+
 
                     TextView errorView = findViewById(R.id.error_message);
                     if(mNotificationList.size() == 0){
@@ -200,13 +255,14 @@ public class AppHomePage extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e(TAG, e.toString());
+                    Toast.makeText(AppHomePage.this,e.toString(),Toast.LENGTH_SHORT).show();
                 }
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                mProgressBar.setVisibility(View.GONE);
+                mSwipeRefreshLayout.setRefreshing(false);
                 Toast.makeText(AppHomePage.this, error.toString(),Toast.LENGTH_SHORT).show();
                 Log.e(TAG, error.toString());
             }
@@ -395,11 +451,11 @@ public class AppHomePage extends AppCompatActivity {
                             case 0:
                             case 3: break;
                             case 4: ReviewBottomSheet reviewBottomSheet = new ReviewBottomSheet();
-                                    reviewBottomSheet.show(getSupportFragmentManager(), reviewBottomSheet.getTag());
-                                    break;
+                                reviewBottomSheet.show(getSupportFragmentManager(), reviewBottomSheet.getTag());
+                                break;
                             case 5: mSession.logout();
-                                    finish();
-                                    break;
+                                finish();
+                                break;
                         }
                         onBackPressed();
                     }

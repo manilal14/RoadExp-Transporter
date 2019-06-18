@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.roadexp_transporter.R;
@@ -48,10 +49,25 @@ public class AVFrag1 extends Fragment {
 
     private void clickListener() {
 
+
+        final EditText et_vehicle_number    = mRoot.findViewById(R.id.vehicle_number);
+        final EditText et_insurance_number  = mRoot.findViewById(R.id.insurance_number);
+        final Spinner spinVehicleType       = mRoot.findViewById(R.id.spinner_vehicle_type);
+        final Spinner spinPermitType        = mRoot.findViewById(R.id.spinner_permit_type);
+
+
         mRoot.findViewById(R.id.fard_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new AVFrag2(),"av_frag_2");
+
+                String vehicleNumber = et_vehicle_number.getText().toString().trim();
+                String insurance = et_insurance_number.getText().toString().trim();
+
+
+
+
+
+               // replaceFragment(new AVFrag2(),"av_frag_2");
             }
         });
 
@@ -65,11 +81,9 @@ public class AVFrag1 extends Fragment {
 
 
         vehicleList.add("");
-        vehicleList.add("Kedar Jadav");
-        vehicleList.add("Virat Kohli");
-        vehicleList.add("MS Dhoni");
-        vehicleList.add("Yuvraj Singh");
-        vehicleList.add("Saurav Ganguly");
+        vehicleList.add("JCB");
+        vehicleList.add("Chhota Hathi");
+        vehicleList.add("Truck");
 
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(getActivity(), R.layout.spinner_layout_custom, vehicleList);

@@ -1,35 +1,17 @@
 package com.example.roadexp_transporter.AddNewVehicle;
-
-import android.os.Build;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
-import com.example.roadexp_transporter.DriverPackage.Driver;
-import com.example.roadexp_transporter.DriverPackage.DriverFragmentPagerAdapter;
-import com.example.roadexp_transporter.DriverPackage.FragDriverType1;
-import com.example.roadexp_transporter.DriverPackage.FragDriverType2;
-import com.example.roadexp_transporter.DriverPackage.FragDriverType3;
 import com.example.roadexp_transporter.R;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddVehicleHomePage extends AppCompatActivity {
 
@@ -38,11 +20,11 @@ public class AddVehicleHomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window w = getWindow();
-            w.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-            w.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            Window w = getWindow();
+//            w.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//            w.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//        }
         setContentView(R.layout.activity_add_vehicle_home_page);
 
         Toolbar toolbar =  findViewById(R.id.toolbar);

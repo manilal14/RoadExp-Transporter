@@ -25,11 +25,11 @@ public class AddDriverPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window w = getWindow();
-            w.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-            w.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            Window w = getWindow();
+//            w.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//            w.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//        }
 
         setContentView(R.layout.activity_add_driver_home_page);
 

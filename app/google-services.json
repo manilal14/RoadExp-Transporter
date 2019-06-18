@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "27664325297",
+    "firebase_url": "https://roadexptransporter.firebaseio.com",
+    "project_id": "roadexptransporter",
+    "storage_bucket": "roadexptransporter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27664325297:android:c0789c0e1d12512e",
+        "android_client_info": {
+          "package_name": "com.example.roadexp_transporter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27664325297-b9q2c0v06v0ch3cm5bh2qdspat57ju5m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.roadexp_transporter",
+            "certificate_hash": "2d9eb019254c727ec4819086a6b73cd19ee17399"
+          }
+        },
+        {
+          "client_id": "27664325297-ib3aka0dblinhfe0likfi4bnb9e4kipc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl_OfO7pBmV6XoJEuSjef1g-gtHqmI6po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27664325297-ib3aka0dblinhfe0likfi4bnb9e4kipc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
