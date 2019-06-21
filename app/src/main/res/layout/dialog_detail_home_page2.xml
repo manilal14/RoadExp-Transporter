@@ -92,9 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/lato_bold"
-
                     android:paddingTop="8dp"
-
                     android:paddingBottom="8dp"
                     android:singleLine="true"
                     android:text="Map Driver"

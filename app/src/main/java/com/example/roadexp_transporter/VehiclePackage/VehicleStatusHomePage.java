@@ -100,7 +100,7 @@ public class VehicleStatusHomePage extends AppCompatActivity {
                     int code = jsonResponse.getInt("code");
 
                     if(code!=1){
-                        Toast.makeText(VehicleStatusHomePage.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(VehicleStatusHomePage.this,"code is not 1",Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -111,53 +111,43 @@ public class VehicleStatusHomePage extends AppCompatActivity {
                         JSONObject jo   = jsonResult.getJSONObject(i);
 
                         int verifyFlag  = jo.getInt("verif_flag");
-                        verifyFlag = 1;
+                        String did      = jo.getString("Did");
 
-                        if(verifyFlag == 0)
+                        if(verifyFlag == 0 || !did.equals("null"))
                             continue;
 
-                        int active = jo.getInt("active");
-                        if(active == 1)
-                            continue;
+                        String tripId  = jo.getString("trip_id");
+                        String t_av    = jo.getString("t_av");
+                        String d_av    = jo.getString("d_av");
 
-                        String t_av_str  = jo.getString("t_av");
-                        String d_av_str = jo.getString("d_av");
-
-                        if(t_av_str.equals("null") || d_av_str.equals("null"))
-                            continue;
-
-                        int t_av = Integer.parseInt(t_av_str);
-                        int d_av = Integer.parseInt(d_av_str);
+                        int status;
+                        if(!tripId.equals("null"))
+                            status = 1;
+                        else if(t_av.equals("0") && d_av.equals("0"))
+                            status = 2;
+                        else
+                            status = 3;
 
 
                         int vehicleId       = jo.getInt("v_id");
-                        String vehicleType  = jo.getString("type_name");
-                        String insuranceNum = jo.getString("insurance_num");
                         String plateNumber  = jo.getString("v_num");
-
-                        String mappedDriver = "na";
-
                         String picRcFront   = jo.getString("pic_rc_front");
                         String picRcBack    = jo.getString("pic_rc_back");
                         String picVehicle   = jo.getString("pic_v");
+                        String insuranceNum = jo.getString("insurance_num");
+                        String addDate      = jo.getString("add_date");
 
-                        int trip = 1;
+                        String permitType   = jo.getString("permit_type");
+                        String rcExpOn      = jo.getString("rc_exp");
+                        String vehicleType  = jo.getString("type_name");
 
-                        int status;
-                        if(t_av == 0 && d_av == 0){
-                            if(trip == 0)
-                                status = 2;
-                            else
-                                status = 1;
-                        }
-                        else
-                            status = 1 ;
+                        String dimension    = jo.getString("dimension");
+                        String capacity     = jo.getString("capacity");
 
-                        status = 3;
+                        String mappedDriver = "N/A";
 
-
-                        mAllVehicles.add(new Vehicle(vehicleId, vehicleType,insuranceNum, plateNumber, mappedDriver,
-                                picRcFront, picRcBack, picVehicle,status));
+                        mAllVehicles.add(new Vehicle(vehicleId, plateNumber,picRcFront,picRcBack,picVehicle,insuranceNum, addDate,
+                                permitType,rcExpOn,vehicleType, dimension, capacity, mappedDriver, verifyFlag, did, tripId,status));
                     }
 
 
@@ -165,6 +155,8 @@ public class VehicleStatusHomePage extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e(TAG, e.toString());
+                    Toast.makeText(VehicleStatusHomePage.this, e.toString(),Toast.LENGTH_SHORT).show();
+
                 }
 
                 ViewPager viewPager = findViewById(R.id.viewpager_vehicle);

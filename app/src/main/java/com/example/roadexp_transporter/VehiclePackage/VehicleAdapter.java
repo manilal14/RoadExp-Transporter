@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
 
         h.tv_vehicle_type.setText(vehicle.getVehicleType());
         h.tv_plate_no.setText(vehicle.getPlateNumber());
-        h.tv_driver.setText(vehicle.getMapedDriverName());
+        h.tv_driver.setText(vehicle.getMappedDriver());
 
         final int status = vehicle.getStatus();
 
@@ -60,10 +61,21 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
             case 3: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.light_red_gradient));
                     h.ic_icon.setImageDrawable(ContextCompat.getDrawable(mCtx,R.drawable.turned_off));
                     break;
+            case 4: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.yellow));
+                h.ic_icon.setImageDrawable(ContextCompat.getDrawable(mCtx,R.drawable.on_wait));
+                break;
+            case 5: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.light_red_gradient));
+                h.ic_icon.setImageDrawable(ContextCompat.getDrawable(mCtx,R.drawable.turned_off));
+                break;
+
+            default: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.light_red_gradient));
+                h.ic_icon.setImageDrawable(ContextCompat.getDrawable(mCtx,R.drawable.turned_off));
+                break;
+
 
         }
 
-        if(status == 3)
+        if(status == 3 || status==4 || status == 5)
             h.to_map.setVisibility(View.GONE);
         else {
             h.to_map.setVisibility(View.VISIBLE);
@@ -81,7 +93,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
             @Override
             public void onClick(View v) {
 
-                if(status==1 || status==2){
+                if(status==1 || status==2 || status == 4 || status == 5){
                     DialogDetailHomepage detailHomepage = new DialogDetailHomepage();
 
                     Bundle bundle = new Bundle();

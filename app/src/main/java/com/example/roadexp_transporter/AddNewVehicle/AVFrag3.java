@@ -2,6 +2,7 @@ package com.example.roadexp_transporter.AddNewVehicle;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,8 +23,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.roadexp_transporter.CommonForAll.MySingleton;
+import com.example.roadexp_transporter.DriverPackage.Unverified.UnverifiedDriver;
 import com.example.roadexp_transporter.LoginSingUp.LoginSessionManager;
 import com.example.roadexp_transporter.R;
+import com.example.roadexp_transporter.VehiclePackage.UnverifiedVehicle.UnverifiedVehiclePage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -116,6 +119,9 @@ public class AVFrag3 extends Fragment {
                         return;
                     }
                     Toast.makeText(getActivity(),"Vehicle added successfully",Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(getActivity(), UnverifiedVehiclePage.class)
+                            .putExtra("viewpagerId",1));
                     getActivity().finish();
 
                 } catch (JSONException e) {

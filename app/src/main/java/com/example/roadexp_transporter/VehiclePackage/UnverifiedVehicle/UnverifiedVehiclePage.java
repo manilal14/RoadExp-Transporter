@@ -56,6 +56,7 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
 
     private ProgressBar mProgressBar;
     private LoginSessionManager mSession;
+    private int mViewPagerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,9 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
         setContentView(R.layout.activity_unverified_vehicle);
         mProgressBar = findViewById(R.id.progress_bar);
 
+        mViewPagerId = getIntent().getIntExtra("viewpagerId",0);
+
+
         mSession = new LoginSessionManager(UnverifiedVehiclePage.this);
 
         Toolbar toolbar =  findViewById(R.id.toolbar);
@@ -78,8 +82,8 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
         mAllUnverifiedVehicles = new ArrayList<>();
 
         mFragmentList = new ArrayList<>();
-        mFragmentList.add(new FragVehicleUnverified());
         mFragmentList.add(new FragVehicleNotMapped());
+        mFragmentList.add(new FragVehicleUnverified());
 
         clickListerner();
         fetchAllUnverifiedVehicle();
@@ -105,7 +109,7 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
                     int code = jsonResponse.getInt("code");
 
                     if(code!=1){
-                        Toast.makeText(UnverifiedVehiclePage.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UnverifiedVehiclePage.this,"code is not 1",Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -116,39 +120,40 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
                         JSONObject jo   = jsonResult.getJSONObject(i);
 
                         int verifyFlag  = jo.getInt("verif_flag");
+                        String did      = jo.getString("Did");
 
-                        verifyFlag = 0;
-
-                        if(verifyFlag != 1)
+                        if(!did.equals("null"))
                             continue;
 
-                        int active = jo.getInt("active");
+                        String tripId  = jo.getString("trip_id");
+                        String t_av    = jo.getString("t_av");
+                        String d_av    = jo.getString("d_av");
 
-
-                        String t_av_str  = jo.getString("t_av");
-                        String d_av_str = jo.getString("d_av");
-
+                        int status;
+                        if(verifyFlag == 1)
+                            status = 4;
+                        else
+                            status = 5;
 
                         int vehicleId       = jo.getInt("v_id");
-                        String vehicleType  = jo.getString("type_name");
-                        String insuranceNum = jo.getString("insurance_num");
                         String plateNumber  = jo.getString("v_num");
-
-                        String mappedDriver = "na";
-
                         String picRcFront   = jo.getString("pic_rc_front");
                         String picRcBack    = jo.getString("pic_rc_back");
                         String picVehicle   = jo.getString("pic_v");
+                        String insuranceNum = jo.getString("insurance_num");
+                        String addDate      = jo.getString("add_date");
 
-                        int status;
+                        String permitType   = jo.getString("permit_type");
+                        String rcExpOn      = jo.getString("rc_exp");
+                        String vehicleType  = jo.getString("type_name");
 
-                        if(t_av_str.equals("null") || d_av_str.equals("null"))
-                            status = 2;
-                        else
-                            status = 1;
+                        String dimension    = jo.getString("dimension");
+                        String capacity     = jo.getString("capacity");
 
-                        mAllUnverifiedVehicles.add(new Vehicle(vehicleId, vehicleType,insuranceNum, plateNumber, mappedDriver,
-                                picRcFront, picRcBack, picVehicle,status));
+                        String mappedDriver = "N/A";
+
+                        mAllUnverifiedVehicles.add(new Vehicle(vehicleId, plateNumber,picRcFront,picRcBack,picVehicle,insuranceNum, addDate,
+                                permitType,rcExpOn,vehicleType, dimension, capacity, mappedDriver, verifyFlag, did, tripId,status));
                     }
 
 
@@ -166,6 +171,7 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
                         getSupportFragmentManager(),mFragmentList);
 
                 viewPager.setAdapter(adapter);
+                viewPager.setCurrentItem(mViewPagerId);
 
             }
         }, new Response.ErrorListener() {

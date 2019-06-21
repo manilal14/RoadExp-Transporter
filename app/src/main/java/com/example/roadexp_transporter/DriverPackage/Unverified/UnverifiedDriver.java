@@ -127,14 +127,18 @@ public class UnverifiedDriver extends AppCompatActivity {
                         //status 4 - unmapped
                         //status 5 - unverified
 
+
                         if(verifFlag == 1 && v_type.equals("null"))
                             status = 4;
-                        else
+                        else if(verifFlag == 0)
                             status = 5;
 
+                        else
+                            status = 0;
+
                         String vType      = jo.getString("v_type");
-                        String t_av        = jo.getString("t_av");
-                        String d_av        = jo.getString("d_av");
+                        String t_av       = jo.getString("t_av");
+                        String d_av       = jo.getString("d_av");
 
                         String driverId   = jo.getString("Did");
                         String name       = jo.getString("d_name");

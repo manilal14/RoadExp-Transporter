@@ -1,8 +1,10 @@
 package com.example.roadexp_transporter.NotificationPackage;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +22,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,8 +35,10 @@ import com.example.roadexp_transporter.AddNewDriver.AddDriverPage;
 import com.example.roadexp_transporter.CommonForAll.MySingleton;
 import com.example.roadexp_transporter.DriverPackage.Unverified.UnverifiedDriver;
 import com.example.roadexp_transporter.FCM.SharedPrefFcm;
+import com.example.roadexp_transporter.Initializer;
 import com.example.roadexp_transporter.LoginSingUp.LoginPage;
 import com.example.roadexp_transporter.LoginSingUp.LoginSessionManager;
+import com.example.roadexp_transporter.NetworkState.ConnectivityReceiver;
 import com.example.roadexp_transporter.Reports.MissedLoad.MissedLoadsPage;
 import com.example.roadexp_transporter.Reports.PaymentReport.PaymentReportPage;
 import com.example.roadexp_transporter.Reports.TravelReport.TravelReportPage;
@@ -62,7 +65,7 @@ import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFun
 import static com.example.roadexp_transporter.LoginSingUp.LoginSessionManager.TRANS_NAME;
 import static com.example.roadexp_transporter.LoginSingUp.LoginSessionManager.TRANS_PHONE;
 
-public class AppHomePage extends AppCompatActivity {
+public class AppHomePage extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     private String TAG = this.getClass().getSimpleName();
 
@@ -89,8 +92,9 @@ public class AppHomePage extends AppCompatActivity {
             w.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         setContentView(R.layout.activity_main);
-
         Log.e(TAG, "called : onCreate");
+
+       // checkConnection();
 
         mSession = new LoginSessionManager(AppHomePage.this);
         mSwipeRefreshLayout = findViewById(R.id.swipe_to_refresh);
@@ -112,13 +116,14 @@ public class AppHomePage extends AppCompatActivity {
 
         fetchNotification();
 
-
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 fetchNotification();
             }
         });
+
+
 
     }
 
@@ -154,8 +159,6 @@ public class AppHomePage extends AppCompatActivity {
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(RETRY_SECONDS*1000,NO_OF_RETRY,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
-
-
     private void fetchNotification() {
 
         Log.e(TAG, "called :fetchNotification ");
@@ -272,8 +275,6 @@ public class AppHomePage extends AppCompatActivity {
         MySingleton.getInstance(AppHomePage.this).addToRequestQueue(stringRequest);
 
     }
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
@@ -300,6 +301,42 @@ public class AppHomePage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(Initializer.getInstance() == null){
+            Log.e(TAG,"MyApplication getInstance is null");
+            return;
+        }
+
+        Initializer.getInstance().setConnectivityListener(this);
+    }
+
+    private void checkConnection() {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        showSnack(isConnected);
+    }
+
+    private void showSnack(boolean isConnected) {
+        String message;
+        int color;
+        if (isConnected) {
+            message = "Good! Connected to Internet";
+            color = Color.WHITE;
+        } else {
+            message = "Sorry! Not connected to internet";
+            color = Color.RED;
+        }
+
+        Snackbar snackbar = Snackbar
+                .make(findViewById(R.id.fab), message, Snackbar.LENGTH_LONG);
+
+        View sbView = snackbar.getView();
+        TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(color);
+        snackbar.show();
+    }
 
 
 
@@ -523,4 +560,29 @@ public class AppHomePage extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        Log.e("asd","network state changed");
+        showSnack(isConnected);
+    }
+
+
+//    public AlertDialog.Builder buildDialog(Context c){
+//
+//        AlertDialog.Builder builder =  new AlertDialog.Builder(c);
+//        builder.setTitle("No Internet");
+//        builder.setMessage("You must be connected to internet to access this App");
+//
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                finish();
+//            }
+//        });
+//
+//        return builder;
+//    }
+
+
 }

@@ -28,6 +28,9 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
+   <!--// <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:name=".Initializer"
         android:allowBackup="true"
@@ -37,6 +40,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <receiver
+            android:name=".NetworkState.ConnectivityReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".VehiclePackage.UnverifiedVehicle.UnverifiedVehiclePage"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".DriverPackage.Unverified.UnverifiedDriver" />
@@ -105,6 +117,8 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+
+
 
     </application>
 

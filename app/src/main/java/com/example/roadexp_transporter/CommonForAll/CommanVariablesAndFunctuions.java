@@ -20,10 +20,15 @@ public class CommanVariablesAndFunctuions {
     public static final String OTP_AUTH_KEY = "172372AtvxExayuF3v5b5de27c";
 
     private static final String BASE_IMGAES_PATH = "http://roadexp.codebuckets.in/images/";
+
     public static final String BASE_PROFILE_PIC = BASE_IMGAES_PATH +"profile/";
     public static final String BASE_AADHAR      = BASE_IMGAES_PATH +"aadhar_front_pic/";
     public static final String BASE_DL_FRONT    = BASE_IMGAES_PATH +"dl_pic_front/";
     public static final String BASE_DL_BACK     = BASE_IMGAES_PATH +"dl_pic_back/";
+
+    public static final String BASE_VEHCHICLE_PIC = BASE_IMGAES_PATH +"vehicle/";
+    public static final String BASE_RC_FRONT     = BASE_IMGAES_PATH +"rc_front/";
+    public static final String BASE_RC_BACK      = BASE_IMGAES_PATH +"rc_back/";
 
 
     public static final String DATE_FORMAT = "dd/MM/yyyy";

@@ -31,8 +31,8 @@ public class UnverifiedVehicleFragmentPagerAdapter extends FragmentPagerAdapter 
     public CharSequence getPageTitle(int position) {
 
         switch (position){
-            case 0: return "Unverified";
-            case 1: return "Not mapped";
+            case 0: return "Not mapped";
+            case 1: return "Unverified";
         }
 
         return super.getPageTitle(position);

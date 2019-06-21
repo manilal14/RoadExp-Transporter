@@ -50,9 +50,7 @@ public class DriverDetail extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("");
-
         mDriver = (Driver) getIntent().getSerializableExtra("driver_detail");
-
 
         setData();
         clickListener();

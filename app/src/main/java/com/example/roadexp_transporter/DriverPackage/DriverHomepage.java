@@ -73,7 +73,6 @@ public class DriverHomepage extends AppCompatActivity {
 
         getSupportActionBar().setTitle("");
 
-
         mAllVerifiedDriverList = new ArrayList<>();
 
         mFragmentList = new ArrayList<>();
@@ -121,6 +120,8 @@ public class DriverHomepage extends AppCompatActivity {
                         String vType  = jo.getString("v_type");
                         int verifFlag = jo.getInt("verif_flag");
 
+
+
                         //vehicle type is null don't show here
                         if(vType.equals("null") || verifFlag == 0)
                             continue;
@@ -143,6 +144,8 @@ public class DriverHomepage extends AppCompatActivity {
                             else
                                 status = 3;
                         }
+
+
 
                         String driverId   = jo.getString("Did");
                         String name       = jo.getString("d_name");

@@ -51,8 +51,6 @@ public class FragMoving extends Fragment {
     private void fetchMovingVehicle() {
 
         mMovingVehicleList = mActivity.fetchParticularVehicle(1);
-        Log.e(TAG, "mMovingVehiceCounnt = "+mMovingVehicleList.size());
-
         TextView tv_err = mRootView.findViewById(R.id.error_message);
 
         if(mMovingVehicleList.size() == 0){

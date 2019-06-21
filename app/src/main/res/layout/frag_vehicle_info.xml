@@ -38,6 +38,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/vehicle_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tata Ace"
@@ -46,6 +47,7 @@
                     android:textSize="24sp"/>
 
                 <TextView
+                    android:id="@+id/vehicle_number"
                     android:layout_marginTop="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,7 +71,7 @@
                         android:textColor="@color/light_red_gradient"/>
 
                     <TextView
-
+                        android:id="@+id/distance_travelled"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2475156 km"
@@ -98,6 +100,7 @@
                     android:orientation="vertical">
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/vehicle_pic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="16dp"
@@ -111,13 +114,14 @@
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
                             android:singleLine="true"
-                            android:text="@string/insurance_paper"
+                            android:text="Vehicle Pic"
                             android:textColor="@color/black" />
 
 
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/pic_rc_front"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="16dp"
@@ -131,14 +135,14 @@
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
                             android:singleLine="true"
-                            android:text="Vehicle Invoice"
+                            android:text="Rc front pic"
                             android:textColor="@color/black" />
 
 
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
-
+                        android:id="@+id/pic_rc_back"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="16dp"
@@ -152,7 +156,7 @@
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
                             android:singleLine="true"
-                            android:text="Number Plate"
+                            android:text="Rc back pic"
                             android:textColor="@color/black" />
 
 
@@ -176,6 +180,7 @@
                         android:textColor="@color/light_red_gradient"/>
 
                     <TextView
+                        android:id="@+id/mapped_driver"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pramod Kumar"

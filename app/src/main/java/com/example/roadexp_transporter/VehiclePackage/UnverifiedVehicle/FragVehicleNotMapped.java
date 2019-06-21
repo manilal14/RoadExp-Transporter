@@ -52,7 +52,7 @@ public class FragVehicleNotMapped extends Fragment {
 
     private void fetchMovingVehicle() {
 
-        mVehicleNotMapped = mActivity.fetchParticularUnverifiedVehicle(2);
+        mVehicleNotMapped = mActivity.fetchParticularUnverifiedVehicle(4);
         TextView tv_err = mRootView.findViewById(R.id.error_message);
 
         if(mVehicleNotMapped.size() == 0){
