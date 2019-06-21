@@ -51,6 +51,7 @@ public class UnverifiedDriver extends AppCompatActivity {
     private LoginSessionManager mSession;
 
     private List<Driver> mAllVerifiedDriverList;
+    private int mCuurentViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,8 @@ public class UnverifiedDriver extends AppCompatActivity {
 
         mSession     = new LoginSessionManager(UnverifiedDriver.this);
         mProgressBar = new ProgressBar(UnverifiedDriver.this);
+
+        mCuurentViewPager = getIntent().getIntExtra("currentViewPagerItem",0);
 
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -105,8 +108,8 @@ public class UnverifiedDriver extends AppCompatActivity {
                     JSONObject jsonResponse = new JSONObject(response);
                     int code = jsonResponse.getInt("code");
 
-                    if(code!=1){
-                        Toast.makeText(UnverifiedDriver.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                    if(code!=2){
+                        Toast.makeText(UnverifiedDriver.this,"Code is not 2",Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -116,46 +119,56 @@ public class UnverifiedDriver extends AppCompatActivity {
 
                         JSONObject jo = jsonResult.getJSONObject(i);
 
-                        int isVerified  = jo.getInt("verif_flag");
-                        if(isVerified != 0)
-                            continue;
-
-                        String id       = jo.getString("Did");
-                        String name     = jo.getString("d_name");
-                        String mobile   = jo.getString("phn");
-                        String city     = jo.getString("sahar");
-                        String state    = jo.getString("state");
-
-                        String birthday  = jo.getString("birthday");
-
-                        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-                        int ageInYear = currentYear - Integer.parseInt(birthday.substring(6,10));
-
-
-                        String joiningDate  = jo.getString("add_day").substring(0,10);
-
-                        String noOfSuccesTrip = "na";
-                        String vehicleName  = "vehicleName";
-                        String vehicleNumber = "number";
-
-                        String profilePic = jo.getString("prof_pic");
-                        String dlPicFront  = jo.getString("dl_pic_front");
-                        String dlPicBack  = jo.getString("dl_pic_back");
-
-
+                        int verifFlag = jo.getInt("verif_flag");
+                        String v_type = jo.getString("v_type");
 
                         int status;
-                        String vehicleId  = jo.getString("vehicle_id");
 
-                        if(vehicleId.equals("null")) {
-                            vehicleId = "0";
-                            status = 1;
-                        }
+                        //status 4 - unmapped
+                        //status 5 - unverified
+
+                        if(verifFlag == 1 && v_type.equals("null"))
+                            status = 4;
                         else
-                            status = 2;
+                            status = 5;
 
-                        mAllVerifiedDriverList.add(new Driver(id,name,mobile,city,state,ageInYear,joiningDate,noOfSuccesTrip,vehicleName,
-                                vehicleNumber,profilePic,dlPicFront,dlPicBack,0,0,status, isVerified,Integer.parseInt(vehicleId)));
+                        String vType      = jo.getString("v_type");
+                        String t_av        = jo.getString("t_av");
+                        String d_av        = jo.getString("d_av");
+
+                        String driverId   = jo.getString("Did");
+                        String name       = jo.getString("d_name");
+                        String mobile     = jo.getString("phn");
+                        String state      = jo.getString("state");
+
+                        String addharPic = jo.getString("aadhar_front_pic");
+                        String profPic   = jo.getString("prof_pic");
+                        String dlFront   = jo.getString("dl_pic_front");
+                        String dlBack    = jo.getString("dl_pic_back");
+                        String birthday  = jo.getString("birthday");
+                        String bankAccd  = jo.getString("bankAccd");
+                        String sahar     = jo.getString("sahar");
+                        String vehicleId = jo.getString("vehicle_id");
+
+                        String vNum      = jo.getString("v_num");
+                        String tripId    = jo.getString("trip_id");
+
+
+                        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+                        int yearBorn = 0;
+                        try {
+                            yearBorn = Integer.parseInt(birthday.substring(6,10));
+                        }catch (Exception e){
+                            Log.e(TAG,"Exception cought while birthdays");
+                        }
+
+                        int ageInYear = currentYear - yearBorn;
+                        String joiningDate  = jo.getString("add_day").substring(0,10);
+
+                        String noOfSuccessTrip = "N/A";
+
+                        mAllVerifiedDriverList.add(new Driver(driverId,name,mobile,sahar,state,ageInYear,joiningDate,noOfSuccessTrip,vType,
+                                vNum,profPic,addharPic,dlFront,dlBack,t_av,d_av,status,1,vehicleId,bankAccd,tripId));
                     }
 
                 } catch (JSONException e) {
@@ -169,7 +182,9 @@ public class UnverifiedDriver extends AppCompatActivity {
 
                 UnVerifiedDriverFragmentPagerAdapter adapter = new UnVerifiedDriverFragmentPagerAdapter(
                         getSupportFragmentManager(),mFragmentList);
+
                 viewPager.setAdapter(adapter);
+                viewPager.setCurrentItem(mCuurentViewPager);
 
 
 
@@ -179,6 +194,7 @@ public class UnverifiedDriver extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 mProgressBar.setVisibility(View.GONE);
                 Log.e(TAG, error.toString());
+                Toast.makeText(UnverifiedDriver.this,error.toString(), Toast.LENGTH_SHORT).show();
             }
         }){
 
@@ -208,62 +224,6 @@ public class UnverifiedDriver extends AppCompatActivity {
             }
         });
     }
-
-
-    private void TestingfetchAllDriver(){
-
-        // for testing only
-        for(int i=1;i<=6;i++){
-
-            int isVerified = 0;
-
-            String id       = i+"";
-            String name     = "mani"+i;
-            String mobile   = "7907977801"+i;
-            String city     = "sahar"+i;
-            String state    = "state"+i;
-
-            int ageInYear = +i;
-
-
-            String joiningDate  = "joiningDate"+i;
-
-            String noOfSuccesTrip = "na"+i;
-            String vehicleName  = "vehicleName"+i;
-            String vehicleNumber = "number";
-
-            String profilePic = ""+i;
-            String dlPicFront  = ""+i;
-            String dlPicBack  = ""+i;
-
-            int t_av = 0;
-            int d_av  = 0;
-
-            int status;
-
-            String vehicleId = "0";
-
-            if(i==1 || i == 2)
-                status = 1;
-            else if(i==3 || i==4)
-                status = 2;
-            else
-                status = 3;
-
-            mAllVerifiedDriverList.add(new Driver(id,name,mobile,city,state,ageInYear,joiningDate,noOfSuccesTrip,vehicleName,
-                    vehicleNumber,profilePic,dlPicFront,dlPicBack,t_av,d_av,status, isVerified,Integer.parseInt(vehicleId)));
-        }
-
-        ViewPager viewPager = findViewById(R.id.viewpager_driver);
-        TabLayout tabLayout = findViewById(R.id.tabs_driver);
-        tabLayout.setupWithViewPager(viewPager);
-
-        DriverFragmentPagerAdapter adapter = new DriverFragmentPagerAdapter(
-                getSupportFragmentManager(),mFragmentList);
-        viewPager.setAdapter(adapter);
-
-    }
-
 
     public List<Driver> getDriverListFromParent(int driverStatus) {
 

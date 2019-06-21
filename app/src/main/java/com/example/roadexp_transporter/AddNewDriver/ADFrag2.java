@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
@@ -59,9 +60,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
-import static android.support.v4.content.ContextCompat.checkSelfPermission;
+
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_URL;
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.hasPermissions;
 
 public class ADFrag2 extends Fragment {
 
@@ -70,6 +71,8 @@ public class ADFrag2 extends Fragment {
 
     private ProgressDialog mProgressDialog;
     private AddDriverPage mActivity;
+
+    private final int PERMISSION_ALL = 1;
 
     //private static final int PICK_IMAGE = 100;
 
@@ -102,16 +105,7 @@ public class ADFrag2 extends Fragment {
         mActivity.translateBoy(1);
 
         Bundle bundle = getArguments();
-
-//        String name = bundle.getString("name");
-//        String state = bundle.getString("state");
-//        String city = bundle.getString("city");
-//        String birthday = bundle.getString("birthday");
         mMobile = bundle.getString("mobile");
-//        String account = bundle.getString("account");
-//        String password = bundle.getString("password");
-
-        //Log.e("asd=",name+" "+state+" "+city+" "+birthday+" "+mMobile+" "+account+" "+password);
 
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setMessage("Please wait..");
@@ -191,29 +185,32 @@ public class ADFrag2 extends Fragment {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 
-        if (checkSelfPermission(getActivity(),Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA},
-                    MY_CAMERA_PERMISSION_CODE);
-        }
-        else if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
+        String[] PERMISSIONS = {
+                Manifest.permission.CAMERA,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        };
 
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+        if(!hasPermissions(getActivity(), PERMISSIONS)) {
+            ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, PERMISSION_ALL);
+            return;
         }
-        else {
 
-            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
             if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
                 File file = new File(getActivity().getExternalCacheDir(), (System.currentTimeMillis()) + ".jpg");
                 mFileUri = FileProvider.getUriForFile(getActivity(),"com.example.roadexp_transporter.provider",file);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri);
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
-        }
+    }
 
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        Log.e("asd","called");
     }
 
     //On camera result
@@ -241,6 +238,7 @@ public class ADFrag2 extends Fragment {
                     mImagePath = actualPath.getAbsolutePath();
 
                     ImageView imageView = mRoot.findViewById(R.id.upload_image);
+                    compressImage(bitmap);
                     imageView.setImageBitmap(bitmap);
 
                     Log.e(TAG, "Actual path : " + actualPath.toString());
@@ -282,10 +280,14 @@ public class ADFrag2 extends Fragment {
                         public void onError(Context context, UploadInfo uploadInfo, ServerResponse serverResponse, Exception exception) {
                             mProgressDialog.dismiss();
                             Log.e("asd1",uploadInfo.toString());
-                            if(serverResponse!=null)
-                                Log.e("asd",serverResponse.getBodyAsString());
-                            if(exception!=null)
-                                Log.e("asd",exception.toString());
+                            if(serverResponse!=null) {
+                                Log.e("asd", serverResponse.getBodyAsString());
+                                Toast.makeText(getActivity(),serverResponse.getBodyAsString(), Toast.LENGTH_SHORT).show();
+                            }
+                            if(exception!=null) {
+                                Log.e("asd", exception.toString());
+                                Toast.makeText(getActivity(),exception.toString(), Toast.LENGTH_SHORT).show();
+                            }
                            // Toast.makeText(getActivity(),serverResponse.getBodyAsString(),Toast.LENGTH_SHORT).show();
                         }
 
@@ -324,36 +326,41 @@ public class ADFrag2 extends Fragment {
 
     }
 
+    private void compressImage(Bitmap bitmap) {
+        Log.e(TAG,"called : complressImage");
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 18, bos);
 
+        byte[] bitmapData = bos.toByteArray();
 
+        try {
+            //Compressed image is written in same previous image file
+            FileOutputStream fos = new FileOutputStream(mImagePath);
+            fos.write(bitmapData);
+            fos.flush();
+            fos.close();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG,"Exception while converting bitmap to file, "+e.toString());
+        }
 
-
-
-
+    }
 
     private void replaceFragment(Fragment fragment, String tag) {
 
         Bundle bundle = getArguments();
-
-//        String name     = bundle.getString("name");
-//        String state    = bundle.getString("state");
-//        String city     = bundle.getString("city");
-//        String birthday = bundle.getString("birthday");
-//        String mobile   = bundle.getString("mobile");
-//        String account  = bundle.getString("account");
-//        String password = bundle.getString("password");
-
 
         fragment.setArguments(bundle);
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.fragment_container, fragment,tag);
-        //ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
         ft.addToBackStack(null);
         ft.commit();
     }
+
+
 
 
 

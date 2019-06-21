@@ -43,6 +43,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="56dp"
         android:scrollbars="none">
 
         <LinearLayout
@@ -247,15 +248,14 @@
                             android:textColor="@color/light_red_gradient"/>
 
                         <android.support.v7.widget.CardView
-                            android:id="@+id/driver_licence"
-                            android:layout_marginRight="88dp"
+                            android:id="@+id/pic_aadhar"
+                            android:layout_marginRight="16dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:cardCornerRadius="16dp"
+                            app:cardCornerRadius="24dp"
                             app:cardUseCompatPadding="true">
 
                             <TextView
-
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -263,7 +263,51 @@
                                 android:paddingTop="8dp"
                                 android:paddingBottom="8dp"
                                 android:singleLine="true"
-                                android:text="Driver's Licence"
+                                android:text="Aadhar"
+                                android:textColor="@color/black" />
+
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/pic_rc_front"
+                            android:layout_marginRight="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="16dp"
+                            app:cardUseCompatPadding="true">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/lato_bold"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:singleLine="true"
+                                android:text="Dl Front Pic"
+                                android:textColor="@color/black" />
+
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/pic_rc_back"
+                            android:layout_marginRight="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="16dp"
+                            app:cardUseCompatPadding="true">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/lato_bold"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:singleLine="true"
+                                android:text="Dl Back Pic"
                                 android:textColor="@color/black" />
 
 
@@ -339,11 +383,6 @@
 
 
     </ScrollView>
-
-
-
-
-
 
 
 

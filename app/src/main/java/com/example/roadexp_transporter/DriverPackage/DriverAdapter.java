@@ -12,11 +12,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.example.roadexp_transporter.MapsActivity;
 import com.example.roadexp_transporter.R;
 
 
 import java.util.List;
+
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_PROFILE_PIC;
+
 
 public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.VehicleViewHolder> {
 
@@ -47,12 +54,14 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.VehicleVie
             case 1: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.green)); break;
             case 2: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.yellow)); break;
             case 3: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.light_red_gradient)); break;
+            case 4: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.yellow)); break;
+            case 5: h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.colorAccent)); break;
 
-            default:h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.colorAccent));;
+            default:h.card.setCardBackgroundColor(ContextCompat.getColor(mCtx,R.color.colorAccent));
 
         }
 
-        if(status == 3)
+        if(status == 3 || status == 4 || status == 5)
             h.to_map.setVisibility(View.GONE);
         else {
             h.to_map.setVisibility(View.VISIBLE);
@@ -65,6 +74,15 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.VehicleVie
             });
 
         }
+
+
+        Glide.with(mCtx)
+                .load(BASE_PROFILE_PIC+driver.getProfilePic())
+                .apply(new RequestOptions()
+                        .format(DecodeFormat.PREFER_ARGB_8888)
+                        .override(Target.SIZE_ORIGINAL))
+                .into(h.iv_drivePic);
+
 
         h.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +111,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.VehicleVie
 
         public VehicleViewHolder(@NonNull View v) {
             super(v);
+
             card            = v.findViewById(R.id.card);
             iv_drivePic     = v.findViewById(R.id.driver_pic);
             tv_name         = v.findViewById(R.id.driver_name);

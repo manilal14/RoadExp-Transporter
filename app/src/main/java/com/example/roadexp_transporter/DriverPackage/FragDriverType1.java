@@ -69,8 +69,6 @@ public class FragDriverType1 extends Fragment {
             tv_err.setVisibility(View.GONE);
         }
 
-
-
         RecyclerView recyclerView = mRootView.findViewById(R.id.recycler_view_driver);
         DriverAdapter adapter     = new DriverAdapter(getActivity(),mDriverList);
 

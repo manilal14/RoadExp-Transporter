@@ -13,70 +13,70 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Map Driver"
+            android:text="Almost Done"
             android:textColor="@color/light_red_gradient"
             android:textSize="20dp"
             android:fontFamily="@font/lato_bold"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select Driver"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/lato_bold"
-            android:textSize="16dp"/>
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Select Driver"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:fontFamily="@font/lato_bold"-->
+            <!--android:textSize="16dp"/>-->
 
-        <RelativeLayout
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight=".28"
-            android:background="@drawable/spinner_background">
+        <!--<RelativeLayout-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight=".28"-->
+            <!--android:background="@drawable/spinner_background">-->
 
-            <Spinner
-                android:id="@+id/spinner_select_driver"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:spinnerMode="dropdown" />
+            <!--<Spinner-->
+                <!--android:id="@+id/spinner_select_driver"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:spinnerMode="dropdown" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="@drawable/line_gradient"
-                android:layout_below="@id/spinner_select_driver"/>
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="4dp"-->
+                <!--android:background="@drawable/line_gradient"-->
+                <!--android:layout_below="@id/spinner_select_driver"/>-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginRight="8dp"
-                android:src="@drawable/drop_down" />
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:src="@drawable/drop_down" />-->
 
 
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
         <RelativeLayout
             android:layout_marginTop="44dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/back_btn"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:background="@drawable/cross_circle"
-                android:padding="12dp"
-                android:src="@drawable/arrow_back" />
+            <!--<ImageView-->
+                <!--android:id="@+id/back_btn"-->
+                <!--android:layout_width="56dp"-->
+                <!--android:layout_height="56dp"-->
+                <!--android:background="@drawable/cross_circle"-->
+                <!--android:padding="12dp"-->
+                <!--android:src="@drawable/arrow_back" />-->
 
             <ImageView
                 android:id="@+id/all_done"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
                 android:background="@drawable/cross_circle"
                 android:padding="12dp"
                 android:src="@drawable/tick_white" />

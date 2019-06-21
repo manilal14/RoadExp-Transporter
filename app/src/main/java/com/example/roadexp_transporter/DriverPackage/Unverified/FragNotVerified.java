@@ -60,7 +60,7 @@ public class FragNotVerified extends Fragment {
         Log.e(TAG,"called : fetchTypeOneDriver");
 
         //Type 1 driver
-        mDriverList = mActivity.getDriverListFromParent(2);
+        mDriverList = mActivity.getDriverListFromParent(5);
 
         Log.e(TAG, "UnVerifiedDriver = "+ mDriverList.size());
 

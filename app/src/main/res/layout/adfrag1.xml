@@ -149,6 +149,32 @@
                 android:layout_below="@id/spinner_select_driver"
                 android:background="@drawable/line_gradient" />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="License Expire on"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/license_expire"
+                style="@style/edit_text_style_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:focusable="false"
+                android:inputType="date"
+                android:longClickable="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_below="@id/spinner_select_driver"
+                android:background="@drawable/line_gradient" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -37,11 +37,15 @@
 
 
        <TextView
-           android:id="@+id/resend_otp"
+           android:id="@+id/ok"
            android:layout_marginTop="8dp"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="Resend Otp"
+           android:text="OK"
+           android:paddingLeft="24dp"
+           android:paddingRight="24dp"
+           android:paddingTop="8dp"
+           android:paddingBottom="8dp"
            android:layout_gravity="end"
            android:fontFamily="@font/lato_bold"
            android:textColor="@color/yellow_gradient"

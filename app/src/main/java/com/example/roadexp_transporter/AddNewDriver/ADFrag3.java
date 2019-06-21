@@ -36,6 +36,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.roadexp_transporter.CommonForAll.MySingleton;
+import com.example.roadexp_transporter.DriverPackage.Unverified.UnverifiedDriver;
 import com.example.roadexp_transporter.LoginSingUp.LoginSessionManager;
 import com.example.roadexp_transporter.R;
 
@@ -48,7 +49,9 @@ import net.gotev.uploadservice.UploadStatusDelegate;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,15 +104,10 @@ public class ADFrag3 extends Fragment {
 
         Bundle bundle = getArguments();
 
-        String name = bundle.getString("name");
-        String state = bundle.getString("state");
-        String city = bundle.getString("city");
-        String birthday = bundle.getString("birthday");
         mMobile = bundle.getString("mobile");
-        String account = bundle.getString("account");
-        String password = bundle.getString("password");
 
-        Log.e("asd=",name+" "+state+" "+city+" "+birthday+" "+mMobile+" "+account+" "+password);
+//
+//        Log.e("asd=",name+" "+state+" "+city+" "+birthday+" "+mMobile+" "+account+" "+password);
 
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setMessage("Please wait..");
@@ -236,6 +234,8 @@ public class ADFrag3 extends Fragment {
                     actualPath = new File(path);
                     mImagePath = actualPath.getAbsolutePath();
 
+                    compressImage(bitmap);
+
                     ImageView imageView ;
 
                     switch (flag){
@@ -247,7 +247,6 @@ public class ADFrag3 extends Fragment {
 
                     }
                     imageView.setImageBitmap(bitmap);
-
                     Log.e(TAG, "Actual path : " + actualPath.toString());
 
                 } catch (Exception e) {
@@ -261,12 +260,11 @@ public class ADFrag3 extends Fragment {
         }
     }
 
-    // When image need to be send
     private void uploadPic(){
 
         Log.e(TAG,"called : uploadProfilePic");
 
-        String URL = BASE_URL + "addDriverInfo";
+        String URL = BASE_URL + "addDriver";
 
         String imageParameter="";
 
@@ -316,7 +314,7 @@ public class ADFrag3 extends Fragment {
                                 if(code==1){
                                     String message = "";
                                     switch (flag){
-                                        case 1 : message = "dl front pic uploaded;"; mDlFrontUploaded =true; break;
+                                        case 1 : message = "dl front pic uploaded"; mDlFrontUploaded =true; break;
                                         case 2 : message = "dl back pic uploaded"; mDlBackUploaded = true;break;
                                         case 3 : message = "aadhar uploaded"; mAadharUploaded = true; break;
 
@@ -353,7 +351,7 @@ public class ADFrag3 extends Fragment {
         Log.e(TAG, "called : sendOtherDetail");
         mProgressDialog.show();
 
-        String URL = BASE_URL + "addDriver";
+        String URL = BASE_URL + "addDriverInfo";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
@@ -361,16 +359,32 @@ public class ADFrag3 extends Fragment {
                 mProgressDialog.dismiss();
                 Log.e(TAG,response);
 
-                //response ko handle kar lena
+                try {
+                    int code = new JSONObject(response).getInt("code");
+                    if(code!=1){
+                        Toast.makeText(getActivity(),"Code is not 1",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Toast.makeText(getActivity(),"Driver added successfully",Toast.LENGTH_SHORT).show();
 
-                //getActivity().finish();
+                    Intent i = new Intent(new Intent(getActivity(), UnverifiedDriver.class));
+                    i.putExtra("currentViewPagerItem",1);
+                    startActivity(i);
+
+                    getActivity().finish();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 mProgressDialog.dismiss();
                 Log.e(TAG,error.toString());
-                Toast.makeText(getActivity(),"Other detail upload failed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -384,6 +398,7 @@ public class ADFrag3 extends Fragment {
                 String city     = bundle.getString("city");
                 String phone    = bundle.getString("mobile");
                 String birthday = bundle.getString("birthday");
+                String lice_exp = bundle.getString("license_exp");
                 String account  = bundle.getString("account");
                 String password = bundle.getString("password");
 
@@ -395,6 +410,7 @@ public class ADFrag3 extends Fragment {
                 parms.put("city",city);
                 parms.put("state",state);
                 parms.put("birthday",birthday);
+                parms.put("lice_exp",lice_exp);
                 parms.put("password",password);
                 parms.put("bankAccd",account);
 
@@ -404,6 +420,27 @@ public class ADFrag3 extends Fragment {
 
         stringRequest.setRetryPolicy(new DefaultRetryPolicy( RETRY_SECONDS, NO_OF_RETRY,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    private void compressImage(Bitmap bitmap) {
+        Log.e(TAG,"called : complressImage");
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 18, bos);
+
+        byte[] bitmapData = bos.toByteArray();
+
+        try {
+            //Compressed image is written in same previous image file
+            FileOutputStream fos = new FileOutputStream(mImagePath);
+            fos.write(bitmapData);
+            fos.flush();
+            fos.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG,"Exception while converting bitmap to file, "+e.toString());
+        }
+
     }
 
 

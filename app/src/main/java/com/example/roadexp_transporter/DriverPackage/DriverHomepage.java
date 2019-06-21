@@ -4,6 +4,7 @@ import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -81,8 +82,6 @@ public class DriverHomepage extends AppCompatActivity {
         mFragmentList.add(new FragDriverType3());
 
         clickListener();
-
-        //TestingfetchAllDriver();
         fetchAllDriver();
 
 
@@ -106,10 +105,10 @@ public class DriverHomepage extends AppCompatActivity {
                 try {
 
                     JSONObject jsonResponse = new JSONObject(response);
-                    int code = jsonResponse.getInt("code");
+                    int code  = jsonResponse.getInt("code");
 
-                    if(code!=1){
-                        Toast.makeText(DriverHomepage.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                    if(!(code==2)){
+                        Toast.makeText(DriverHomepage.this,"code is not 2 ",Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -118,21 +117,49 @@ public class DriverHomepage extends AppCompatActivity {
                     for(int i=0;i<jsonResult.length();i++) {
 
                         JSONObject jo = jsonResult.getJSONObject(i);
-                        String vehicleId  = jo.getString("vehicle_id");
 
-                        if(vehicleId.equals("null"))
+                        String vType  = jo.getString("v_type");
+                        int verifFlag = jo.getInt("verif_flag");
+
+                        //vehicle type is null don't show here
+                        if(vType.equals("null") || verifFlag == 0)
                             continue;
-                        int isVerified  = jo.getInt("verif_flag");
-                        if(isVerified == 0)
-                            continue;
 
-                        String id       = jo.getString("Did");
-                        String name     = jo.getString("d_name");
-                        String mobile   = jo.getString("phn");
-                        String city     = jo.getString("sahar");
-                        String state    = jo.getString("state");
+                        String tripId = jo.getString("trip_id");
+                        String t_av   = jo.getString("t_av");
+                        String d_av   = jo.getString("d_av");
 
+                        int status;
+
+                        //status 1 - Moving
+                        //status 2 - Onwait
+                        //status 3 - TurnedOff
+
+                        if(!tripId.equals("null"))
+                            status = 1;
+                        else {
+                            if(t_av.equals("0") && d_av.equals("0") )
+                                status = 2;
+                            else
+                                status = 3;
+                        }
+
+                        String driverId   = jo.getString("Did");
+                        String name       = jo.getString("d_name");
+                        String mobile     = jo.getString("phn");
+                        String state      = jo.getString("state");
+
+                        String addharPic = jo.getString("aadhar_front_pic");
+                        String profPic   = jo.getString("prof_pic");
+                        String dlFront   = jo.getString("dl_pic_front");
+                        String dlBack    = jo.getString("dl_pic_back");
                         String birthday  = jo.getString("birthday");
+                        String bankAccd  = jo.getString("bankAccd");
+                        String sahar     = jo.getString("sahar");
+                        String vehicleId = jo.getString("vehicle_id");
+
+                        String vNum      = jo.getString("v_num");
+                        //String tripId    = jo.getString("trip_id");
 
 
                         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -144,41 +171,18 @@ public class DriverHomepage extends AppCompatActivity {
                         }
 
                         int ageInYear = currentYear - yearBorn;
-
-
                         String joiningDate  = jo.getString("add_day").substring(0,10);
 
-                        String noOfSuccesTrip = "na";
-                        String vehicleName  = "vehicleName";
-                        String vehicleNumber = "number";
+                        String noOfSuccessTrip = "N/A";
 
-                        String profilePic = jo.getString("prof_pic");
-                        String dlPicFront  = jo.getString("dl_pic_front");
-                        String dlPicBack  = jo.getString("dl_pic_back");
-
-                        int t_av  = Integer.parseInt(jo.getString("t_av"));
-                        int d_av  = Integer.parseInt(jo.getString("d_av"));
-
-                        int trip = 1;
-
-                        int status;
-                        if(t_av == 0 && d_av == 0){
-                            if(trip == 0)
-                                status = 2;
-                            else
-                                status = 1;
-                        }
-
-                        else
-                            status = 3 ;
-
-                        mAllVerifiedDriverList.add(new Driver(id,name,mobile,city,state,ageInYear,joiningDate,noOfSuccesTrip,vehicleName,
-                                vehicleNumber,profilePic,dlPicFront,dlPicBack,t_av,d_av,status,isVerified,Integer.parseInt(vehicleId)));
+                        mAllVerifiedDriverList.add(new Driver(driverId,name,mobile,sahar,state,ageInYear,joiningDate,noOfSuccessTrip,vType,
+                                vNum,profPic,addharPic,dlFront,dlBack,t_av,d_av,status,1,vehicleId,bankAccd,tripId));
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e(TAG, e.toString());
+                    Toast.makeText(DriverHomepage.this,e.toString(),Toast.LENGTH_SHORT).show();
                 }
 
                 ViewPager viewPager = findViewById(R.id.viewpager_driver);
@@ -203,8 +207,8 @@ public class DriverHomepage extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params =  new HashMap<>();
-
                 String transId = mSession.getTransporterDetailsFromPref().get(TRANS_ID);
+
                 Log.e(TAG, transId);
                 params.put("transId",transId);
                 return params;
@@ -213,62 +217,6 @@ public class DriverHomepage extends AppCompatActivity {
 
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(RETRY_SECONDS, NO_OF_RETRY, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.getInstance(DriverHomepage.this).addToRequestQueue(stringRequest);
-
-
-
-    }
-
-    private void TestingfetchAllDriver(){
-
-        // for testing only
-        for(int i=1;i<=6;i++){
-
-            String vehicleId = "1";
-            int isVerified = 1;
-
-            String id       = i+"";
-            String name     = "mani"+i;
-            String mobile   = "7907977801"+i;
-            String city     = "sahar"+i;
-            String state    = "state"+i;
-
-            int ageInYear = +i;
-
-
-            String joiningDate  = "joiningDate"+i;
-
-            String noOfSuccesTrip = "na"+i;
-            String vehicleName  = "vehicleName"+i;
-            String vehicleNumber = "number";
-
-            String profilePic = ""+i;
-            String dlPicFront  = ""+i;
-            String dlPicBack  = ""+i;
-
-            int t_av = 0;
-            int d_av  = 0;
-
-            int status;
-
-            if(i==1 || i == 2)
-                status = 1;
-            else if(i==3 || i==4)
-                status = 2;
-            else
-                status = 3;
-
-            mAllVerifiedDriverList.add(new Driver(id,name,mobile,city,state,ageInYear,joiningDate,noOfSuccesTrip,vehicleName,
-                    vehicleNumber,profilePic,dlPicFront,dlPicBack,t_av,d_av,status,isVerified,Integer.parseInt(vehicleId)));
-        }
-
-        ViewPager viewPager = findViewById(R.id.viewpager_driver);
-        TabLayout tabLayout = findViewById(R.id.tabs_driver);
-        tabLayout.setupWithViewPager(viewPager);
-
-        DriverFragmentPagerAdapter adapter = new DriverFragmentPagerAdapter(
-                getSupportFragmentManager(),mFragmentList);
-        viewPager.setAdapter(adapter);
-
     }
 
     private void clickListener() {

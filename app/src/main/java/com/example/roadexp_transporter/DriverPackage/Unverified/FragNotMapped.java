@@ -56,7 +56,7 @@ public class FragNotMapped extends Fragment {
         Log.e(TAG,"called : fetchTypeOneDriver");
 
         //Type 1 driver
-        mDriverList = mActivity.getDriverListFromParent(1);
+        mDriverList = mActivity.getDriverListFromParent(4);
 
         Log.e(TAG, "UnmappedDriver = "+ mDriverList.size());
 
@@ -70,15 +70,11 @@ public class FragNotMapped extends Fragment {
             tv_err.setVisibility(View.GONE);
         }
 
-
-
         RecyclerView recyclerView = mRootView.findViewById(R.id.recycler_view_driver);
         DriverAdapter adapter     = new DriverAdapter(getActivity(),mDriverList);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-
-
 
     }
 

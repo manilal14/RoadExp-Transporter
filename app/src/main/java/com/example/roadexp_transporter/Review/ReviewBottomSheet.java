@@ -148,7 +148,6 @@ public class ReviewBottomSheet extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 sendReviewToDb();
-                dismiss();
 
             }
         });
@@ -157,7 +156,6 @@ public class ReviewBottomSheet extends BottomSheetDialogFragment {
     }
 
     private void sendReviewToDb() {
-        Toast.makeText(getActivity(),mInterfaceRewiew + " "+mperformaceReview+" "+mColorReview,Toast.LENGTH_SHORT).show();
 
         Log.e(TAG, "called : sendReviewToDb");
         String URL = BASE_URL + "appreview";
@@ -168,6 +166,7 @@ public class ReviewBottomSheet extends BottomSheetDialogFragment {
             public void onResponse(String response) {
                 Log.e(TAG, response);
                 Toast.makeText(getActivity(),"Response Success",Toast.LENGTH_SHORT).show();
+                dismiss();
             }
         }, new Response.ErrorListener() {
             @Override

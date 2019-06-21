@@ -31,9 +31,9 @@ public class DriverFragmentPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
 
         switch (position){
-            case 0: return "Type1";
-            case 1: return "Type2";
-            case 2: return "Type3";
+            case 0: return "Moving";
+            case 1: return "On Wait";
+            case 2: return "Turned Off";
         }
 
         return super.getPageTitle(position);

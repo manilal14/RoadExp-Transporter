@@ -1,4 +1,6 @@
 package com.example.roadexp_transporter.AddNewVehicle;
+import android.Manifest;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,21 +12,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.roadexp_transporter.AddNewDriver.AddDriverPage;
 import com.example.roadexp_transporter.R;
+
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.hasPermissions;
 
 
 public class AddVehicleHomePage extends AppCompatActivity {
 
     private String TAG = this.getClass().getSimpleName();
+    private final int PERMISSION_ALL = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            Window w = getWindow();
-//            w.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-//            w.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
+
         setContentView(R.layout.activity_add_vehicle_home_page);
 
         Toolbar toolbar =  findViewById(R.id.toolbar);
@@ -35,7 +37,14 @@ public class AddVehicleHomePage extends AppCompatActivity {
 
         replaceFragment(new AVFrag1(),"av_frag_1");
 
-
+        String[] PERMISSIONS = {
+                Manifest.permission.CAMERA,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        };
+        if(!hasPermissions(AddVehicleHomePage.this, PERMISSIONS)) {
+            ActivityCompat.requestPermissions(AddVehicleHomePage.this, PERMISSIONS, PERMISSION_ALL);
+            return;
+        }
 
 
 

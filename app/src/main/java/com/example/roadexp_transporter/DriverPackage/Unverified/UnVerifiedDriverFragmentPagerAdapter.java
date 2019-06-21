@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-public class UnVerifiedDriverFragmentPagerAdapter extends FragmentPagerAdapter {
+public class    UnVerifiedDriverFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mFragmentList;
 

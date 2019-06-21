@@ -1,4 +1,7 @@
 package com.example.roadexp_transporter.CommonForAll;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 import java.text.DateFormat;
@@ -10,13 +13,17 @@ import java.util.Locale;
 public class CommanVariablesAndFunctuions {
 
     //values
-    public static final int RETRY_SECONDS = 5*1000;
+    public static final int RETRY_SECONDS = 8*1000;
     public static final int NO_OF_RETRY = 0;
-
-
 
     public static final String BASE_URL     = "http://roadexp.codebuckets.in/admin_api/";
     public static final String OTP_AUTH_KEY = "172372AtvxExayuF3v5b5de27c";
+
+    private static final String BASE_IMGAES_PATH = "http://roadexp.codebuckets.in/images/";
+    public static final String BASE_PROFILE_PIC = BASE_IMGAES_PATH +"profile/";
+    public static final String BASE_AADHAR      = BASE_IMGAES_PATH +"aadhar_front_pic/";
+    public static final String BASE_DL_FRONT    = BASE_IMGAES_PATH +"dl_pic_front/";
+    public static final String BASE_DL_BACK     = BASE_IMGAES_PATH +"dl_pic_back/";
 
 
     public static final String DATE_FORMAT = "dd/MM/yyyy";
@@ -77,6 +84,17 @@ public class CommanVariablesAndFunctuions {
         }
 
         return result;
+    }
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -45,7 +46,7 @@ public class SingnUpNext extends AppCompatActivity {
     private ProgressBar mProgressBar;
 
     private List<String> mStateList;
-    private List<String> mCityList;
+    private List<Pair<Integer,String>> mCityList;
 
 
 
@@ -66,7 +67,8 @@ public class SingnUpNext extends AppCompatActivity {
         mCityList = new ArrayList<>();
 
         mStateList.add("Choose State");
-        mCityList.add("Choose City");
+      //  mCityList.add("Choose City");
+        mCityList.add(new Pair(0,"Choose City"));
 
         fetchState();
 
@@ -124,7 +126,9 @@ public class SingnUpNext extends AppCompatActivity {
                 if(!verifyCredential(pass,cnfPass,account,fleetSize))
                     return;
 
-                registerUser(pass,account,fleetSize, spinState.getSelectedItem().toString().trim(),  spinCity.getSelectedItem().toString().trim() );
+                int cityId = mCityList.get(spinCityId).first;
+
+                registerUser(pass,account,fleetSize, spinState.getSelectedItem().toString().trim(), String.valueOf(cityId));
                 //startActivity(new Intent(SingnUpNext.this, AppHomePage.class));
                 //finish();
             }
@@ -230,7 +234,7 @@ public class SingnUpNext extends AppCompatActivity {
                 Log.e(TAG, response);
 
                 mCityList.clear();
-                mCityList.add("Choose City");
+                mCityList.add(new Pair(0,"Choose City"));
 
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
@@ -244,14 +248,23 @@ public class SingnUpNext extends AppCompatActivity {
                     JSONArray jsonResult = jsonResponse.getJSONArray("result");
 
                     for(int i=0;i<jsonResult.length();i++){
+                        int id = jsonResult.getJSONObject(i).getInt("id");
+                        //mCityList.add(city);
                         String city = jsonResult.getJSONObject(i).getString("city");
-                        mCityList.add(city);
+                        mCityList.add(new Pair(id, city));
                     }
 
 
                     Spinner spiCity = findViewById(R.id.spinner_city);
+
+                    List<String> cityString = new ArrayList<>();
+                    for (int i=0;i<mCityList.size();i++){
+                        cityString.add(mCityList.get(i).second);
+                    }
+
+
                     ArrayAdapter<String> adapter =
-                            new ArrayAdapter<>(SingnUpNext.this, R.layout.spinner_layout_custom, mCityList);
+                            new ArrayAdapter<>(SingnUpNext.this, R.layout.spinner_layout_custom, cityString);
                     adapter.setDropDownViewResource(R.layout.spinner_layout_custom);
                     spiCity.setAdapter(adapter);
 

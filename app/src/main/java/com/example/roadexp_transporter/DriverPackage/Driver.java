@@ -19,19 +19,23 @@ public class Driver implements Serializable {
     private String vehicleNumber;
 
     private String profilePic;
+    private String aadharPic;
     private String dlPicFront;
     private String dlPicBack;
 
-    private int t_av;
-    private int d_av;
+    private String t_av;
+    private String d_av;
 
     private int status;
 
     private int isVerified;
-    private int vehicleId;
+    private String vehicleId;
+    private String accountNumber;
 
-    public Driver(String id, String name, String mobile, String city, String state, int ageInYear, String joingDate, String noOfSuccesTrip, String vehicleName, String vehicleNumber, String profilePic,
-                  String dlPicFront, String dlPicBack, int t_av, int d_av, int status, int isVerified, int vehicleId) {
+    private String tripId;
+
+    public Driver(String id, String name, String mobile, String city, String state, int ageInYear, String joingDate, String noOfSuccesTrip, String vehicleName, String vehicleNumber, String profilePic, String aadharPic, String dlPicFront,
+                  String dlPicBack, String t_av, String d_av, int status, int isVerified, String vehicleId, String accountNumber,String tripid) {
         this.id = id;
         this.name = name;
         this.mobile = mobile;
@@ -43,6 +47,7 @@ public class Driver implements Serializable {
         this.vehicleName = vehicleName;
         this.vehicleNumber = vehicleNumber;
         this.profilePic = profilePic;
+        this.aadharPic = aadharPic;
         this.dlPicFront = dlPicFront;
         this.dlPicBack = dlPicBack;
         this.t_av = t_av;
@@ -50,6 +55,8 @@ public class Driver implements Serializable {
         this.status = status;
         this.isVerified = isVerified;
         this.vehicleId = vehicleId;
+        this.accountNumber = accountNumber;
+        this.tripId = tripid;
     }
 
     public String getId() {
@@ -96,6 +103,10 @@ public class Driver implements Serializable {
         return profilePic;
     }
 
+    public String getAadharPic() {
+        return aadharPic;
+    }
+
     public String getDlPicFront() {
         return dlPicFront;
     }
@@ -104,11 +115,11 @@ public class Driver implements Serializable {
         return dlPicBack;
     }
 
-    public int getT_av() {
+    public String getT_av() {
         return t_av;
     }
 
-    public int getD_av() {
+    public String getD_av() {
         return d_av;
     }
 
@@ -120,7 +131,15 @@ public class Driver implements Serializable {
         return isVerified;
     }
 
-    public int getVehicleId() {
+    public String getVehicleId() {
         return vehicleId;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getTripId() {
+        return tripId;
     }
 }

@@ -59,8 +59,10 @@ public class SignUpPage extends AppCompatActivity {
             @Override
             public void onSmsCatch(String message) {
 
+                Log.e("asd1",message);
+
                 String code = parseCode(message);
-                Log.e(TAG,code);
+                Log.e("asd2",code);
 
                 m_tv_otp.setText(code);
                 m_tv_otp.setSelection(m_tv_otp.length());
@@ -76,6 +78,13 @@ public class SignUpPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        findViewById(R.id.rootview).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG,"do nothing");
             }
         });
 
@@ -171,22 +180,39 @@ public class SignUpPage extends AppCompatActivity {
 
         m_tv_otp = otpView.findViewById(R.id.otp);
 
-        m_tv_otp.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
+        otpView.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
+            public void onClick(View v) {
+                String inputedOtp = m_tv_otp.getText().toString().trim();
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(m_tv_otp.length() == 6) {
-                    String inputedOtp = m_tv_otp.getText().toString().trim();
-                    verifyOtp(name, email, phone,inputedOtp);
-                    alertDialog.dismiss();
+                if(inputedOtp.length()<6){
+                    Toast.makeText(SignUpPage.this,"Enter correct otp",Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                verifyOtp(name, email, phone,inputedOtp);
+                alertDialog.dismiss();
+
             }
         });
+
+//        m_tv_otp.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count){}
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                if(m_tv_otp.length() == 6) {
+//                    String inputedOtp = m_tv_otp.getText().toString().trim();
+//                    verifyOtp(name, email, phone,inputedOtp);
+//                    alertDialog.dismiss();
+//                }
+//            }
+//        });
 
 
 
@@ -195,6 +221,7 @@ public class SignUpPage extends AppCompatActivity {
     private void verifyOtp(final String name, final String email , final String phone, String inputedOtp ) {
 
         Log.e(TAG, "called : verifyOtp");
+        Log.e("asd3",inputedOtp);
 
         String VERIFY_OTP  = "http://api.msg91.com/api/verifyRequestOTP.php?";
         VERIFY_OTP         += "authkey="+OTP_AUTH_KEY;
@@ -211,6 +238,7 @@ public class SignUpPage extends AppCompatActivity {
                 mProgressBar.setVisibility(View.GONE);
                 try {
                     String result = new JSONObject(response).getString("type");
+                    String message = new JSONObject(response).getString("message");
 
                     if(result.equals("success")){
 
@@ -224,7 +252,7 @@ public class SignUpPage extends AppCompatActivity {
                         finish();
                     }
                     else {
-                        Toast.makeText(SignUpPage.this,"Wrong Otp",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpPage.this,message,Toast.LENGTH_SHORT).show();
                         return;
                     }
                 } catch (JSONException e) {

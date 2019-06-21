@@ -2,6 +2,7 @@ package com.example.roadexp_transporter.AddNewDriver;
 
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -52,12 +53,14 @@ public class ADFrag1 extends Fragment {
     private View mRoot;
 
     private AddDriverPage mActivity;
-    private ProgressBar mProgressBar;
+    private ProgressDialog mProgressDialog;
 
     private List<String> mStateList;
     private List<Pair<Integer,String>> mCityList;
 
     //private List<String> mCityList;
+
+    private Calendar mCalendar;
 
 
     public ADFrag1() {}
@@ -78,7 +81,9 @@ public class ADFrag1 extends Fragment {
         mRoot = inflater.inflate(R.layout.adfrag1, container, false);
         mActivity.translateBoy(0);
 
-        mProgressBar = mRoot.findViewById(R.id.progress_bar);
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setMessage("Please wait...");
 
         mStateList = new ArrayList<>();
         mCityList = new ArrayList<>();
@@ -87,8 +92,8 @@ public class ADFrag1 extends Fragment {
         mCityList.add(new Pair(0,"Choose City"));
 
         fetchState();
-
         clickListener();
+
         return mRoot;
     }
 
@@ -98,6 +103,7 @@ public class ADFrag1 extends Fragment {
 
         final EditText tv_name         = mRoot.findViewById(R.id.name);
         final EditText tv_birthday     = mRoot.findViewById(R.id.birthday);
+        final EditText tv_license_exp  = mRoot.findViewById(R.id.license_expire);
         final EditText tv_mobile       = mRoot.findViewById(R.id.mobile);
         final EditText tv_bank_account = mRoot.findViewById(R.id.bank_account);
         final EditText tv_password     = mRoot.findViewById(R.id.password);
@@ -110,22 +116,22 @@ public class ADFrag1 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String name     = tv_name.getText().toString().trim();
-                String birthday = tv_birthday.getText().toString().trim();
-                String mobile   = tv_mobile.getText().toString().trim();
-                String account  = tv_bank_account.getText().toString().trim();
-                String password = tv_password.getText().toString().trim();
+                String name          = tv_name.getText().toString().trim();
+                String birthday      = tv_birthday.getText().toString().trim();
+                String licenseExpire = tv_license_exp.getText().toString().trim();
+                String mobile        = tv_mobile.getText().toString().trim();
+                String account       = tv_bank_account.getText().toString().trim();
+                String password      = tv_password.getText().toString().trim();
 
-                int spinStateId = spinState.getSelectedItemPosition();
-                int spinCityId  = spinCity.getSelectedItemPosition();
+                int spinStateId      = spinState.getSelectedItemPosition();
+                int spinCityId       = spinCity.getSelectedItemPosition();
 
+                if(spinCityId == 0 || spinStateId == 0){
+                    Toast.makeText(getActivity(), "Choose State and City",Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                    if(spinCityId == 0 || spinStateId == 0){
-                        Toast.makeText(getActivity(), "Choose State and City",Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                if(!verifyInput(name, birthday, mobile, account, password))
+                if(!verifyInput(name, birthday, licenseExpire, mobile, account, password))
                     return;
 
                 Bundle bundle = new Bundle();
@@ -139,6 +145,7 @@ public class ADFrag1 extends Fragment {
                 bundle.putString("state",spinState.getSelectedItem().toString().trim());
                 bundle.putString("city", String.valueOf(cityId));
                 bundle.putString("birthday",birthday);
+                bundle.putString("license_exp",licenseExpire);
                 bundle.putString("mobile",mobile);
                 bundle.putString("account",account);
                 bundle.putString("password",password);
@@ -152,9 +159,18 @@ public class ADFrag1 extends Fragment {
         mRoot.findViewById(R.id.birthday).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDOBInEditText();
+
+                setDate((EditText) v);
             }
         });
+
+        mRoot.findViewById(R.id.license_expire).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDate((EditText) v);
+            }
+        });
+
 
 
         spinState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -171,55 +187,11 @@ public class ADFrag1 extends Fragment {
 
     }
 
-    private void sendDriverDetailToDb(final String name, final String state, final String city,
-                                      final String birthday, final String mobile, final String account, final String password) {
-
-        Log.e(TAG, "called : sendDriverDetailToDb");
-
-        String URL = BASE_URL + "";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e(TAG,response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                HashMap<String, String> parms = new HashMap<>();
-
-                parms.put("name",name);
-                parms.put("state",state);
-                parms.put("city",city);
-                parms.put("birthday",birthday);
-
-                parms.put("mobile",mobile);
-                parms.put("account",account);
-                parms.put("password",password);
-
-                return parms;
-            }
-        };
-
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy( RETRY_SECONDS, NO_OF_RETRY,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
-
-
-
-    }
-
 
     private void replaceFragment(Fragment fragment, String tag) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.fragment_container, fragment, tag);
-        //ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
         ft.addToBackStack(null);
         ft.commit();
     }
@@ -229,13 +201,13 @@ public class ADFrag1 extends Fragment {
         Log.e(TAG, "called : fetchState");
 
         String STATE_URL = BASE_URL + "state";
-        mProgressBar.setVisibility(View.VISIBLE);
+        mProgressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, STATE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                mProgressBar.setVisibility(View.GONE);
+                mProgressDialog.dismiss();
                 Log.e(TAG, response);
 
                 mStateList.clear();
@@ -273,8 +245,9 @@ public class ADFrag1 extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                mProgressBar.setVisibility(View.GONE);
+                mProgressDialog.dismiss();
                 Log.e(TAG, error.toString());
+                Toast.makeText(getActivity(),error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -288,12 +261,12 @@ public class ADFrag1 extends Fragment {
         Log.e(TAG, "called : fetchCity");
         String STATE_URL = BASE_URL + "city";
 
-        mProgressBar.setVisibility(View.VISIBLE);
+        mProgressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, STATE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                mProgressBar.setVisibility(View.GONE);
+                mProgressDialog.dismiss();
                 Log.e(TAG, response);
 
                 mCityList.clear();
@@ -340,8 +313,9 @@ public class ADFrag1 extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                mProgressBar.setVisibility(View.GONE);
+                mProgressDialog.dismiss();
                 Log.e(TAG, error.toString());
+                Toast.makeText(getActivity(),error.toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -358,39 +332,36 @@ public class ADFrag1 extends Fragment {
 
     }
 
-    public void setDOBInEditText() {
+    public void setDate(final EditText editText) {
 
-        final Calendar calendar =  Calendar.getInstance();
+        mCalendar =  Calendar.getInstance();
         DatePickerDialog.OnDateSetListener date =  new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, month);
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel();
+                mCalendar.set(Calendar.YEAR, year);
+                mCalendar.set(Calendar.MONTH, month);
+                mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel(editText);
             }
         };
-        new DatePickerDialog(getActivity(), date, calendar
-                .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)).show();
+        new DatePickerDialog(getActivity(), date, mCalendar
+                .get(Calendar.YEAR), mCalendar.get(Calendar.MONTH),
+                mCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
     }
 
-    private void updateLabel() {
+    private void updateLabel(EditText editText) {
         String myFormat = "dd-MM-yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
 
-        Calendar calendar =  Calendar.getInstance();
-        String date = sdf.format(calendar.getTime());
-
-        EditText et_dob = mRoot.findViewById(R.id.birthday);
-        et_dob.setText(date);
+        String date = sdf.format(mCalendar.getTime());
+        editText.setText(date);
     }
 
-    private boolean verifyInput(String name, String birthday, String mobile, String account, String password) {
+    private boolean verifyInput(String name, String birthday,String licenseExp, String mobile, String account, String password) {
         
-        if(name.equals("") || birthday.equals("") || mobile.equals("") || account.equals("") || password.equals("")){
+        if(name.equals("") || birthday.equals("") || licenseExp.equals("") || mobile.equals("") || account.equals("") || password.equals("")){
             Toast.makeText(getActivity(), "All fields are required",Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -413,6 +384,9 @@ public class ADFrag1 extends Fragment {
         return true;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
-
+    }
 }
