@@ -32,6 +32,7 @@ import com.example.roadexp_transporter.Reports.MissedLoad.MissedAdapter;
 import com.example.roadexp_transporter.Reports.MissedLoad.MissedLoad;
 import com.example.roadexp_transporter.Reports.MissedLoad.MissedLoadsPage;
 import com.example.roadexp_transporter.Review.Vehicle;
+import com.example.roadexp_transporter.VehiclePackage.UnverifiedVehicle.UnverifiedVehiclePage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -189,16 +190,67 @@ public class FragMapDriver extends Fragment {
                 Toast.makeText(getActivity(), "driverId="+driverId,Toast.LENGTH_SHORT).show();
 
                 //Need to map Driver
-                //mapDriver();
+                mapDriver(driverId,mVehicleDetail.getVehicleId());
 
             }
         });
 
+    }
+
+    private void mapDriver(final String driverId, final int vehicleId){
+
+        Log.e(TAG, "called : mapDriver");
+
+        String URL = BASE_URL + "mapdriver_code";
+        mProgressBar.setVisibility(View.VISIBLE);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                mProgressBar.setVisibility(View.GONE);
+                Log.e(TAG, response);
 
 
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    int code = jsonResponse.getInt("code");
+
+                    if(code!=1){
+                        Toast.makeText(getActivity(),"Code is not 1",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Toast.makeText(getActivity(),"Driver is mapped",Toast.LENGTH_SHORT).show();
+                    onDestroyView();
 
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, e.toString());
+                }
 
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                mProgressBar.setVisibility(View.GONE);
+                Log.e(TAG, error.toString());
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params =  new HashMap<>();
+
+                params.put("Did",driverId);
+                params.put("vid", vehicleId+"");
+
+                return params;
+            }
+        };
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(RETRY_SECONDS, NO_OF_RETRY, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
     @Override

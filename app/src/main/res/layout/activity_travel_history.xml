@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_grey"
-    tools:context=".Reports.TravelReport.TravelHistoryPage">
+    tools:context=".Reports.TravelReport.Driver.TravelHistoryDriver">
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"
@@ -47,7 +47,6 @@
 
         <LinearLayout
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -101,7 +100,7 @@
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:paddingTop="8dp"
+            android:layout_marginTop="16dp"
             android:id="@+id/recycler_view_travel_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -109,14 +108,22 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
-
-
-
-
-
-
-
+    <TextView
+        android:id="@+id/no_history"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:text="No History Avaialble"/>
 
 
 </FrameLayout>

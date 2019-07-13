@@ -60,7 +60,7 @@ public class FragVehicleInfo extends Fragment {
 
         TextView tv_vehcileType   = mRoot.findViewById(R.id.vehicle_type);
         TextView tv_vehicleNumber = mRoot.findViewById(R.id.vehicle_number);
-        TextView tv_disTravel     = mRoot.findViewById(R.id.distance_travelled);
+        //TextView tv_disTravel     = mRoot.findViewById(R.id.distance_travelled);
         TextView tv_mappedDriver  = mRoot.findViewById(R.id.mapped_driver);
 
         tv_vehicleNumber.setText(mVehicleDetail.getPlateNumber());

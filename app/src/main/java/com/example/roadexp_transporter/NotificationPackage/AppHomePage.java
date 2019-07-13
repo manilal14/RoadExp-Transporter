@@ -31,6 +31,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.example.roadexp_transporter.AddNewDriver.AddDriverPage;
 import com.example.roadexp_transporter.CommonForAll.MySingleton;
 import com.example.roadexp_transporter.DriverPackage.Unverified.UnverifiedDriver;
@@ -41,7 +42,7 @@ import com.example.roadexp_transporter.LoginSingUp.LoginSessionManager;
 import com.example.roadexp_transporter.NetworkState.ConnectivityReceiver;
 import com.example.roadexp_transporter.Reports.MissedLoad.MissedLoadsPage;
 import com.example.roadexp_transporter.Reports.PaymentReport.PaymentReportPage;
-import com.example.roadexp_transporter.Reports.TravelReport.TravelReportPage;
+import com.example.roadexp_transporter.Reports.TravelReport.TravelReportHomePage;
 import com.example.roadexp_transporter.VehiclePackage.UnverifiedVehicle.UnverifiedVehiclePage;
 import com.example.roadexp_transporter.VehiclePackage.VehicleStatusHomePage;
 import com.example.roadexp_transporter.R;
@@ -59,6 +60,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.fabric.sdk.android.Fabric;
+
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_URL;
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.NO_OF_RETRY;
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.RETRY_SECONDS;
@@ -70,7 +73,6 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
     private String TAG = this.getClass().getSimpleName();
 
     private List<Notification> mNotificationList;
-
 
     //Navigation Menu
     private ExpandableListView mExpandableListView;
@@ -91,7 +93,11 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
             w.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
             w.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
+
+        Fabric.with(this, new Crashlytics());
+
         setContentView(R.layout.activity_main);
+
         Log.e(TAG, "called : onCreate");
 
        // checkConnection();
@@ -122,8 +128,6 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
                 fetchNotification();
             }
         });
-
-
 
     }
 
@@ -159,6 +163,7 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(RETRY_SECONDS*1000,NO_OF_RETRY,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
+
     private void fetchNotification() {
 
         Log.e(TAG, "called :fetchNotification ");
@@ -275,6 +280,7 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
         MySingleton.getInstance(AppHomePage.this).addToRequestQueue(stringRequest);
 
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
@@ -523,7 +529,7 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
                         case 1:
                             switch (childPosition){
                                 case 0:startActivity(new Intent(AppHomePage.this, MissedLoadsPage.class));break;
-                                case 1:startActivity(new Intent(AppHomePage.this, TravelReportPage.class));break;
+                                case 1:startActivity(new Intent(AppHomePage.this, TravelReportHomePage.class));break;
                                 case 2:startActivity(new Intent(AppHomePage.this, PaymentReportPage.class));break;
 
 

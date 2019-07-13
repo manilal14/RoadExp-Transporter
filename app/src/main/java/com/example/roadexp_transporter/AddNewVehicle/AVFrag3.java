@@ -82,14 +82,6 @@ public class AVFrag3 extends Fragment {
 
     private void clickListener() {
 
-//        mRoot.findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//               getActivity().onBackPressed();
-//
-//            }
-//        });
-
         mRoot.findViewById(R.id.all_done).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

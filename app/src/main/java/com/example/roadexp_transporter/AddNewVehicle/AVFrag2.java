@@ -212,11 +212,7 @@ public class AVFrag2 extends Fragment {
                         default: imageView = mRoot.findViewById(R.id.upload1); break;
 
                     }
-
-
-
                     imageView.setImageBitmap(bitmap);
-
                     Log.e(TAG, "Actual path : " + actualPath.toString());
 
                 } catch (Exception e) {
@@ -264,13 +260,18 @@ public class AVFrag2 extends Fragment {
                         @Override
                         public void onError(Context context, UploadInfo uploadInfo, ServerResponse serverResponse, Exception exception) {
                             mProgressDialog.dismiss();
-                            Log.e("asd1",uploadInfo.toString());
-                            if(serverResponse!=null)
-                                Log.e("asd",serverResponse.getBodyAsString());
-                            if(exception!=null)
-                                Log.e("asd",exception.toString());
-                            //Log.e(TAG,serverResponse.getBodyAsString());
-                            //Toast.makeText(getActivity(),serverResponse.getBodyAsString(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"Error occured, please upload once again", Toast.LENGTH_SHORT).show();
+                            ImageView imageView ;
+
+                            switch (flag){
+                                case 1 : imageView = mRoot.findViewById(R.id.upload1); break;
+                                case 2 : imageView = mRoot.findViewById(R.id.upload2); break;
+                                case 3 : imageView = mRoot.findViewById(R.id.upload3); break;
+
+                                default: imageView = mRoot.findViewById(R.id.upload1); break;
+                            }
+
+                            imageView.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.camera));
                         }
 
                         @Override

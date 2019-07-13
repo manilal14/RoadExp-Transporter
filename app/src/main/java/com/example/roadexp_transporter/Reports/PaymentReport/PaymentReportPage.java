@@ -3,7 +3,6 @@ package com.example.roadexp_transporter.Reports.PaymentReport;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,9 +11,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.roadexp_transporter.R;
-import com.example.roadexp_transporter.Reports.TravelReport.TRFragDriver;
-import com.example.roadexp_transporter.Reports.TravelReport.TRFragVehicle;
-import com.example.roadexp_transporter.Reports.TravelReport.TravelReportFragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +31,9 @@ public class PaymentReportPage extends AppCompatActivity {
 
         mFragmentList = new ArrayList<>();
 
-        mFragmentList.add(new PRFragVechicle());
+
         mFragmentList.add(new PRFragDriver());
+        mFragmentList.add(new PRFragVechicle());
 
 
         ViewPager viewPager = findViewById(R.id.viewpager_payment_report);

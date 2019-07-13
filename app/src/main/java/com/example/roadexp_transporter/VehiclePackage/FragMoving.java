@@ -33,7 +33,6 @@ public class FragMoving extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         mMovingVehicleList = new ArrayList<>();
         mActivity = (VehicleStatusHomePage) getActivity();
         fetchMovingVehicle();
@@ -49,7 +48,7 @@ public class FragMoving extends Fragment {
     }
 
     private void fetchMovingVehicle() {
-
+        Log.e(TAG,"fetched moving vehicle");
         mMovingVehicleList = mActivity.fetchParticularVehicle(1);
         TextView tv_err = mRootView.findViewById(R.id.error_message);
 

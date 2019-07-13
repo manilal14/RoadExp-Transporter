@@ -280,15 +280,9 @@ public class ADFrag2 extends Fragment {
                         public void onError(Context context, UploadInfo uploadInfo, ServerResponse serverResponse, Exception exception) {
                             mProgressDialog.dismiss();
                             Log.e("asd1",uploadInfo.toString());
-                            if(serverResponse!=null) {
-                                Log.e("asd", serverResponse.getBodyAsString());
-                                Toast.makeText(getActivity(),serverResponse.getBodyAsString(), Toast.LENGTH_SHORT).show();
-                            }
-                            if(exception!=null) {
-                                Log.e("asd", exception.toString());
-                                Toast.makeText(getActivity(),exception.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                           // Toast.makeText(getActivity(),serverResponse.getBodyAsString(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"Error occured, please upload once again", Toast.LENGTH_SHORT).show();
+                            ImageView imageView = mRoot.findViewById(R.id.upload_image);
+                            imageView.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.camera));
                         }
 
                         @Override

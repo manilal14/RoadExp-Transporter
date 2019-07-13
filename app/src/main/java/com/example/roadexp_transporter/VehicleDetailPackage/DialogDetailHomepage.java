@@ -24,14 +24,33 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.roadexp_transporter.CommonForAll.MySingleton;
 import com.example.roadexp_transporter.R;
 import com.example.roadexp_transporter.Review.Vehicle;
+import com.example.roadexp_transporter.VehiclePackage.UnverifiedVehicle.UnverifiedVehiclePage;
+import com.example.roadexp_transporter.VehiclePackage.VehicleStatusHomePage;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_URL;
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.NO_OF_RETRY;
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.RETRY_SECONDS;
 
 
 public class DialogDetailHomepage extends DialogFragment {
@@ -41,6 +60,7 @@ public class DialogDetailHomepage extends DialogFragment {
     public DialogDetailHomepage() {}
 
     private Vehicle mVehicleDetail;
+    private ProgressBar mProgressBar;
 
     @NonNull
     @Override
@@ -57,18 +77,18 @@ public class DialogDetailHomepage extends DialogFragment {
         dialog.getWindow().getAttributes().windowAnimations = R.style.animationSlideRightToRight;
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-
-
         return dialog;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         Log.e(TAG,"onCreateView");
 
+        mRoot          = inflater.inflate(R.layout.dialog_detail_home_page, container, false);
         mVehicleDetail = (Vehicle) getArguments().getSerializable("vehicle_detail");
-        mRoot = inflater.inflate(R.layout.dialog_detail_home_page, container, false);
+        mProgressBar   = mRoot.findViewById(R.id.progress_bar);
 
         Log.e(TAG, "vehicleType="+mVehicleDetail.getVehicleType());
         setViews();
@@ -77,6 +97,8 @@ public class DialogDetailHomepage extends DialogFragment {
     }
 
     private void setViews() {
+
+        CardView cv_curent_trip = mRoot.findViewById(R.id.current_trip);
 
         CardView cv_vehciel_det = mRoot.findViewById(R.id.vehicle_info);
         CardView cv_travel_det  = mRoot.findViewById(R.id.travel_details);
@@ -94,12 +116,7 @@ public class DialogDetailHomepage extends DialogFragment {
 
         switch (status){
             case 1:
-            case 2:
-                break;
-            case 3:
-                break;
-
-            case 4:
+                cv_curent_trip.setVisibility(View.VISIBLE);
                 cv_map_det.setEnabled(false);
                 cv_release_det.setEnabled(false);
                 cv_turn_off.setEnabled(false);
@@ -107,10 +124,33 @@ public class DialogDetailHomepage extends DialogFragment {
                 tv_map_det.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_dark_grey));
                 tv_release_det.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_dark_grey));
                 tv_turn_off.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_dark_grey));
+                break;
+            case 2:
+                cv_curent_trip.setVisibility(View.GONE);
+                cv_map_det.setEnabled(false);
+                cv_release_det.setEnabled(false);
+
+                tv_map_det.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_dark_grey));
+                tv_release_det.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_dark_grey));
+                break;
+            case 3:
+                cv_curent_trip.setVisibility(View.GONE);
+                break;
+
+            case 4:
+                cv_curent_trip.setVisibility(View.GONE);
+                cv_travel_det.setEnabled(false);
+                cv_release_det.setEnabled(false);
+                cv_turn_off.setEnabled(false);
+
+                tv_travel_det.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_dark_grey));
+                tv_release_det.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_dark_grey));
+                tv_turn_off.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_dark_grey));
 
                 break;
 
             case 5:
+                cv_curent_trip.setVisibility(View.GONE);
                 cv_travel_det.setEnabled(false);
                 cv_map_det.setEnabled(false);
                 cv_release_det.setEnabled(false);
@@ -135,11 +175,18 @@ public class DialogDetailHomepage extends DialogFragment {
             }
         });
 
+        mRoot.findViewById(R.id.current_trip).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragCurrentTripDetails frag =  new FragCurrentTripDetails();
+                replaceFragment(frag);
+            }
+        });
+
         mRoot.findViewById(R.id.vehicle_info).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragVehicleInfo frag = new FragVehicleInfo();
-               // frag.setArguments(getArguments()); //as it is set on next fin
                 replaceFragment(frag);
             }
         });
@@ -147,20 +194,14 @@ public class DialogDetailHomepage extends DialogFragment {
         mRoot.findViewById(R.id.travel_details).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 FragTravelDetails fragTravelDetails =  new FragTravelDetails();
-                Bundle bundle = new Bundle();
-                bundle.putInt("vehicleId", mVehicleDetail.getVehicleId());
-                fragTravelDetails.setArguments(bundle);
-
-               replaceFragment(fragTravelDetails);
+                replaceFragment(fragTravelDetails);
             }
         });
 
         mRoot.findViewById(R.id.map_driver).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 replaceFragment(new FragMapDriver());
             }
         });
@@ -175,15 +216,9 @@ public class DialogDetailHomepage extends DialogFragment {
         mRoot.findViewById(R.id.turn_off).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Turning off", Toast.LENGTH_SHORT).show();
+                turnOffDriver(mVehicleDetail.getVehicleId());
             }
         });
-
-
-
-
-
-
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -210,4 +245,63 @@ public class DialogDetailHomepage extends DialogFragment {
         ft.commit();
     }
 
+
+    private void turnOffDriver(final int vehicleId){
+
+        Log.e(TAG, "called : turnOffDriver");
+
+        String URL = BASE_URL + "turnOff";
+        mProgressBar.setVisibility(View.VISIBLE);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                mProgressBar.setVisibility(View.GONE);
+                Log.e(TAG, response);
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    int code = jsonResponse.getInt("code");
+
+                    if(code!=1){
+                        Toast.makeText(getActivity(),"Code is not 1",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Toast.makeText(getActivity(),"Vehicle turned Off",Toast.LENGTH_SHORT).show();
+                    onDestroyView();
+                    ((VehicleStatusHomePage)getActivity()).fetchAllVehicle();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, e.toString());
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                mProgressBar.setVisibility(View.GONE);
+                Log.e(TAG, error.toString());
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params =  new HashMap<>();
+                params.put("v_id", String.valueOf(vehicleId));
+                return params;
+            }
+        };
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(RETRY_SECONDS, NO_OF_RETRY, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e(TAG,"resume called");
+
+    }
 }

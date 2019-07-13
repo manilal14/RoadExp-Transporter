@@ -38,4 +38,6 @@ public class VehicleFragmentPagerAdapter extends FragmentPagerAdapter {
 
         return super.getPageTitle(position);
     }
+
+
 }

@@ -41,7 +41,7 @@ import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFun
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.RETRY_SECONDS;
 import static com.example.roadexp_transporter.LoginSingUp.LoginSessionManager.TRANS_ID;
 
-public class VehicleStatusHomePage extends AppCompatActivity {
+public class VehicleStatusHomePage extends AppCompatActivity{
 
     private final String TAG = this.getClass().getSimpleName();
 
@@ -50,6 +50,10 @@ public class VehicleStatusHomePage extends AppCompatActivity {
 
     private ProgressBar mProgressBar;
     private LoginSessionManager mSession;
+
+    private ViewPager mViewPager;
+    private VehicleFragmentPagerAdapter mAdapter;
+    private int mViewPagerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,8 @@ public class VehicleStatusHomePage extends AppCompatActivity {
         }
         setContentView(R.layout.activity_vehicle_status_page);
         mProgressBar = findViewById(R.id.progress_bar);
+
+        mViewPagerId = getIntent().getIntExtra("viewpagerId",0);
 
         mSession = new LoginSessionManager(VehicleStatusHomePage.this);
 
@@ -75,15 +81,26 @@ public class VehicleStatusHomePage extends AppCompatActivity {
         mFragmentList.add(new FragOnWait());
         mFragmentList.add(new FragTurnedOff());
 
+        mViewPager          = findViewById(R.id.viewpager_vehicle);
+        TabLayout tabLayout = findViewById(R.id.tabs_vehilce);
+        tabLayout.setupWithViewPager(mViewPager);
+
+        mAdapter = new VehicleFragmentPagerAdapter(
+                getSupportFragmentManager(),mFragmentList);
+        //Set adapter only after fetching data
+        //mViewPager.setAdapter(mAdapter);
+
         clickListerner();
         fetchAllVehicle();
         
     }
 
-    private void fetchAllVehicle() {
+    public void fetchAllVehicle() {
 
         Log.e(TAG, "called : fetchAllVehicle");
         String URL = BASE_URL + "showvehicle";
+
+        mAllVehicles.clear();
 
         mProgressBar.setVisibility(View.VISIBLE);
 
@@ -113,7 +130,9 @@ public class VehicleStatusHomePage extends AppCompatActivity {
                         int verifyFlag  = jo.getInt("verif_flag");
                         String did      = jo.getString("Did");
 
-                        if(verifyFlag == 0 || !did.equals("null"))
+                        String statusFromdb = jo.getString("status");
+
+                        if(verifyFlag == 0 || did.equals("null"))
                             continue;
 
                         String tripId  = jo.getString("trip_id");
@@ -121,13 +140,12 @@ public class VehicleStatusHomePage extends AppCompatActivity {
                         String d_av    = jo.getString("d_av");
 
                         int status;
-                        if(!tripId.equals("null"))
+                        if(!tripId.equals("null") && statusFromdb.equals("1"))
                             status = 1;
                         else if(t_av.equals("0") && d_av.equals("0"))
                             status = 2;
                         else
                             status = 3;
-
 
                         int vehicleId       = jo.getInt("v_id");
                         String plateNumber  = jo.getString("v_num");
@@ -143,14 +161,11 @@ public class VehicleStatusHomePage extends AppCompatActivity {
 
                         String dimension    = jo.getString("dimension");
                         String capacity     = jo.getString("capacity");
-
-                        String mappedDriver = "N/A";
+                        String mappedDriver = jo.getString("d_name");
 
                         mAllVehicles.add(new Vehicle(vehicleId, plateNumber,picRcFront,picRcBack,picVehicle,insuranceNum, addDate,
                                 permitType,rcExpOn,vehicleType, dimension, capacity, mappedDriver, verifyFlag, did, tripId,status));
                     }
-
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -159,21 +174,14 @@ public class VehicleStatusHomePage extends AppCompatActivity {
 
                 }
 
-                ViewPager viewPager = findViewById(R.id.viewpager_vehicle);
-                TabLayout tabLayout = findViewById(R.id.tabs_vehilce);
-                tabLayout.setupWithViewPager(viewPager);
-
-                VehicleFragmentPagerAdapter adapter = new VehicleFragmentPagerAdapter(
-                        getSupportFragmentManager(),mFragmentList);
-
-                viewPager.setAdapter(adapter);
-
+                setViewPager();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 mProgressBar.setVisibility(View.GONE);
                 Log.e(TAG, error.toString());
+                Toast.makeText(VehicleStatusHomePage.this, error.toString(),Toast.LENGTH_SHORT).show();
             }
         }){
 
@@ -182,7 +190,7 @@ public class VehicleStatusHomePage extends AppCompatActivity {
                 HashMap<String, String> params =  new HashMap<>();
 
                 String transId = mSession.getTransporterDetailsFromPref().get(TRANS_ID);
-                Log.e(TAG, "transId="+transId);
+                Log.e(TAG, "trans="+transId);
                 params.put("trans",transId);
                 return params;
             }
@@ -191,6 +199,14 @@ public class VehicleStatusHomePage extends AppCompatActivity {
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(RETRY_SECONDS, NO_OF_RETRY, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.getInstance(VehicleStatusHomePage.this).addToRequestQueue(stringRequest);
 
+    }
+
+    //After all vehicle is fetched
+    private void setViewPager() {
+        mAdapter = new VehicleFragmentPagerAdapter(
+                getSupportFragmentManager(),mFragmentList);
+        mViewPager.setAdapter(mAdapter);
+        mViewPager.setCurrentItem(mViewPagerId);
     }
 
     public List<Vehicle> fetchParticularVehicle(int status){

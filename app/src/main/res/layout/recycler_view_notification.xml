@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <android.support.v7.widget.CardView
         app:cardCornerRadius="16dp"
         android:layout_marginBottom="16dp"
@@ -41,20 +40,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kallamessary"
+                        android:elevation="4dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/lato_bold"
-                        android:textSize="14sp"/>
-
-                    <TextView
-                        android:id="@+id/from2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kochi, Kerala"
-                        android:layout_marginTop="4dp"
-                        android:layout_below="@id/from"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/lato_regular"
+                        android:maxWidth="100dp"
                         android:textSize="12sp"/>
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/from2"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:maxWidth="120dp"-->
+                        <!--android:text="Kochi, Kerala"-->
+                        <!--android:layout_marginTop="4dp"-->
+                        <!--android:layout_below="@id/from"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:fontFamily="@font/lato_regular"-->
+                        <!--android:textSize="12sp"/>-->
 
                     <ImageView
                         android:id="@+id/truck"
@@ -69,21 +71,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Palarivattom"
+                        android:maxWidth="100dp"
+                        android:elevation="4dp"
                         android:layout_alignParentRight="true"
                         android:textColor="@color/black"
                         android:fontFamily="@font/lato_bold"
-                        android:textSize="14sp"/>
-                    <TextView
-                        android:id="@+id/to2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kochi, Kerala"
-                        android:layout_below="@id/to"
-                        android:layout_marginTop="4dp"
-                        android:layout_alignParentRight="true"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/lato_regular"
                         android:textSize="12sp"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/to2"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Kochi, Kerala"-->
+                        <!--android:layout_below="@id/to"-->
+                        <!--android:maxWidth="120dp"-->
+                        <!--android:layout_marginTop="4dp"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:fontFamily="@font/lato_regular"-->
+                        <!--android:textSize="12sp"/>-->
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_view_intermediate_point"
@@ -97,13 +102,7 @@
 
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/vehicle_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Half body"
-                    android:layout_centerHorizontal="true"
-                    style="@style/button_style_1"/>
+
 
                 <LinearLayout
                     android:id="@+id/btn_intermediate"
@@ -154,7 +153,14 @@
                 </LinearLayout>
 
 
-
+                <TextView
+                    android:id="@+id/vehicle_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Half body"
+                    android:elevation="0dp"
+                    android:layout_centerHorizontal="true"
+                    style="@style/button_style_1"/>
 
 
             </RelativeLayout>

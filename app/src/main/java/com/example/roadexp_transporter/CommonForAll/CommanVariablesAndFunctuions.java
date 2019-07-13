@@ -8,7 +8,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class CommanVariablesAndFunctuions {
 
@@ -29,6 +28,8 @@ public class CommanVariablesAndFunctuions {
     public static final String BASE_VEHCHICLE_PIC = BASE_IMGAES_PATH +"vehicle/";
     public static final String BASE_RC_FRONT     = BASE_IMGAES_PATH +"rc_front/";
     public static final String BASE_RC_BACK      = BASE_IMGAES_PATH +"rc_back/";
+
+    public static final int GPS_REQUEST = 100;
 
 
     public static final String DATE_FORMAT = "dd/MM/yyyy";
@@ -101,6 +102,7 @@ public class CommanVariablesAndFunctuions {
         }
         return true;
     }
+
 
 }
 

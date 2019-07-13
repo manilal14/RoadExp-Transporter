@@ -120,6 +120,7 @@ public class DriverHomepage extends AppCompatActivity {
                         String vType  = jo.getString("v_type");
                         int verifFlag = jo.getInt("verif_flag");
 
+                        String statusFromdb = jo.getString("status");
 
 
                         //vehicle type is null don't show here
@@ -136,7 +137,7 @@ public class DriverHomepage extends AppCompatActivity {
                         //status 2 - Onwait
                         //status 3 - TurnedOff
 
-                        if(!tripId.equals("null"))
+                        if(!tripId.equals("null") && statusFromdb.equals("1"))
                             status = 1;
                         else {
                             if(t_av.equals("0") && d_av.equals("0") )
@@ -204,6 +205,7 @@ public class DriverHomepage extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 mProgressBar.setVisibility(View.GONE);
                 Log.e(TAG, error.toString());
+                Toast.makeText(DriverHomepage.this,error.toString(),Toast.LENGTH_SHORT).show();
             }
         }){
 

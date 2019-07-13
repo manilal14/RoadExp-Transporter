@@ -31,9 +31,9 @@ public class TravelReportFragmentPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
 
         switch (position){
-            case 0: return "Vehicles";
-            case 1: return "Driver";
-            case 2: return "Turned Off";
+            case 0: return "Driver";
+            case 1: return "Vehicles";
+
         }
 
         return super.getPageTitle(position);

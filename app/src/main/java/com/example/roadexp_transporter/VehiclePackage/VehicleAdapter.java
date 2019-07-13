@@ -104,6 +104,11 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
                 }
                 else{
                     DialogDetailHomepage2 detailHomepage = new DialogDetailHomepage2();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("vehicle_detail", vehicle);
+                    detailHomepage.setArguments(bundle);
+
                     detailHomepage.show( ( (FragmentActivity)mCtx).getSupportFragmentManager(), null);
                 }
 

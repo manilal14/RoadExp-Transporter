@@ -11,13 +11,13 @@
         app:cardCornerRadius="16dp">
 
         <LinearLayout
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingTop="16dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -25,134 +25,174 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/date"
+                    style="@style/button_style_2"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="14/02/2019"
-                    android:textSize="10sp"
-                    style="@style/button_style_2"/>
+                    android:textSize="10sp" />
 
                 <TextView
+                    android:id="@+id/stops"
+                    style="@style/button_style_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
                     android:text="3 Stops"
-                    android:layout_weight="1"
-                    android:textSize="10sp"
-                    android:layout_marginLeft="12dp"
-                    style="@style/button_style_2"/>
+                    android:textSize="10sp" />
 
                 <TextView
+                    android:id="@+id/driver"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="12dp"
-                    android:ellipsize="end"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/lato_black"
                     android:text="Shivam Kumar"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/lato_black"/>
-
+                    android:textColor="@color/black" />
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+
+                <TextView
+                    android:id="@+id/from_address_line1"
+                    android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:fontFamily="@font/lato_black"
+                    android:text="Kallamessary"
+                    android:textColor="@color/black" />
 
-                    <TextView
-                        android:id="@+id/from_address_line1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kallamessary"
-                        android:fontFamily="@font/lato_black"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:id="@+id/from_address_line2"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kochi, Kerala"
-                        android:fontFamily="@font/lato_regular"
-                        android:textColor="@color/black"/>
-
-
-                </LinearLayout>
 
                 <ImageView
-                    android:layout_gravity="center"
                     android:layout_width="44dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/arrow_long"/>
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/arrow_long" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+
+                <TextView
+                    android:id="@+id/to_address_line1"
+                    android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:fontFamily="@font/lato_black"
+                    android:text="Kallamessary"
+                    android:textColor="@color/black" />
 
-                    <TextView
-                        android:id="@+id/to_address_line1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kallamessary"
-                        android:fontFamily="@font/lato_black"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:layout_marginTop="2dp"
-                        android:id="@+id/to_address_line2"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kochi, Kerala"
-                        android:fontFamily="@font/lato_regular"
-                        android:textColor="@color/black"/>
-
-
-                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Fare"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/lato_black"
-                    android:backgroundTint="@color/yellow_gradient"
                     style="@style/button_style_1"
-                    android:background="@drawable/rounded_left_only_black"/>
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_left_only_black"
+                    android:backgroundTint="@color/yellow_gradient"
+                    android:fontFamily="@font/lato_black"
+                    android:gravity="center"
+                    android:text="Fare"
+                    android:textColor="@color/black" />
 
                 <TextView
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Rs.16000"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/lato_black"
+                    android:id="@+id/total_fare"
                     style="@style/button_style_1"
-                    android:background="@drawable/rounded_right_only_black"/>
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_right_only_black"
+                    android:fontFamily="@font/lato_black"
+                    android:gravity="center"
+                    android:text="Rs.16000"
+                    android:textColor="@color/white" />
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/button_style_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_left_only_black"
+                    android:backgroundTint="@color/yellow_gradient"
+                    android:fontFamily="@font/lato_black"
+                    android:gravity="center"
+                    android:text="Driver Cut"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/driver_cut"
+                    style="@style/button_style_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_right_only_black"
+                    android:fontFamily="@font/lato_black"
+                    android:gravity="center"
+                    android:text="Rs.16000"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/remaining_text"
+                    style="@style/button_style_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_left_only_black"
+                    android:backgroundTint="@color/yellow_gradient"
+                    android:fontFamily="@font/lato_black"
+                    android:gravity="center"
+                    android:text="Remaining"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/remaining"
+                    style="@style/button_style_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_right_only_black"
+                    android:fontFamily="@font/lato_black"
+                    android:gravity="center"
+                    android:text="Rs.16000"
+                    android:textColor="@color/white" />
 
 
             </LinearLayout>

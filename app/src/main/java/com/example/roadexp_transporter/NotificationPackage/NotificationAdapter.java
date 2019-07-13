@@ -70,9 +70,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         h.from.setText(noti.getPickupPoint());
 
-        h.from2.setText("from2");
+       // h.from2.setText("from2");
         h.to.setText(noti.getEndPoint());
-        h.to2.setText("to2");
+       // h.to2.setText("to2");
 
         h.vehicleType.setText(noti.getVehicleType()+"");
 
@@ -85,17 +85,20 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         h.amount.setText("\u20B9"+noti.getAmount());
         h.capacity.setText(noti.getCapacity()+" T");
 
-
+        Log.e("asd",noti.getIntermediatePoints());
+        Log.e("asd",noti.getIntermediateMobile());
 
         //Related to intermediate location
         String interPoints[] = noti.getIntermediatePoints().split(",");
         String interMobile[] = noti.getIntermediateMobile().split(",");
 
         int size;
-        if(interMobile.length<interMobile.length)
+        if(interMobile.length<interPoints.length)
             size = interMobile.length;
         else
             size = interPoints.length;
+
+        Log.e("asd=",size+"");
 
         if(size == 0)
             h.count.setVisibility(View.GONE);
@@ -131,8 +134,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         h.recyclerView.setLayoutManager(new LinearLayoutManager(mCtx));
         h.recyclerView.setAdapter(adapter);
 
-
-
         h.tv_accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,11 +141,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
                 long expireTime = getUnixInSec(TAG,noti.getExpireOn());
                 getCurrentTimeFromDb(expireTime);
-
-
-
-
-
             }
         });
 
@@ -216,9 +212,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             super(itemView);
 
             from        = itemView.findViewById(R.id.from);
-            from2       = itemView.findViewById(R.id.from2);
+          //  from2       = itemView.findViewById(R.id.from2);
             to          = itemView.findViewById(R.id.to);
-            to2         = itemView.findViewById(R.id.to2);
+          //  to2         = itemView.findViewById(R.id.to2);
             vehicleType = itemView.findViewById(R.id.vehicle_type);
             dimention   = itemView.findViewById(R.id.dimention);
             ordered_by  = itemView.findViewById(R.id.ordered_by);

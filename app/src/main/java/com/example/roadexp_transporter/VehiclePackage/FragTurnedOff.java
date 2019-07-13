@@ -56,11 +56,9 @@ public class FragTurnedOff extends Fragment {
             tv_err.setVisibility(View.VISIBLE);
             tv_err.setText("No vehicle available");
         }
-
         else{
             tv_err.setVisibility(View.GONE);
         }
-
 
         RecyclerView recyclerView = mRootView.findViewById(R.id.recycler_view_vehicles);
         VehicleAdapter adapter = new VehicleAdapter(getActivity(),mTurnedOffVehicles);

@@ -30,7 +30,7 @@
                 style="@style/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Travel History" />
+                android:text="Payment History" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -107,5 +107,21 @@
 
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/no_payment_history"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Payment History"
+        android:layout_gravity="center"
+        android:textStyle="italic"/>
 
 </FrameLayout>

@@ -5,17 +5,20 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.roadexp_transporter.DriverPackage.Driver;
 import com.example.roadexp_transporter.R;
-import com.example.roadexp_transporter.Reports.TravelReport.TravelHistoryPage;
 
 import java.util.List;
+
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_PROFILE_PIC;
 
 public class PaymentReportDriverAdapter extends RecyclerView.Adapter<PaymentReportDriverAdapter.VehicleViewHolder> {
 
@@ -36,15 +39,21 @@ public class PaymentReportDriverAdapter extends RecyclerView.Adapter<PaymentRepo
     @Override
     public void onBindViewHolder(@NonNull VehicleViewHolder h, int i) {
 
-        Driver driver = mDriverList.get(i);
+        final Driver driver = mDriverList.get(i);
 
+        h.tv_name.setText(driver.getName());
+        h.tv_number.setText(driver.getVehicleNumber());
+
+        Log.e("pic",driver.getProfilePic());
 
         h.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCtx.startActivity(new Intent(mCtx, PaymentHistoryPage.class));
+                mCtx.startActivity(new Intent(mCtx, PaymentHistoryPage.class).putExtra("driver_detail",driver));
             }
         });
+
+        Glide.with(mCtx).load(BASE_PROFILE_PIC+driver.getProfilePic()).into(h.iv_image);
 
     }
 

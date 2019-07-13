@@ -57,6 +57,8 @@ public class NotificationSheet extends BottomSheetDialogFragment {
 
                 Intent i = new Intent(getActivity(), VehicleStatusHomePage.class);
                 i.putExtra("fragNumber",2);
+                i.putExtra("viewpagerId",2);
+
 
                 startActivity(i);
                 dismiss();

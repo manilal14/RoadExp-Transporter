@@ -3,7 +3,6 @@ package com.example.roadexp_transporter.Reports.TravelReport;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,15 +11,13 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.roadexp_transporter.R;
-import com.example.roadexp_transporter.VehiclePackage.FragMoving;
-import com.example.roadexp_transporter.VehiclePackage.FragOnWait;
-import com.example.roadexp_transporter.VehiclePackage.FragTurnedOff;
-import com.example.roadexp_transporter.VehiclePackage.VehicleFragmentPagerAdapter;
+import com.example.roadexp_transporter.Reports.TravelReport.Driver.TRFragDriver;
+import com.example.roadexp_transporter.Reports.TravelReport.Vehicle.TRFragVehicle;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TravelReportPage extends AppCompatActivity {
+public class TravelReportHomePage extends AppCompatActivity {
 
     List<Fragment> mFragmentList;
 
@@ -37,8 +34,9 @@ public class TravelReportPage extends AppCompatActivity {
 
         mFragmentList = new ArrayList<>();
 
-        mFragmentList.add(new TRFragVehicle());
         mFragmentList.add(new TRFragDriver());
+        mFragmentList.add(new TRFragVehicle());
+
 
 
         ViewPager viewPager = findViewById(R.id.viewpager_travel_report);

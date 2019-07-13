@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.Reports.TravelReport;
+package com.example.roadexp_transporter.Reports.TravelReport.Vehicle;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,19 +11,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.roadexp_transporter.DriverPackage.Driver;
 import com.example.roadexp_transporter.R;
+import com.example.roadexp_transporter.Reports.TravelReport.Driver.TravelHistoryDriver;
+import com.example.roadexp_transporter.Review.Vehicle;
 
 import java.util.List;
 
-public class TravelReportDriverAdapter extends RecyclerView.Adapter<TravelReportDriverAdapter.VehicleViewHolder> {
+public class TravelReportVehicleAdapter extends RecyclerView.Adapter<TravelReportVehicleAdapter.VehicleViewHolder> {
 
     private Context mCtx;
-    private List<Driver> mDriverList;
+    private List<Vehicle> mVehicleList;
 
-    public TravelReportDriverAdapter(Context mCtx, List<Driver> mDriverList) {
+    public TravelReportVehicleAdapter(Context mCtx, List<Vehicle> mVehicleList) {
         this.mCtx = mCtx;
-        this.mDriverList = mDriverList;
+        this.mVehicleList = mVehicleList;
     }
 
     @NonNull
@@ -35,13 +36,15 @@ public class TravelReportDriverAdapter extends RecyclerView.Adapter<TravelReport
     @Override
     public void onBindViewHolder(@NonNull VehicleViewHolder h, int i) {
 
-        Driver driver = mDriverList.get(i);
+        final Vehicle vehicle = mVehicleList.get(i);
 
+        h.tv_name.setText(vehicle.getVehicleType());
+        h.tv_number.setText(vehicle.getPlateNumber());
 
         h.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCtx.startActivity(new Intent(mCtx, TravelHistoryPage.class));
+               mCtx.startActivity(new Intent(mCtx, TravelHistoryVehicle.class).putExtra("vehicle_detail",vehicle));
             }
         });
 
@@ -49,7 +52,7 @@ public class TravelReportDriverAdapter extends RecyclerView.Adapter<TravelReport
 
     @Override
     public int getItemCount() {
-        return mDriverList.size();
+        return mVehicleList.size();
     }
 
     public class VehicleViewHolder extends RecyclerView.ViewHolder {

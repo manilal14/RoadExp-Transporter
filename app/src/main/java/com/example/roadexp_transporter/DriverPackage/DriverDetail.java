@@ -58,8 +58,6 @@ public class DriverDetail extends AppCompatActivity {
 
     private void setData() {
 
-
-
         final ImageView iv_profile = findViewById(R.id.profile_pic);
 
         TextView tv_name      = findViewById(R.id.name);

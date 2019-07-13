@@ -33,18 +33,15 @@ public class FragOnWait extends Fragment {
         mOnWaitVehicles = new ArrayList<>();
         mActivity = (VehicleStatusHomePage) getActivity();
         fetchOnWaitVehicles();
-
     }
 
 
 
     public FragOnWait() { }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         mRootView =  inflater.inflate(R.layout.frag_vehicles_for_all, container, false);
         return mRootView;
     }

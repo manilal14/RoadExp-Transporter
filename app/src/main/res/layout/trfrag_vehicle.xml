@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Reports.TravelReport.TRFragVehicle">
+    tools:context=".Reports.TravelReport.Vehicle.TRFragVehicle">
 
     <android.support.v7.widget.RecyclerView
         android:layout_marginLeft="12dp"
@@ -13,5 +13,22 @@
         android:id="@+id/recycler_view_travel_report_vehicle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/no_vehicle"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:text="No Verified Vehicle"/>
 
 </FrameLayout>

@@ -48,7 +48,7 @@
 
                 <TextView
                     android:id="@+id/vehicle_number"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="JHBR41253"
@@ -56,36 +56,36 @@
                     android:fontFamily="@font/lato_regular"
                     android:textColor="@color/yellow_gradient"/>
 
-                <LinearLayout
-                    android:layout_marginTop="32dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                <!--<LinearLayout-->
+                    <!--android:layout_marginTop="32dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Distance Travelled  :"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/lato_bold"
-                        android:textColor="@color/light_red_gradient"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Distance Travelled  :"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:fontFamily="@font/lato_bold"-->
+                        <!--android:textColor="@color/light_red_gradient"/>-->
 
-                    <TextView
-                        android:id="@+id/distance_travelled"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2475156 km"
-                        android:textSize="12sp"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/lato_regular"
-                        android:textColor="@color/black"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/distance_travelled"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="2475156 km"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_marginLeft="8dp"-->
+                        <!--android:fontFamily="@font/lato_regular"-->
+                        <!--android:textColor="@color/black"/>-->
 
 
 
-                </LinearLayout>
+                <!--</LinearLayout>-->
 
                 <TextView
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="32dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Documents  :"

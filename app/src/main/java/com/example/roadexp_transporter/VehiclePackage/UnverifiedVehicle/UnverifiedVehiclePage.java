@@ -72,7 +72,6 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
 
         mViewPagerId = getIntent().getIntExtra("viewpagerId",0);
 
-
         mSession = new LoginSessionManager(UnverifiedVehiclePage.this);
 
         Toolbar toolbar =  findViewById(R.id.toolbar);
@@ -89,7 +88,7 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
         fetchAllUnverifiedVehicle();
     }
 
-    private void fetchAllUnverifiedVehicle() {
+    public void fetchAllUnverifiedVehicle() {
 
         Log.e(TAG, "called : fetchAllUnverifiedVehicle");
         String URL = BASE_URL + "showvehicle";
@@ -122,6 +121,8 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
                         int verifyFlag  = jo.getInt("verif_flag");
                         String did      = jo.getString("Did");
 
+
+
                         if(!did.equals("null"))
                             continue;
 
@@ -150,7 +151,7 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
                         String dimension    = jo.getString("dimension");
                         String capacity     = jo.getString("capacity");
 
-                        String mappedDriver = "N/A";
+                        String mappedDriver = jo.getString("d_name");
 
                         mAllUnverifiedVehicles.add(new Vehicle(vehicleId, plateNumber,picRcFront,picRcBack,picVehicle,insuranceNum, addDate,
                                 permitType,rcExpOn,vehicleType, dimension, capacity, mappedDriver, verifyFlag, did, tripId,status));
@@ -186,7 +187,7 @@ public class UnverifiedVehiclePage extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params =  new HashMap<>();
                 String transId = mSession.getTransporterDetailsFromPref().get(TRANS_ID);
-                //Log.e(TAG, "transId="+transId);
+                Log.e(TAG, "trans="+transId);
                 params.put("trans",transId);
                 return params;
             }
