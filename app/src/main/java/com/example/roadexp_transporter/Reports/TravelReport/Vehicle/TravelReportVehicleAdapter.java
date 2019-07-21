@@ -11,11 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.roadexp_transporter.R;
 import com.example.roadexp_transporter.Reports.TravelReport.Driver.TravelHistoryDriver;
 import com.example.roadexp_transporter.Review.Vehicle;
 
 import java.util.List;
+
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_PROFILE_PIC;
 
 public class TravelReportVehicleAdapter extends RecyclerView.Adapter<TravelReportVehicleAdapter.VehicleViewHolder> {
 
@@ -47,6 +50,10 @@ public class TravelReportVehicleAdapter extends RecyclerView.Adapter<TravelRepor
                mCtx.startActivity(new Intent(mCtx, TravelHistoryVehicle.class).putExtra("vehicle_detail",vehicle));
             }
         });
+
+       // Glide.with(mCtx).load(BASE_PROFILE_PIC+driver.getProfilePic()).into(h.iv_image);
+
+        h.iv_image.setImageResource(R.drawable.truck);
 
     }
 

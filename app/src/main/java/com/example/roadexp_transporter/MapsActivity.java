@@ -71,13 +71,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private final String TAG = getClass().getSimpleName();
     private GoogleMap mMap;
+
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
     Marker mCurrLocationMarker;
     FusedLocationProviderClient mFusedLocationClient;
 
     private int ZOOM_VALUE = 15;
-
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
 
@@ -121,8 +121,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        getRealTimeLocation();
-
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(10*1000);
         mLocationRequest.setFastestInterval(10*1000);
@@ -160,8 +158,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     LocationCallback mLocationCallback = new LocationCallback() {
-        @Override
-        public void onLocationResult(LocationResult locationResult) {
+                        @Override
+                        public void onLocationResult(LocationResult locationResult) {
 
             List<Location> locationList = locationResult.getLocations();
             if (locationList.size() > 0) {
@@ -266,37 +264,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private void getRealTimeLocation(){
 
-        Log.e(TAG,"called : getRealTimeLocation");
-
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-
-        Log.e("asd1",ref+"");
-
-        ref.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                Log.e("asd","1");
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
-                Log.e("asd","2");
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
-    }
 
 
 

@@ -66,6 +66,19 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <style name="button_style_3">
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingLeft">44dp</item>
+        <item name="android:paddingRight">44dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/rectangle_yellow</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/lato_bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
 
     <style name="edit_text_style_1">
         <item name="android:paddingTop">8dp</item>

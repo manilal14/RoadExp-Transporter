@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.Reports.PaymentReport;
+package com.example.roadexp_transporter.Reports.PaymentReport.Vehicle;
 
 import android.content.Context;
 import android.content.Intent;
@@ -35,15 +35,18 @@ public class PaymentReportVehicleAdapter extends RecyclerView.Adapter<PaymentRep
     @Override
     public void onBindViewHolder(@NonNull VehicleViewHolder h, int i) {
 
-        Vehicle vehicle = mVehicleList.get(i);
+        final Vehicle vehicle = mVehicleList.get(i);
 
-//        h.tv_name.setText(vehicle.getVehicleType());
-//        h.tv_number.setText(vehicle.getPlateNunmber());
+        h.tv_name.setText(vehicle.getVehicleType());
+        h.tv_number.setText(vehicle.getPlateNumber());
+
+        h.iv_image.setImageResource(R.drawable.truck);
 
         h.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCtx.startActivity(new Intent(mCtx, PaymentHistoryPage.class));
+                mCtx.startActivity(new Intent(mCtx, VehiclePaymentHistoryPage.class)
+                .putExtra("vehicle_detail",vehicle));
             }
         });
 

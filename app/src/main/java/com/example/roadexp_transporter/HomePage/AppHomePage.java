@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.NotificationPackage;
+package com.example.roadexp_transporter.HomePage;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -40,6 +40,7 @@ import com.example.roadexp_transporter.Initializer;
 import com.example.roadexp_transporter.LoginSingUp.LoginPage;
 import com.example.roadexp_transporter.LoginSingUp.LoginSessionManager;
 import com.example.roadexp_transporter.NetworkState.ConnectivityReceiver;
+import com.example.roadexp_transporter.MissedNotification.MissedNotificationPage;
 import com.example.roadexp_transporter.Reports.MissedLoad.MissedLoadsPage;
 import com.example.roadexp_transporter.Reports.PaymentReport.PaymentReportPage;
 import com.example.roadexp_transporter.Reports.TravelReport.TravelReportHomePage;
@@ -65,6 +66,7 @@ import io.fabric.sdk.android.Fabric;
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_URL;
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.NO_OF_RETRY;
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.RETRY_SECONDS;
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.getUnixInSec;
 import static com.example.roadexp_transporter.LoginSingUp.LoginSessionManager.TRANS_NAME;
 import static com.example.roadexp_transporter.LoginSingUp.LoginSessionManager.TRANS_PHONE;
 
@@ -205,7 +207,7 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
 
                         int loadId = res.getInt("load_id");
 
-                        String orderedBy        = res.getString("fromc");
+                        String clientId        = res.getString("fromc");
                         String loadType         = res.getString("type");
                         String amount           = res.getString("amount");
                         String vehicleType      = res.getString("vehicle_type");
@@ -234,12 +236,15 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
                         String dimention        = res.getString("dimension");
                         String capacity         = res.getString("capacity");
                         String state            = res.getString("state");
-                        // String d_sent           = res.getString("d_sent");
+                        String clientName       = res.getString("client");
 
+                        long expireTime = getUnixInSec(TAG,expireOn);
+                        long currentTime =  System.currentTimeMillis()/1000L;
 
-                        mNotificationList.add(new Notification(loadId, vehicleType, pickupLocation, startMob, lastPoint, endMob, city,
+                        if(currentTime<expireTime)
+                            mNotificationList.add(new Notification(loadId, vehicleType, pickupLocation, startMob, lastPoint, endMob, city,
                                 state, dimention, intermediate_loc , inter_mob,
-                                orderedBy, loadWeight, loadType, startOn, expireOn, amount,capacity));
+                                clientId, clientName,loadWeight, loadType, startOn, expireOn, amount,capacity));
                     }
 
                     Log.e(TAG,mNotificationList.size()+"size");
@@ -291,21 +296,23 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+    //No nees of menu as of now
 
-        switch (id) {
-            case R.id.action_settings : break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//
+//        switch (id) {
+//            case R.id.action_settings : break;
+//
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     protected void onResume() {
@@ -455,7 +462,13 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
         }
 
 
-        menuModel = new MenuModel(3,"Payment Records",false,true,0);
+//        menuModel = new MenuModel(3,"Payment Records",false,true,0);
+//        headerList.add(menuModel);
+//        if (!menuModel.isHasChildren()) {
+//            childList.put(menuModel, null);
+//        }
+
+        menuModel = new MenuModel(3,"Missed Notification",false,true,0);
         headerList.add(menuModel);
         if (!menuModel.isHasChildren()) {
             childList.put(menuModel, null);
@@ -491,8 +504,8 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
 
                     if (!menuModel.isHasChildren()) {
                         switch (id_int){
-                            case 0:
-                            case 3: break;
+                            case 3: startActivity(new Intent(AppHomePage.this, MissedNotificationPage.class));
+                                break;
                             case 4: ReviewBottomSheet reviewBottomSheet = new ReviewBottomSheet();
                                 reviewBottomSheet.show(getSupportFragmentManager(), reviewBottomSheet.getTag());
                                 break;

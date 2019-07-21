@@ -125,7 +125,7 @@ public class DialogDetailHomepage2 extends DialogFragment {
         mRoot.findViewById(R.id.turn_on).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               turnOnDriver(mVehicleDetail.getVehicleId());
+               turnOnDriver(mVehicleDetail.getVehicleId(), mVehicleDetail.getDriverId());
             }
         });
 
@@ -251,7 +251,7 @@ public class DialogDetailHomepage2 extends DialogFragment {
         ft.commit();
     }
 
-    private void turnOnDriver(final int vehicleId){
+    private void turnOnDriver(final int vehicleId, final String driverId){
 
         Log.e(TAG, "called : turnOnDriver");
 
@@ -296,6 +296,7 @@ public class DialogDetailHomepage2 extends DialogFragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params =  new HashMap<>();
                 params.put("v_id", String.valueOf(vehicleId));
+                params.put("Did", driverId);
                 return params;
             }
         };

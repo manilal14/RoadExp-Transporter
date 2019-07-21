@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.Reports.PaymentReport;
+package com.example.roadexp_transporter.Reports.PaymentReport.Driver;
 
 
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import com.example.roadexp_transporter.CommonForAll.MySingleton;
 import com.example.roadexp_transporter.DriverPackage.Driver;
 import com.example.roadexp_transporter.LoginSingUp.LoginSessionManager;
 import com.example.roadexp_transporter.R;
-import com.example.roadexp_transporter.Reports.TravelReport.Driver.TravelReportDriverAdapter;
+import com.example.roadexp_transporter.Reports.PaymentReport.Driver.PaymentReportDriverAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,24 +62,6 @@ public class PRFragDriver extends Fragment {
         return mRootView;
     }
 
-    private void fetchDriverList(){
-
-//        mDriverList.add(new Driver(1,"Anirudh Sai",1));
-//        mDriverList.add(new Driver(2,"Krishn Rajak",1));
-//        mDriverList.add(new Driver(3,"Archit",1));
-//        mDriverList.add(new Driver(4,"Vishal Singh",1));
-//        mDriverList.add(new Driver(5,"Ranjeet Kumar",1));
-
-        RecyclerView recyclerView = mRootView.findViewById(R.id.recycler_view_payment_report_driver);
-
-        PaymentReportDriverAdapter adapter = new PaymentReportDriverAdapter(getActivity(),mDriverList);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(adapter);
-
-
-
-    }
 
     private void fetchVerifiedDriver() {
 

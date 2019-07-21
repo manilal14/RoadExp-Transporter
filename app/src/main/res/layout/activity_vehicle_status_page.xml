@@ -8,7 +8,7 @@
         android:background="@color/light_grey"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/app_bar_main"
-        tools:context=".NotificationPackage.AppHomePage">
+        tools:context=".HomePage.AppHomePage">
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"

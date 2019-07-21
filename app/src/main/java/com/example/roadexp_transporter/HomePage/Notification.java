@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.NotificationPackage;
+package com.example.roadexp_transporter.HomePage;
 
 public class Notification {
 
@@ -20,7 +20,8 @@ public class Notification {
     private String intermediatePoints;
     private String intermediateMobile;
 
-    private String orderedBy;
+    private String clientId;
+    private String clientName;
 
     private String loadWeight;
     private String loadType;
@@ -32,9 +33,11 @@ public class Notification {
     private String capacity;
 
 
+
+
     public Notification(int loadId, String vehicleType, String pickupPoint, String startPhone, String endPoint, String endPhone,
-                        String city, String state, String dimention, String intermediatePoints, String intermediateMobile, String orderedBy,
-                        String loadWeight, String loadType, String startOn, String expireOn, String amount, String capacity) {
+                        String city, String state, String dimention, String intermediatePoints, String intermediateMobile,
+                        String clientId, String clientName, String loadWeight, String loadType, String startOn, String expireOn, String amount, String capacity) {
         this.loadId = loadId;
         this.vehicleType = vehicleType;
         this.pickupPoint = pickupPoint;
@@ -46,7 +49,8 @@ public class Notification {
         this.dimention = dimention;
         this.intermediatePoints = intermediatePoints;
         this.intermediateMobile = intermediateMobile;
-        this.orderedBy = orderedBy;
+        this.clientId = clientId;
+        this.clientName = clientName;
         this.loadWeight = loadWeight;
         this.loadType = loadType;
         this.startOn = startOn;
@@ -99,8 +103,13 @@ public class Notification {
         return intermediateMobile;
     }
 
-    public String getOrderedBy() {
-        return orderedBy;
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public String getClientName() {
+        return clientName;
     }
 
     public String getLoadWeight() {

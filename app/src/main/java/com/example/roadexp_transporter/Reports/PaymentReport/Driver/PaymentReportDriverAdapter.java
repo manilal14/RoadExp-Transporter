@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.Reports.PaymentReport;
+package com.example.roadexp_transporter.Reports.PaymentReport.Driver;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.roadexp_transporter.DriverPackage.Driver;
 import com.example.roadexp_transporter.R;
+import com.example.roadexp_transporter.Reports.PaymentReport.Vehicle.VehiclePaymentHistoryPage;
 
+import java.awt.font.TextAttribute;
 import java.util.List;
 
 import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_PROFILE_PIC;
@@ -49,7 +51,9 @@ public class PaymentReportDriverAdapter extends RecyclerView.Adapter<PaymentRepo
         h.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCtx.startActivity(new Intent(mCtx, PaymentHistoryPage.class).putExtra("driver_detail",driver));
+                Log.e("asd","Driver: driver payment detail page");
+                mCtx.startActivity(new Intent(mCtx, DriverPaymentHistoryPage.class)
+                        .putExtra("driver_detail",driver));
             }
         });
 

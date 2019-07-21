@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.NotificationPackage;
+package com.example.roadexp_transporter.HomePage;
 
 import android.content.Intent;
 import android.os.Bundle;

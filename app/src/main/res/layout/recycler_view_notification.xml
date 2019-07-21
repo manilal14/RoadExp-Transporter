@@ -41,6 +41,7 @@
                         android:layout_height="wrap_content"
                         android:text="Kallamessary"
                         android:elevation="4dp"
+                        android:gravity="center"
                         android:textColor="@color/black"
                         android:fontFamily="@font/lato_bold"
                         android:maxWidth="100dp"
@@ -72,6 +73,8 @@
                         android:layout_height="wrap_content"
                         android:text="Palarivattom"
                         android:maxWidth="100dp"
+                        android:gravity="center"
+
                         android:elevation="4dp"
                         android:layout_alignParentRight="true"
                         android:textColor="@color/black"
@@ -276,8 +279,19 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/amount"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amount"
+                        android:layout_marginLeft="4dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/lato_bold"/>
+
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="8dp"
                         android:layout_height="wrap_content"
                         android:text="\u20B9 2000"
                         android:textSize="16sp"
@@ -285,14 +299,7 @@
                         android:textColor="@color/light_red_gradient"/>
 
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="/ Ton"
-                        android:layout_marginLeft="4dp"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/lato_bold"/>
+
 
                     <TextView
                         android:id="@+id/accept"

@@ -11,10 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.roadexp_transporter.DriverPackage.Driver;
 import com.example.roadexp_transporter.R;
 
 import java.util.List;
+
+import static com.example.roadexp_transporter.CommonForAll.CommanVariablesAndFunctuions.BASE_PROFILE_PIC;
 
 public class TravelReportDriverAdapter extends RecyclerView.Adapter<TravelReportDriverAdapter.VehicleViewHolder> {
 
@@ -38,6 +41,8 @@ public class TravelReportDriverAdapter extends RecyclerView.Adapter<TravelReport
         final Driver driver = mDriverList.get(i);
         h.tv_name.setText(driver.getName());
         h.tv_number.setText(driver.getVehicleNumber());
+
+        Glide.with(mCtx).load(BASE_PROFILE_PIC+driver.getProfilePic()).into(h.iv_image);
 
 
         h.card.setOnClickListener(new View.OnClickListener() {

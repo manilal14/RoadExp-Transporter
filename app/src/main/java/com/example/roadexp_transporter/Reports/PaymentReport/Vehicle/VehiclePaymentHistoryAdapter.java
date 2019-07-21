@@ -1,4 +1,4 @@
-package com.example.roadexp_transporter.Reports.PaymentReport;
+package com.example.roadexp_transporter.Reports.PaymentReport.Vehicle;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,29 +8,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.roadexp_transporter.DriverPackage.Driver;
 import com.example.roadexp_transporter.R;
-import com.example.roadexp_transporter.Reports.TravelReport.TravelHistoryModel;
+import com.example.roadexp_transporter.Reports.PaymentReport.PaymentHistoryModel;
 
 import java.util.List;
 
-public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryAdapter.VehicleViewHolder> {
+public class VehiclePaymentHistoryAdapter extends RecyclerView.Adapter<VehiclePaymentHistoryAdapter.VehicleViewHolder> {
 
     private Context mCtx;
     private List<PaymentHistoryModel> mPaymentHistoryList;
 
-    private Driver mDriver;
 
-    public PaymentHistoryAdapter(Context mCtx, List<PaymentHistoryModel> travelHistoryList, Driver driver) {
+    public VehiclePaymentHistoryAdapter(Context mCtx, List<PaymentHistoryModel> travelHistoryList) {
         this.mCtx = mCtx;
         this.mPaymentHistoryList = travelHistoryList;
-        mDriver = driver;
+
     }
 
     @NonNull
     @Override
     public VehicleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new VehicleViewHolder(LayoutInflater.from(mCtx).inflate(R.layout.recycler_view_payment_report_detail,viewGroup,false));
+        return new VehicleViewHolder(LayoutInflater.from(mCtx).inflate(R.layout.recycler_view_payment_report_vehicle,viewGroup,false));
     }
 
     @Override
@@ -43,25 +41,16 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryAd
         h.tv_from.setText(travelHistoryModel.getStartPoint());
         h.tv_to.setText(travelHistoryModel.getEndPoint());
         h.tv_totalFare.setText("Rs."+travelHistoryModel.getTotalFare());
-        h.tv_driver_cut.setText("Rs."+travelHistoryModel.getDriverCut());
 
         if(travelHistoryModel.getStops() == 1)
             h.tv_stops.setText(travelHistoryModel.getStops() + " Stop");
         else
             h.tv_stops.setText(travelHistoryModel.getStops()+" Stops");
 
-        h.tv_driver.setText(mDriver.getName());
+        h.tv_driver.setText(travelHistoryModel.getDriveName());
 
 
 
-        if(travelHistoryModel.getRemaining().charAt(0) == '-'){
-            h.tv_remining_text.setText("To be paid");
-            h.tv_remining.setText("Rs."+travelHistoryModel.getRemaining().substring(1));
-        }
-        else {
-            h.tv_remining_text.setText("Remaining");
-            h.tv_remining.setText("Rs."+travelHistoryModel.getRemaining());
-        }
 
     }
 
@@ -74,8 +63,8 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryAd
 
         private TextView tv_date, tv_stops, tv_driver;
         private TextView tv_from, tv_to;
-        private TextView tv_totalFare, tv_driver_cut, tv_remining;
-        private TextView tv_remining_text;
+        private TextView tv_totalFare;
+
 
         public VehicleViewHolder(@NonNull View v) {
             super(v);
@@ -86,10 +75,7 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryAd
             tv_from = v.findViewById(R.id.from_address_line1);
             tv_to = v.findViewById(R.id.to_address_line1);
             tv_totalFare = v.findViewById(R.id.total_fare);
-            tv_driver_cut = v.findViewById(R.id.driver_cut);
-            tv_remining = v.findViewById(R.id.remaining);
 
-            tv_remining_text = v.findViewById(R.id.remaining_text);
 
 
 

@@ -1,14 +1,12 @@
 package com.example.roadexp_transporter.LoginSingUp;
 
 import android.content.Intent;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,10 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.roadexp_transporter.CommonForAll.MySingleton;
-import com.example.roadexp_transporter.NotificationPackage.AppHomePage;
+import com.example.roadexp_transporter.HomePage.AppHomePage;
 import com.example.roadexp_transporter.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,7 +43,7 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_login_screen);
+        setContentView(R.layout.activity_login_screen2);
 
         Log.e(TAG, "called onCreate");
 

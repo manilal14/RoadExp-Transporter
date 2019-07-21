@@ -73,8 +73,8 @@ public class DriverDetail extends AppCompatActivity {
         final CardView cv_aadhar   = findViewById(R.id.pic_aadhar);
         CardView cv_rc_front = findViewById(R.id.pic_rc_front);
         CardView cv_rc_back  = findViewById(R.id.pic_rc_back);
-        CardView tv_rd       = findViewById(R.id.release_driver);
-        CardView tv_sd       = findViewById(R.id.suspend_driver);
+//        CardView tv_rd       = findViewById(R.id.release_driver);
+//        CardView tv_sd       = findViewById(R.id.suspend_driver);
 
 
         tv_name.setText(mDriver.getName());

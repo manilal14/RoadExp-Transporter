@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "27664325297",
-    "firebase_url": "https://roadexptransporter.firebaseio.com",
-    "project_id": "roadexptransporter",
-    "storage_bucket": "roadexptransporter.appspot.com"
+    "project_number": "462233025150",
+    "firebase_url": "https://bot-dectnx.firebaseio.com",
+    "project_id": "bot-dectnx",
+    "storage_bucket": "bot-dectnx.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:27664325297:android:c0789c0e1d12512e",
+        "mobilesdk_app_id": "1:462233025150:android:c0789c0e1d12512e",
         "android_client_info": {
           "package_name": "com.example.roadexp_transporter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "27664325297-b9q2c0v06v0ch3cm5bh2qdspat57ju5m.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.roadexp_transporter",
-            "certificate_hash": "2d9eb019254c727ec4819086a6b73cd19ee17399"
-          }
-        },
-        {
-          "client_id": "27664325297-ib3aka0dblinhfe0likfi4bnb9e4kipc.apps.googleusercontent.com",
+          "client_id": "462233025150-38m1go62os5rpuc8mons319jd0an2bll.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBl_OfO7pBmV6XoJEuSjef1g-gtHqmI6po"
+          "current_key": "AIzaSyDULOC1sc2ZGQ6w-6JPJToWZooGP61SnWA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "27664325297-ib3aka0dblinhfe0likfi4bnb9e4kipc.apps.googleusercontent.com",
+              "client_id": "462233025150-7qiprme0l3lbe1p8lmsad4thsujfv7r2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

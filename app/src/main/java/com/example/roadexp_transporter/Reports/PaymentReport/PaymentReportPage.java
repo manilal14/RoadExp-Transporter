@@ -11,6 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.roadexp_transporter.R;
+import com.example.roadexp_transporter.Reports.PaymentReport.Driver.PRFragDriver;
+import com.example.roadexp_transporter.Reports.PaymentReport.Vehicle.PRFragVechicle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,6 @@ public class PaymentReportPage extends AppCompatActivity {
 
         mFragmentList.add(new PRFragDriver());
         mFragmentList.add(new PRFragVechicle());
-
 
         ViewPager viewPager = findViewById(R.id.viewpager_payment_report);
 

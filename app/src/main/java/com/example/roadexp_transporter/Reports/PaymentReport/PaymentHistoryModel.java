@@ -10,10 +10,11 @@ public class PaymentHistoryModel {
     private String totalFare;
     private String driverCut;
     private String remaining;
+    private String driveName;
 
 
     public PaymentHistoryModel(int tripId, String startDate, int stops, String startPoint,
-                               String endPoint, String totalFare, String driverCut, String remaining) {
+                               String endPoint, String totalFare, String driverCut, String remaining, String driverName) {
         this.tripId = tripId;
         this.startDate = startDate;
         this.stops = stops;
@@ -22,6 +23,7 @@ public class PaymentHistoryModel {
         this.totalFare = totalFare;
         this.driverCut = driverCut;
         this.remaining = remaining;
+        this.driveName = driverName;
     }
 
     public int getTripId() {
@@ -54,5 +56,9 @@ public class PaymentHistoryModel {
 
     public String getRemaining() {
         return remaining;
+    }
+
+    public String getDriveName() {
+        return driveName;
     }
 }

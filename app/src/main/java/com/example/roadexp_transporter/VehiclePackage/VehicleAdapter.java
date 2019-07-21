@@ -82,7 +82,9 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
             h.to_map.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(mCtx, MapsActivity.class);
+                    Intent i = new Intent(mCtx, LocateVehicleInMap.class);
+
+                    i.putExtra("vehicle_detail",vehicle);
                     mCtx.startActivity(i);
                 }
             });

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Reports.PaymentReport.Vehicle.VehiclePaymentHistoryPage">
+    tools:context=".Reports.PaymentReport.Driver.DriverPaymentHistoryPage">
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"
@@ -20,17 +20,39 @@
             android:background="@drawable/toolbar_gradient"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <ImageView
-                android:id="@+id/back_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/arrow_back"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Payment History" />
+                <ImageView
+                    android:id="@+id/back_btn"
+                    android:layout_width="24dp"
+                    android:layout_gravity="center"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrow_back"/>
+
+                <TextView
+                    style="@style/toolbar_title"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="12dp"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Payment History" />
+
+                <TextView
+                    android:id="@+id/total_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remaining : Rs.0"
+                    android:textSize="10sp"
+                    style="@style/button_style_1"/>
+
+
+            </LinearLayout>
+
+
 
         </android.support.v7.widget.Toolbar>
 
@@ -46,7 +68,7 @@
 
         <LinearLayout
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -100,9 +122,8 @@
         </LinearLayout>
 
 
-
         <android.support.v7.widget.RecyclerView
-            android:paddingTop="16dp"
+            android:paddingTop="8dp"
             android:id="@+id/recycler_view_payment_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -120,6 +141,7 @@
     <TextView
         android:id="@+id/no_payment_history"
         android:visibility="gone"
+        android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No Payment History"
