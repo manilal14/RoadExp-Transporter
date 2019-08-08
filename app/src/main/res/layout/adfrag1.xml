@@ -131,7 +131,6 @@
                 android:fontFamily="@font/lato_bold"
                 android:text="Birthday"
                 android:textSize="16dp" />
-
             <EditText
                 android:id="@+id/birthday"
                 style="@style/edit_text_style_1"
@@ -142,7 +141,6 @@
                 android:focusable="false"
                 android:inputType="date"
                 android:longClickable="false" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
@@ -206,7 +204,6 @@
                 android:fontFamily="@font/lato_bold"
                 android:text="Bank Account"
                 android:textSize="16dp" />
-
             <EditText
                 android:id="@+id/bank_account"
                 style="@style/edit_text_style_1"
@@ -215,7 +212,44 @@
                 android:layout_marginTop="8dp"
                 android:inputType="number"
                 android:maxLength="18" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_below="@id/spinner_select_driver"
+                android:background="@drawable/line_gradient" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="Ifse"
+                android:textSize="16dp" />
+            <EditText
+                android:id="@+id/ifse"
+                style="@style/edit_text_style_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_below="@id/spinner_select_driver"
+                android:background="@drawable/line_gradient" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="Bank Account Holder Name"
+                android:textSize="16dp" />
+            <EditText
+                android:id="@+id/bank_account_holder_name"
+                style="@style/edit_text_style_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"

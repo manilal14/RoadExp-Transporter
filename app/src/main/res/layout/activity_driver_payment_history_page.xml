@@ -39,13 +39,13 @@
                     android:textSize="16sp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Payment History" />
+                    android:text="@string/payment_history" />
 
                 <TextView
                     android:id="@+id/total_remaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Remaining : Rs.0"
+                    android:text="@string/remaining_rs_0"
                     android:textSize="10sp"
                     style="@style/button_style_1"/>
 
@@ -86,7 +86,7 @@
                     android:paddingRight="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Filter By"
+                    android:text="@string/filter_by"
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp"
                     android:drawableRight="@drawable/arrow_down"
@@ -109,7 +109,7 @@
                     android:paddingRight="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sort By"
+                    android:text="@string/sort_by"
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp"
                     android:drawableRight="@drawable/arrow_down"

@@ -57,166 +57,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
-                <!--&lt;!&ndash;Otp field&ndash;&gt;-->
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="Enter OTP"-->
-                    <!--android:fontFamily="@font/lato_bold"-->
-                    <!--android:textSize="16dp"/>-->
-
-                <!--<LinearLayout-->
-                    <!--android:layout_marginTop="8dp"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_gravity="start"-->
-                    <!--android:layout_height="wrap_content">-->
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="vertical">-->
-
-                        <!--<EditText-->
-                            <!--android:id="@+id/et1"-->
-                            <!--android:maxLength="1"-->
-                            <!--android:textAlignment="center"-->
-                            <!--android:inputType="number"-->
-                            <!--android:layout_width="40dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--style="@style/edit_text_style_1"/>-->
-
-                        <!--<View-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="4dp"-->
-                            <!--android:background="@drawable/line_gradient"/>-->
-                    <!--</LinearLayout>-->
-
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_marginLeft="8dp"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="vertical">-->
-
-                        <!--<EditText-->
-                            <!--android:id="@+id/et2"-->
-                            <!--android:maxLength="1"-->
-                            <!--android:textAlignment="center"-->
-                            <!--android:inputType="number"-->
-                            <!--android:layout_width="40dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--style="@style/edit_text_style_1"/>-->
-
-                        <!--<View-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="4dp"-->
-                            <!--android:background="@drawable/line_gradient"/>-->
-                    <!--</LinearLayout>-->
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_marginLeft="8dp"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="vertical">-->
-
-                        <!--<EditText-->
-                            <!--android:id="@+id/et3"-->
-                            <!--android:maxLength="1"-->
-                            <!--android:textAlignment="center"-->
-                            <!--android:inputType="number"-->
-                            <!--android:layout_width="40dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--style="@style/edit_text_style_1"/>-->
-
-                        <!--<View-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="4dp"-->
-                            <!--android:background="@drawable/line_gradient"/>-->
-                    <!--</LinearLayout>-->
-
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_marginLeft="8dp"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="vertical">-->
-
-                        <!--<EditText-->
-                            <!--android:id="@+id/et4"-->
-                            <!--android:maxLength="1"-->
-                            <!--android:textAlignment="center"-->
-                            <!--android:inputType="number"-->
-                            <!--android:layout_width="40dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--style="@style/edit_text_style_1"/>-->
-
-                        <!--<View-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="4dp"-->
-                            <!--android:background="@drawable/line_gradient"/>-->
-                    <!--</LinearLayout>-->
-
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_marginLeft="8dp"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="vertical">-->
-
-                        <!--<EditText-->
-                            <!--android:id="@+id/et5"-->
-                            <!--android:maxLength="1"-->
-                            <!--android:textAlignment="center"-->
-                            <!--android:inputType="number"-->
-                            <!--android:layout_width="40dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--style="@style/edit_text_style_1"/>-->
-
-                        <!--<View-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="4dp"-->
-                            <!--android:background="@drawable/line_gradient"/>-->
-                    <!--</LinearLayout>-->
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_marginLeft="8dp"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="vertical">-->
-
-                        <!--<EditText-->
-                            <!--android:id="@+id/et6"-->
-                            <!--android:maxLength="1"-->
-                            <!--android:textAlignment="center"-->
-                            <!--android:inputType="number"-->
-                            <!--android:layout_width="40dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--style="@style/edit_text_style_1"/>-->
-
-                        <!--<View-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="4dp"-->
-                            <!--android:background="@drawable/line_gradient"/>-->
-                    <!--</LinearLayout>-->
-
-
-
-
-
-                <!--</LinearLayout>-->
-
                 <TextView
                     android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Set Password"
+                    android:text="@string/set_password"
                     android:fontFamily="@font/lato_bold"
                     android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/password"
                     android:layout_marginTop="8dp"
-
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -224,7 +74,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
-
                     android:background="@drawable/line_gradient"
                     android:layout_below="@id/spinner_select_driver"/>
 
@@ -232,7 +81,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Confirm Password"
+                    android:text="@string/confirm_password"
                     android:fontFamily="@font/lato_bold"
                     android:textSize="16dp"/>
                 <EditText
@@ -253,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/lato_bold"
-                    android:text="State"
+                    android:text="@string/state"
                     android:textSize="16dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -292,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/lato_bold"
-                    android:text="City"
+                    android:text="@string/city"
                     android:textSize="16dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -331,9 +180,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/lato_bold"
-                    android:text="Bank Account"
+                    android:text="@string/bank_account"
                     android:textSize="16dp" />
-
                 <EditText
                     android:id="@+id/bank_account"
                     style="@style/edit_text_style_1"
@@ -342,7 +190,6 @@
                     android:layout_marginTop="8dp"
                     android:inputType="number"
                     android:maxLength="18" />
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
@@ -354,9 +201,48 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/lato_bold"
-                    android:text="fleet size"
+                    android:text="@string/ifsc"
                     android:textSize="16dp" />
+                <EditText
+                    android:id="@+id/ifsc"
+                    style="@style/edit_text_style_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:maxLength="18" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_below="@id/spinner_select_driver"
+                    android:background="@drawable/line_gradient" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/bank_account_holder"
+                    android:textSize="16dp" />
+                <EditText
+                    android:id="@+id/bank_account_holder_name"
+                    style="@style/edit_text_style_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:maxLength="18" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_below="@id/spinner_select_driver"
+                    android:background="@drawable/line_gradient" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/fleet_size"
+                    android:textSize="16dp" />
                 <EditText
                     android:id="@+id/fleet_size"
                     style="@style/edit_text_style_1"
@@ -365,12 +251,13 @@
                     android:layout_marginTop="8dp"
                     android:inputType="number"
                     android:maxLength="18" />
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
                     android:layout_below="@id/spinner_select_driver"
                     android:background="@drawable/line_gradient" />
+
+
 
 
             </LinearLayout>
@@ -386,7 +273,7 @@
         android:id="@+id/confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm"
+        android:text="@string/confirm"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:paddingTop="12dp"

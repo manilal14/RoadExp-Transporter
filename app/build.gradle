@@ -8,11 +8,11 @@ apply plugin: 'io.fabric'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.roadexp_transporter"
+        applicationId "com.road.roadexp_transporter"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -55,8 +55,6 @@ dependencies {
 
     implementation 'com.android.volley:volley:1.1.1'
 
-    //For automatically reading otp
-    implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
@@ -69,6 +67,8 @@ dependencies {
     implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
         transitive = true
     }
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 
 
 }

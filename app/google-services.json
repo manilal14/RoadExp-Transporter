@@ -8,12 +8,49 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:462233025150:android:c0789c0e1d12512e",
+        "mobilesdk_app_id": "1:462233025150:android:677545200f37f9f2",
         "android_client_info": {
-          "package_name": "com.example.roadexp_transporter"
+          "package_name": "com.example.driverapp"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "462233025150-38m1go62os5rpuc8mons319jd0an2bll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDULOC1sc2ZGQ6w-6JPJToWZooGP61SnWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "462233025150-7qiprme0l3lbe1p8lmsad4thsujfv7r2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462233025150:android:a39bbc7cfe336cf9",
+        "android_client_info": {
+          "package_name": "com.road.roadexp_transporter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462233025150-idb4pjp4jdq3le9f6llqhnptdfh7fnrt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.road.roadexp_transporter",
+            "certificate_hash": "2d9eb019254c727ec4819086a6b73cd19ee17399"
+          }
+        },
         {
           "client_id": "462233025150-38m1go62os5rpuc8mons319jd0an2bll.apps.googleusercontent.com",
           "client_type": 3

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.roadexp_transporter">
+    package="com.road.roadexp_transporter">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -10,12 +10,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.READ_SMS" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -30,16 +28,18 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".Initializer"
+        android:name="com.road.roadexp_transporter.Initializer"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MissedNotification.MissedNotificationPage"></activity>
-        <activity android:name=".Reports.PaymentReport.Driver.DriverPaymentHistoryPage" />
+        <activity android:name="com.road.roadexp_transporter.HomePage.ChooseLanguage"></activity>
+        <activity android:name="com.road.roadexp_transporter.LoginSingUp.AddTransPic" />
+        <activity android:name="com.road.roadexp_transporter.MissedNotification.MissedNotificationPage" />
+        <activity android:name="com.road.roadexp_transporter.Reports.PaymentReport.Driver.DriverPaymentHistoryPage" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -53,12 +53,12 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".VehiclePackage.LocateVehicleInMap"
+            android:name="com.road.roadexp_transporter.VehiclePackage.LocateVehicleInMap"
             android:label="@string/title_activity_locate_vehicle_in_map" />
-        <activity android:name=".Reports.TravelReport.Vehicle.TravelHistoryVehicle" />
+        <activity android:name="com.road.roadexp_transporter.Reports.TravelReport.Vehicle.TravelHistoryVehicle" />
 
         <receiver
-            android:name=".NetworkState.ConnectivityReceiver"
+            android:name="com.road.roadexp_transporter.NetworkState.ConnectivityReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -66,36 +66,36 @@
         </receiver>
 
         <activity
-            android:name=".VehiclePackage.UnverifiedVehicle.UnverifiedVehiclePage"
+            android:name="com.road.roadexp_transporter.VehiclePackage.UnverifiedVehicle.UnverifiedVehiclePage"
             android:screenOrientation="portrait" />
-        <activity android:name=".DriverPackage.Unverified.UnverifiedDriver" />
-        <activity android:name=".Reports.PaymentReport.Vehicle.VehiclePaymentHistoryPage" />
-        <activity android:name=".Reports.TravelReport.Driver.TravelHistoryDriver" />
-        <activity android:name=".Reports.PaymentReport.PaymentReportPage" />
-        <activity android:name=".Reports.TravelReport.TravelReportHomePage" />
-        <activity android:name=".Reports.MissedLoad.MissedLoadsPage" />
+        <activity android:name="com.road.roadexp_transporter.DriverPackage.Unverified.UnverifiedDriver" />
+        <activity android:name="com.road.roadexp_transporter.Reports.PaymentReport.Vehicle.VehiclePaymentHistoryPage" />
+        <activity android:name="com.road.roadexp_transporter.Reports.TravelReport.Driver.TravelHistoryDriver" />
+        <activity android:name="com.road.roadexp_transporter.Reports.PaymentReport.PaymentReportPage" />
+        <activity android:name="com.road.roadexp_transporter.Reports.TravelReport.TravelReportHomePage" />
+        <activity android:name="com.road.roadexp_transporter.Reports.MissedLoad.MissedLoadsPage" />
         <activity
-            android:name=".AddNewDriver.AddDriverPage"
+            android:name="com.road.roadexp_transporter.AddNewDriver.AddDriverPage"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".LoginSingUp.SingnUpNext" />
+        <activity android:name="com.road.roadexp_transporter.LoginSingUp.SingnUpNext" />
         <activity
-            android:name=".LoginSingUp.SignUpPage"
+            android:name="com.road.roadexp_transporter.LoginSingUp.SignUpPage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginSingUp.LoginPage"
+            android:name="com.road.roadexp_transporter.LoginSingUp.LoginPage"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".VehiclePackage.VehicleStatusHomePage" />
-        <activity android:name=".DriverPackage.DriverDetail" />
-        <activity android:name=".DriverPackage.DriverHomepage" />
+        <activity android:name="com.road.roadexp_transporter.VehiclePackage.VehicleStatusHomePage" />
+        <activity android:name="com.road.roadexp_transporter.DriverPackage.DriverDetail" />
+        <activity android:name="com.road.roadexp_transporter.DriverPackage.DriverHomepage" />
         <activity
-            android:name=".AddNewVehicle.AddVehicleHomePage"
+            android:name="com.road.roadexp_transporter.AddNewVehicle.AddVehicleHomePage"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MapsActivity"
+            android:name="com.road.roadexp_transporter.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".HomePage.AppHomePage">
+        <activity android:name="com.road.roadexp_transporter.HomePage.AppHomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -105,7 +105,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.roadexp_transporter.provider"
+            android:authorities="com.road.roadexp_transporter.provider"
             android:exported="false"
             android:grantUriPermissions="true">
 
@@ -115,7 +115,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <service android:name=".FCM.MyFirebaseMessagingService">
+        <service android:name="com.road.roadexp_transporter.FCM.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

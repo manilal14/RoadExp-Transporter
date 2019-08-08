@@ -57,7 +57,7 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pramod Kumar"
+                android:text="@string/pramod_kumar"
                 android:fontFamily="@font/lato_black"
                 android:textColor="@color/black"
                 android:textSize="20dp"/>
@@ -81,14 +81,14 @@
                     android:id="@+id/gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Male"
+                    android:text="@string/male"
                     style="@style/button_style_1"/>
 
                 <TextView
                     android:id="@+id/age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="32 yrs"
+                    android:text="@string/_32_yrs"
                     android:layout_marginLeft="8dp"
                     style="@style/button_style_1"/>
             </LinearLayout>
@@ -112,7 +112,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Basic Info"
+                        android:text="@string/basic_info"
                         android:fontFamily="@font/lato_black"
                         android:textColor="@color/black"
                         android:textSize="16dp"/>
@@ -133,7 +133,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Joining Date  :"
+                                android:text="@string/joining_date"
                                 android:textSize="14sp"
                                 android:fontFamily="@font/lato_bold"
                                 android:textColor="@color/light_red_gradient"/>
@@ -161,7 +161,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="No. of Successful Trip  :"
+                                android:text="@string/no_of_successful_trip"
                                 android:textSize="14sp"
                                 android:fontFamily="@font/lato_bold"
                                 android:textColor="@color/light_red_gradient"/>
@@ -189,7 +189,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Mapped  :"
+                                android:text="@string/mapped"
                                 android:textSize="14sp"
                                 android:fontFamily="@font/lato_bold"
                                 android:textColor="@color/light_red_gradient"/>
@@ -217,7 +217,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Mapped To  :"
+                                android:text="@string/mapped_to"
                                 android:textSize="14sp"
                                 android:fontFamily="@font/lato_bold"
                                 android:textColor="@color/light_red_gradient"/>
@@ -241,7 +241,7 @@
                             android:layout_marginTop="4dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Documents :"
+                            android:text="@string/documents"
                             android:textSize="14sp"
                             android:fontFamily="@font/lato_bold"
                             android:textColor="@color/light_red_gradient"/>
@@ -262,7 +262,7 @@
                                 android:paddingTop="8dp"
                                 android:paddingBottom="8dp"
                                 android:singleLine="true"
-                                android:text="Aadhar"
+                                android:text="@string/aadhar"
                                 android:textColor="@color/black" />
 
 
@@ -284,7 +284,7 @@
                                 android:paddingTop="8dp"
                                 android:paddingBottom="8dp"
                                 android:singleLine="true"
-                                android:text="Dl Front Pic"
+                                android:text="@string/dl_front_pic"
                                 android:textColor="@color/black" />
 
 
@@ -306,7 +306,7 @@
                                 android:paddingTop="8dp"
                                 android:paddingBottom="8dp"
                                 android:singleLine="true"
-                                android:text="Dl Back Pic"
+                                android:text="@string/dl_back_pic"
                                 android:textColor="@color/black" />
 
 

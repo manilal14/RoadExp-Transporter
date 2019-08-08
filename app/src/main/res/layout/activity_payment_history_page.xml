@@ -30,7 +30,7 @@
                 style="@style/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Payment History" />
+                android:text="@string/payment_history" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -64,7 +64,7 @@
                     android:paddingRight="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Filter By"
+                    android:text="@string/filter_by"
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp"
                     android:drawableRight="@drawable/arrow_down"
@@ -87,7 +87,7 @@
                     android:paddingRight="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sort By"
+                    android:text="@string/sort_by"
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp"
                     android:drawableRight="@drawable/arrow_down"
