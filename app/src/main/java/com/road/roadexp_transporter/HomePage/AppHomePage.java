@@ -100,14 +100,16 @@ public class AppHomePage extends AppCompatActivity implements ConnectivityReceiv
         }
 
         Fabric.with(this, new Crashlytics());
-
         setContentView(R.layout.activity_main);
 
-        Log.e(TAG, "called : onCreate");
+
 
        // checkConnection();
 
         mSession = new LoginSessionManager(AppHomePage.this);
+        //Need to shift to to splash screen if added
+        mSession.setOnBoardingShown();
+
         mSwipeRefreshLayout = findViewById(R.id.swipe_to_refresh);
 
         if(!mSession.isLoggedIn()){

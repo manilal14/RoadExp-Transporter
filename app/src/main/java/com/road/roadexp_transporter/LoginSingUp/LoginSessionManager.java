@@ -19,6 +19,7 @@ public class LoginSessionManager {
 
     private final String PREF_NAME   = "LoginPreference";
     private final String IS_LOGIN    = "IsLoggedIn";
+    private static final String ON_BOARDING_SHOWN    = "onBoardingShown";
 
     public static final String TRANS_ID         = "transId";
     public static final String TRANS_NAME       = "trans_name";
@@ -58,6 +59,7 @@ public class LoginSessionManager {
     public void logout(){
 
         editor.clear();
+        setOnBoardingShown();
         editor.commit();
 
         Intent i = new Intent(mCtx, LoginPage.class);
@@ -88,6 +90,16 @@ public class LoginSessionManager {
 
 
         return user;
+    }
+
+    public void setOnBoardingShown(){
+
+        editor.putBoolean(ON_BOARDING_SHOWN, true);
+        editor.commit();
+
+    }
+    public boolean onBoardingShown(){
+        return pref.getBoolean(ON_BOARDING_SHOWN, false);
     }
 
 }

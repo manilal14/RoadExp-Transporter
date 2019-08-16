@@ -50,7 +50,7 @@
     <string name="mobile">Mobile</string>
     <string name="password">Password</string>
     <string name="fogot_password">Fogot Password?</string>
-    <string name="login">Login</string>
+    <string name="login">LOGIN</string>
     <string name="not_registered">Not Registered ?</string>
     <string name="sign_up">Sign Up</string>
     <string name="or_use">Or Use</string>
@@ -81,5 +81,12 @@
     <string name="vehicle_unverified">Vehicle Unverified</string>
     <string name="driverlist2">DriverList2</string>
     <string name="vehicle_status">Vehicle Status</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="real_time_tracking_n_of_your_vehicle">Real time tracking  of\nyour vehicle</string>
+    <string name="find_daily_loads_at_best_n_market_rates">Find daily loads at best\nmarket rates</string>
+    <string name="transparent_pricing">Transparent pricing</string>
+    <string name="track_drivers_anytime">Track drivers\nanytime</string>
+    <string name="_100_payment_guarantee">100% payment\nguarantee</string>
 
 </resources>

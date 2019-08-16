@@ -63,7 +63,9 @@ public class CommanVariablesAndFunctuions {
     }
 
     public static long getUnixInSec(String TAG, String s) {
-        
+
+        //Log.e(TAG,"s="+s);
+
         Long unix = 0L;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
         try {
@@ -73,6 +75,8 @@ public class CommanVariablesAndFunctuions {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        //Log.e(TAG,"unix="+unix);
 
         return unix/1000L;
     }

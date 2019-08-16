@@ -146,7 +146,10 @@ public class MissedNotificationPage extends AppCompatActivity {
                             mMissedNotificationList.add(new Notification(loadId, vehicleType, pickupLocation, startMob, lastPoint, endMob, city,
                                     state, dimention, intermediate_loc , inter_mob,
                                     clientId, clientName,loadWeight, loadType, startOn, expireOn, amount,capacity));
+
                     }
+
+
 
                     Log.e(TAG,mMissedNotificationList.size()+"size");
 
