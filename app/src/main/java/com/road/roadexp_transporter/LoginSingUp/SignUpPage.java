@@ -174,6 +174,8 @@ public class SignUpPage extends AppCompatActivity {
         alertDialogBuilder.setView(otpView);
 
         final AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setCancelable(false);
+
         alertDialog.show();
 
         m_tv_otp = otpView.findViewById(R.id.otp);

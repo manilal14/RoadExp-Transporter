@@ -223,7 +223,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/lato_bold"
-                android:text="Ifse"
+                android:text="Ifsc"
                 android:textSize="16dp" />
             <EditText
                 android:id="@+id/ifse"
